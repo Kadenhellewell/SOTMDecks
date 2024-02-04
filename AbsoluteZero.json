@@ -1,0 +1,96 @@
+﻿{
+  // Thermodynamics
+  //"Innate Power": "Absolute Zero deals himself either 1 Cold Damage or 1 Fire Damage.",
+  //"Incapacitated": [ "One hero may use a power", "Select a Hero. Increase the next Damage dealt by that Hero by 2.", "Destory 1 target with 1 HP" ],
+  //"Starting HP": 29,
+  // Elemental Wrath
+  //"Innate Power": "Absolute Zero deals 1 non-Hero Target 2 Cold Damage.",
+  //"Incapacitated": [ "One Player may Draw a Card.", "One Target deals itself 1 Cold Damage.", "Until the start of your next turn, Environment Cards cannot be played." ],
+  //"Starting HP": 28,
+  // Pilot light
+  "Innate Power": "Absolute Zero deals himself 2 Fire Damage. If he takes Damage this way, search your Deck for an Ongoing Card and put it into play. Shuffle your Deck.",
+  "Incapacitated": [ "Destory an Environment card", "Each target deals itself 1 cold damage", "Until the start of your next turn, increase all Damage dealt to and by Targets by 1." ],
+  "Starting HP": 28,
+  // Violent Shivers
+  //"Innate Power": "Until the end of your next turn, increase all Damage dealt to and by Absolute Zero by 2.",
+  //"Incapacitated": [ "One Player may Play a Card.", "Destroy an Ongoing Card.", "Until the start of your next turn, reduce all non-Cold Damage by 1." ],
+  //"Starting HP": 25,
+  "Name": "Absolute Zero",
+  "Deck": {
+    "Frost-bound Drain": {
+      "type": "Oneshot",
+      "text": "Absolute Zero deals 1 non-Hero Target 3 Cold Damage. Absolute Zero deals himself 3 Fire Damage.",
+      "frequency": 3
+    },
+    "Fueled Freeze": {
+      "type": "Oneshot",
+      "text": "Destroy up to 3 Ongoing cards. Absolute Zero deals each non-Hero Target X Cold Damage, where X = the number of Ongoing cards destroyed by this card.",
+      "frequency": 2
+    },
+    "Hoarire": {
+      "type": "Oneshot",
+      "text": "Absolute Zero deals 1 Target 2 Cold Damage. Absolute Zero deals a second Target 2 Fire Damage. Absolute Zero deals himself 1 Cold Damage and 1 Fire Damage.",
+      "frequency": 2
+    },
+    "Modular Realignment": {
+      "type": "Oneshot",
+      "text": "Select 1 Equipment card from your trash and put it either into your hand or into play. Absolute Zero deals himself 1 Fire Damage and 1 Cold Damage.",
+      "frequency": 4
+    },
+    "Onboard Modular Installation": {
+      "type": "Oneshot",
+      "text": "You may draw a card. Search your deck for a Module card and put it into your hand. Shuffle your deck. You may play a card.",
+      "frequency": 4
+    },
+    "Coolant Blast": {
+      "type": "Ongoing",
+      "text": "Power: Absolute Zero deals 1 non-Hero Target X Cold Damage, where X = the amount of fire damage that has been dealt to absolute zero since end of your last turn.",
+      "frequency": 2
+    },
+    "Glacial Structure": {
+      "type": "Ongoing",
+      "text": "Power: Draw 3 cards. Destroy this card.",
+      "frequency": 2
+    },
+    "Impale": {
+      "type": "Ongoing",
+      "text": "Play this card next to a non-Hero Target. At the start of your turn, Absolute Zero deals that Target 2 Cold Damage. If the Target leaves play, destroy this card.",
+      "frequency": 2
+    },
+    "Sub-zero Atmosphere": {
+      "type": "Ongoing",
+      "text": "Any Villain card which would act at the end of the Villain turn instead acts at the start of the Villain turn.",
+      "frequency": 2
+    },
+    "Cold Snap": {
+      "type": "Ongoing, Limited",
+      "text": "At the start of your turn, Absolute Zero deals each non-Hero Target 1 Cold Damage.",
+      "frequency": 2
+    },
+    "Thermal Shockwave": {
+      "type": "Ongoing, Limited",
+      "text": "Power: Absolute Zero deals up to 3 Targets 1 Cold Damage each. Absolute Zero deals himself X Fire Damage, where X = the total amount of Cold Damage dealt by Absolute Zero this turn.",
+      "frequency": 2
+    },
+    "Cryo Chamber": {
+      "type": "Equipment, Limited",
+      "text": "Cold Damage dealt to Absolute Zero is increased by 1. Fire Damage dealt to Absolute Zero is reduced by 1. Power: Absolute Zero deals himself 5 Fire Damage. Destroy this card.",
+      "frequency": 2
+    },
+    "Focused Aperture": {
+      "type": "Equipment, Limited",
+      "text": "Increase Cold Damage dealt by Absolute Zero by 1.",
+      "frequency": 3
+    },
+    "Isothermic Transducer": {
+      "type": "Equipment, Limited, Module",
+      "text": "When Absolute Zero is dealt Fire Damage, Absolute Zero deals 1 Target that much Cold Damage.",
+      "frequency": 4
+    },
+    "Null-point Calibration Unit": {
+      "type": "Equipment, Limited, Module",
+      "text": "When Absolute Zero would take Cold Damage, he regains that many HP instead.",
+      "frequency": 4
+    }
+  }
+}

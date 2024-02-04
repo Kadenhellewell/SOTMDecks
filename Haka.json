@@ -1,0 +1,78 @@
+﻿{
+  "Innate Power": "Deal 1 target 2 Melee damage",
+  "Incapacitated": [ "One target regains 1 HP", "One player may play one card now", "Reduce all damage dealt by 2 until the start of your next turn" ],
+  "Starting HP": 34,
+  "Name": "Haka",
+  "Deck": {
+    "Savage Mana": {
+      "type": "Ongoing",
+      "text": "Whenever Haka destroys a Target, you may put that card beneath this card.\n\tPower: Destroy all cards beneath this card. Haka deals 1 Target X Toxic Damage, where X = the number of cards destroyed this way times 2.",
+      "frequency": 2
+    },
+    "Rampage": {
+      "type": "Oneshot",
+      "text": "Haka deals each non-Hero Target 5 Melee Damage and each Hero Target 2 Melee Damage.",
+      "frequency": 3
+    },
+    "Elbow Smash": {
+      "type": "Oneshot",
+      "text": "Haka deals 1 Target 3 Melee Damage.",
+      "frequency": 3
+    },
+    "Haka of Battle": {
+      "type": "Oneshot",
+      "text": "Draw 2 cards, then discard 1 or more cards. Increase the next Damage dealt by Haka by 1 for each card discarded this way.",
+      "frequency": 3
+    },
+    "Haka of Restoration": {
+      "type": "Oneshot",
+      "text": "Draw 2 cards, then discard 1 or more cards. Haka regains HP equal to the number of cards discarded this way.",
+      "frequency": 3
+    },
+    "Haka of Shielding": {
+      "type": "Oneshot",
+      "text": "Draw 2 cards, then discard 1 or more cards. Reduce the next Damage dealt to Haka by 2 for each card discarded this way.",
+      "frequency": 3
+    },
+    "Vitality Surge": {
+      "type": "Oneshot",
+      "text": "Haka regains 2 HP. Draw a card.",
+      "frequency": 3
+    },
+    "Dominion": {
+      "type": "Ongoing",
+      "text": "Whenever an Environment card is destroyed, you may draw a card.",
+      "frequency": 3
+    },
+    "Enduring Intercession": {
+      "type": "Ongoing",
+      "text": "Redirect any Damage that would be dealt to a Hero Target by an Environment card to Haka.\n\tPower: Destroy this card.",
+      "frequency": 3
+    },
+    "Ground Pound": {
+      "type": "Ongoing",
+      "text": "When this card enters play, discard 2 cards or destroy this card. Non-Hero cards cannot deal Damage. At the start of your turn, destroy this card.",
+      "frequency": 2
+    },
+    "Punish the Weak": {
+      "type": "Ongoing, Limited",
+      "text": "Whenever Haka would Damage the non-Hero Target with the lowest HP, increase that Damage by 1. Whenever Haka would Damage any other Target, reduce that Damage by 1.\n\tPower: Destroy this card.",
+      "frequency": 3
+    },
+    "Ta Moko": {
+      "type": "Ongoing, Limited",
+      "text": "Reduce Damage dealt to Haka by 1.",
+      "frequency": 3
+    },
+    "Mere": {
+      "type": "Equipment, Limited",
+      "text": "Power: Haka deals 1 Target 2 Melee Damage. Draw a card.",
+      "frequency": 3
+    },
+    "Taiaha": {
+      "type": "Equipment, Limited",
+      "text": "Power: Haka deals up to 2 Targets 3 Melee Damage each.",
+      "frequency": 3
+    }
+  }
+}
