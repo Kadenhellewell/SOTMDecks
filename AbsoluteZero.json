@@ -8,13 +8,13 @@
   //"Incapacitated": [ "One Player may Draw a Card.", "One Target deals itself 1 Cold Damage.", "Until the start of your next turn, Environment Cards cannot be played." ],
   //"Starting HP": 28,
   // Pilot light
-  "Innate Power": "Absolute Zero deals himself 2 Fire Damage. If he takes Damage this way, search your Deck for an Ongoing Card and put it into play. Shuffle your Deck.",
-  "Incapacitated": [ "Destory an Environment card", "Each target deals itself 1 cold damage", "Until the start of your next turn, increase all Damage dealt to and by Targets by 1." ],
-  "Starting HP": 28,
+  //"Innate Power": "Absolute Zero deals himself 2 Fire Damage. If he takes Damage this way, search your Deck for an Ongoing Card and put it into play. Shuffle your Deck.",
+  //"Incapacitated": [ "Destory an Environment card", "Each target deals itself 1 cold damage", "Until the start of your next turn, increase all Damage dealt to and by Targets by 1." ],
+  //"Starting HP": 28,
   // Violent Shivers
-  //"Innate Power": "Until the end of your next turn, increase all Damage dealt to and by Absolute Zero by 2.",
-  //"Incapacitated": [ "One Player may Play a Card.", "Destroy an Ongoing Card.", "Until the start of your next turn, reduce all non-Cold Damage by 1." ],
-  //"Starting HP": 25,
+  "Innate Power": "Until the end of your next turn, increase all Damage dealt to and by Absolute Zero by 2.",
+  "Incapacitated": [ "One Player may Play a Card.", "Destroy an Ongoing Card.", "Until the start of your next turn, reduce all non-Cold Damage by 1." ],
+  "Starting HP": 25,
   "Name": "Absolute Zero",
   "Deck": {
     "Frost-bound Drain": {
@@ -74,7 +74,7 @@
     },
     "Cryo Chamber": {
       "type": "Equipment, Limited",
-      "text": "Cold Damage dealt to Absolute Zero is increased by 1. Fire Damage dealt to Absolute Zero is reduced by 1. Power: Absolute Zero deals himself 5 Fire Damage. Destroy this card.",
+      "text": "Cold Damage dealt to Absolute Zero is increased by 1. Fire Damage dealt to Absolute Zero is reduced by 1.\n\tPower: Absolute Zero deals himself 5 Fire Damage. Destroy this card.",
       "frequency": 2
     },
     "Focused Aperture": {

@@ -187,7 +187,7 @@ namespace SOTMDecks
                     Console.WriteLine("Not a valid command");
                     break;
             }
-            // TODO: Add ability to move card from discard pile to hand or deck
+
             if (command is not null)
             {
                 if (command.Execute())

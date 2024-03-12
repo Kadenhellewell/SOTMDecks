@@ -1,0 +1,92 @@
+﻿{
+  // Pull the strings
+  //"Innate Power": "Magnificent Mara deals one target one psychic damage, that target then deals another target one melee damage.",
+  //"Incapacitated": [ "One hero may put a card from their trash on top of their deck.", "Destroy one ongoing card.", "Select a target. Until the start of your next turn, that target is immune to damage from environment cards." ],
+  //"Starting HP": 27,
+  // Conjure Relic
+  "Innate Power": "One play may play a relic card. Another player may move a relic from their trash to the top of their deck. If neither happens, draw a card.",
+  "Incapacitated": [ "One target deals another target one mele damage.", "Put a card in a trash pile under its associated deck.", "One player selects a keyword and revels the top three cards of their deck, putting any revealed cards with that keyword into their hand and discarding the rest." ],
+  "Starting HP": 24,
+  // Illusory Veil
+  //"Innate Power": "Magnificent Mara deals one target two radiant damage. Increase damage dealt by that target by one until the start of your next turn.",
+  //"Incapacitated": [ "One player may draw a card now.", "Reduce the next damage dealt to a hero target by two.", "The next time a hero ongoing card is destroyed, put that card in its owner's hand." ],
+  //"Starting HP": 25,
+  "Name": "Magnificent Mara",
+  "Deck": {
+    "Dowsing Crystal": {
+      "type": "Equipment, Relic, Limited",
+      "text": "Power: Once before your next turn when a non-hero card enters play, one hero target may deal a non-hero target two damage of a type of their choosing. You may destroy this card to increase this damage by two.",
+      "frequency": 2
+    },
+    "Mix It Up": {
+      "type": "One Shot",
+      "text": "Destroy one hero ongoing card, equipment card, or environment card. If you do, reveal the top two cards of the associated deck, put one into play and discard the other.",
+      "frequency": 3
+    },
+    "Hand is Faster than the Eye": {
+      "type": "Ongoing",
+      "text": "When a non-relic, non-character villain card would activate a \"start of turn\" or \"end of turn\" effect, destory it instead. Then destory this card",
+      "frequency": 2
+    },
+    "Smoke and Mirrors": {
+      "type": "Ongoing",
+      "text": "When a Hero target would be dealt damage, you may prevent that damage. If you do, destroy this card.",
+      "frequency": 3
+    },
+    "Glimpse of Things to Come": {
+      "type": "One Shot",
+      "text": "Reveal the top card of the villain deck, then replace it. You may draw a card. You may play a card.",
+      "frequency": 4
+    },
+    "Post-Hypnotic Cue": {
+      "type": "Ongoing",
+      "text": "Play this card next to a hero. When this card is destroyed, that hero may use a power. At the start of your turn you may destroy this card.",
+      "frequency": 3
+    },
+    "Looking for This?": {
+      "type": "One Shot",
+      "text": "One player may return one of their non-character cards in play to their hand. If they do, they may select a card in their trash that shares a keyword with that card and put it into play.",
+      "frequency": 3
+    },
+    "Abracadabra": {
+      "type": "Ongoing",
+      "text": "When a non-character card belonging to another hero is destroyed, you may return it to that player's hand. If you do, destroy this card. When this card is destroyed, one player may play a card.",
+      "frequency": 3
+    },
+    "Convincing Double": {
+      "type": "One Shot",
+      "text": "Select a player. That player passes a one-shot card to another player, who then puts that card into play as if it were their card, treating any hero name on the card as the name of their hero instead.",
+      "frequency": 2
+    },
+    "Wand of Banishment": {
+      "type": "Equipment, Relic, Limited",
+      "text": "When a non-character card from another deck would be destroyed, you may put it on top or bottom of its deck instead. If you do, destroy this card.",
+      "frequency": 2
+    },
+    "Mythical Enhancement": {
+      "type": "Ongoing, Limited",
+      "text": "Play this card next to a card with a power on it. Increase damage dealt by that power by one. If that card would be destroyed, destroy this card instead.",
+      "frequency": 3
+    },
+    "Improbable Escape": {
+      "type": "Ongoing, Limited",
+      "text": "When a hero character is reduced to 0 of fewer HP, restore them to 2 HP, then destroy this card. When This card or any of your ongoing cards is destroyed you may draw a card.",
+      "frequency": 3
+    },
+    "Misdirection": {
+      "type": "One Shot",
+      "text": "Magnificent Mara deals one target one sonic damage. One other target deal that same target two damage of a type of their choosing.",
+      "frequency": 3
+    },
+    "Kalpak of Mysteries": {
+      "type": "Equipment, Relic, Limited",
+      "text": "Power: Reveal the top card of each other hero deck. One player may put their revealed card into their hand or into play. Replace or discard the other revealed cards. If a card is put into play this way, destroy this card.",
+      "frequency": 2
+    },
+    "Mesmer Pendant": {
+      "type": "Equipment, Relic, Limited",
+      "text": "Play this card next to a non-character target. Treat the words \"hero target\", \"hero ongoing\", and \"non-villain target\" on that card as \"villain target\", \"villain ongoing\" and \"non-hero target\" instead. At the start of your turn, destory this card.",
+      "frequency": 2
+    }
+  }
+}
