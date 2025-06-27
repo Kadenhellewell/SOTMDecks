@@ -1,0 +1,55 @@
+﻿{
+  "Identities": [
+    {
+      "Title": "Title of the identity - name of the power or team or whatever makes sense",
+      "Innate Power": "The innate power this identity",
+      "Starting HP": 29,
+      "Incapacitated": [
+        "first incapacitated ability",
+        "second incapacitated ability",
+        "third incapacitated ability"
+      ]
+    },
+    {
+      "Title": "second identity, if there is one.",
+      "Innate Power": "Innate power",
+      "Starting HP": 28,
+      "Incapacitated": [
+        "first incapacitated ability",
+        "second incapacitated ability",
+        "third incapacitated ability"
+      ]
+    }
+  ],
+  "Name": "Hero name",
+  "Deck": {
+    "Name of card": {
+      "type": "Type1, Type2",
+      "text": "Text of card goes here. Start of turn, end of turn, powers, and on entry effects go in their own property",
+      "frequency": 3
+    },
+    "Another card": {
+      "type": "Comma, Separated, List",
+      "on entry": "Anything that happens on entry should go here.",
+      "start of turn": "Anything that happens at the start of a turn goes here. Start with \"At the start of your turn, \"",
+      "text": "Card text goes here",
+      "end of turn": "Anything that happens at the end of a turn goes here. Start with \"At the end of your turn, \"",
+      "frequency": 2
+    },
+    "Yet another card": {
+      "type": "Equpment, Limited",
+      "text": "Card text",
+      "modifiers": [
+        {
+          "text": "If a card adds a modifier, denote that here. If it reduces damage, set color to 'Green'. If it increases damage, 'Yellow' (follow tile colors as much as possible)",
+          "color": "Green"
+        },
+        {
+          "text": "These need not match word for word, just enough for me to know what's going on.",
+          "color": "Magenta"
+        }
+      ],
+      "frequency": 2
+    }
+  }
+}
