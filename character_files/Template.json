@@ -33,6 +33,7 @@
       "on entry": "Anything that happens on entry should go here.",
       "start of turn": "Anything that happens at the start of a turn goes here. Start with \"At the start of your turn, \"",
       "text": "Card text goes here",
+      "on destroy": "What happens when this card is destroyed",
       "end of turn": "Anything that happens at the end of a turn goes here. Start with \"At the end of your turn, \"",
       "frequency": 2
     },
