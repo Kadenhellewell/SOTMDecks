@@ -17,7 +17,7 @@ namespace SOTMDecks.Commands
             if (card is null) return false;
 
             card_ = card;
-            return player_.MoveCard(card_, Location.PlayArea, Location.DiscardPile);
+            return player_.DestroyCard(card_);
         }
 
         public override void Undo()

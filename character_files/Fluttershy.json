@@ -1,0 +1,181 @@
+﻿{
+  "Innate Power": "Three non-character hero targets regain 1 HP each.",
+  "Incapacitated": [ "Two hero targets regain 1 HP each.", "One player may draw a card.", "Select a damage type. Reduce damage of that type dealt to hero targets by 1 until the start of your turn." ],
+  "Starting HP": 24,
+  "Name": "Fluttershy",
+  "Deck": {
+    "The Element of Kindness": {
+      "type": "Equipment, Relic, Element",
+      "text": "The first time each turn any Pet regains HP, a target regains 1 HP.",
+      "power": "Fluttershy deals a target X energy damage, where X = the number of Elements in play.",
+      "frequency": 1
+    },
+    "Bear call": {
+      "type": "Equipment, Limited",
+      "power": "A Pet regains 2 HP and deals a target 2 melee damage. That Pet may then deal each other non-hero target 2 melee damage. If it does, destroy this card.",
+      "frequency": 3
+    },
+    "The Stare": {
+      "type": "Ongoing, Limited",
+      "start of turn": "At the start of your turn, destroy this card.",
+      "text": "Pets and non-hero non-character targets have no end of turn effects. You cannot use powers.",
+      "frequency": 2
+    },
+    "Pony-Pet Playdate": {
+      "type": "Ongoing, Limited",
+      "text": "The first time any Pet enters play each turn, it regains 1 HP.",
+      "power": "Play up to three Pets. Each regains 1 HP. If more than one Pet entered play this way, destroy this card.",
+      "frequency": 3
+    },
+    "Everfree Cottage": {
+      "type": "Ongoing, House",
+      "text": "Reduce environment damage dealt to Pets by 2.",
+      "modifiers": [
+        {
+          "text": "-2 Damage dealt to pets by environment",
+          "color": "Green"
+        }
+      ],
+      "power": "Each target in your play area regains 1 HP.",
+      "frequency": 1
+    },
+    "Rabbit Roundup": {
+      "type": "Ongoing",
+      "text": "When one of your Pets would be destroyed, you may prevent that destruction and restore that Pet to 3 HP, then destroy this card.",
+      "on entry": "When this card enters play, a target regains 2 HP.",
+      "frequency": 4
+    },
+    "How Dare You!": {
+      "type": "Ongoing",
+      "start of turn": "At the start of your turn, destroy all other copies of this card.",
+      "text": "When a Pet is destroyed by a villain card, a villain target deals itself 2 psychic damage.",
+      "on entry": "When this card enters play, you may play a Pet from your hand or trash.",
+      "frequency": 3
+    },
+    "Find a Pet": {
+      "type": "Oneshot",
+      "text": "Each player either draws a card or reveals cards from the top of their deck until a target is revealed, puts it in their hand, and shuffles the other cards into their deck. Collect a Pet, salvage a Pet or play a card. If you play a Pet this way, it regains 2 HP.",
+      "frequency": 4
+    },
+    "A Lovely Picnic": {
+      "type": "Oneshot",
+      "text": "Five targets not at full HP regain 2 HP each. When a non-hero target regains HP this way, reduce damage dealt by that target by 1 until the start of your turn.",
+      "frequency": 3
+    },
+    "Fuzzylegs": {
+      "type": "Pet",
+      "end of turn": "At the end of your turn, this card deals a target 1 toxic damage.\n\t :) Reduce damage dealt by a target that took damage this way by 1 until the start of your turn.",
+      "starting HP": 1,
+      "max HP": 2,
+      "frequency": 1
+    },
+    "Giant Monarch": {
+      "type": "Pet",
+      "text": ":) A target dealt damage this way deals another non-hero target 3 melee damage.",
+      "end of turn": "At the end of your turn, this card may deal a target 1 psychic damage.",
+      "starting HP": 1,
+      "max HP": 2,
+      "frequency": 1
+    },
+    "Dark and Mysterious": {
+      "type": "Pet",
+      "end of turn": "At the end of your turn, this card may deal a target 2 sonic damage.\n\t:) Destroy a target reduced to 3 or fewer HP this way.",
+      "starting HP": 1,
+      "max HP": 3,
+      "frequency": 1
+    },
+    "Hummingway": {
+      "type": "Pet",
+      "end of turn": "At the end of your turn, this card may deal a target 1 melee and 1 sonic damage.\n\t :) Damage dealt by this card is irreducible.",
+      "starting HP": 1,
+      "max HP": 3,
+      "frequency": 1
+    },
+    "Mr. Mousey": {
+      "type": "Pet",
+      "text": "When this card regains HP, two other hero targets regain 1 HP each.",
+      "end of turn": ":) At the end of your turn, a hero target regains 2 HP.",
+      "starting HP": 1,
+      "max HP": 3,
+      "frequency": 1
+    },
+    "Squirrely": {
+      "type": "Pet",
+      "end of turn": ">:] At the end of your turn, you may discard a card and draw a card.\n\t:) At the end of your turn, you may draw a card.",
+      "starting HP": 2,
+      "max HP": 3,
+      "frequency": 1
+    },
+    "The Jackalope": {
+      "type": "Pet",
+      "end of turn": ">:] At the end of your turn, this card deals the non-hero target with the lowest HP 3 melee damage.\n\t:) At the end of your turn, this card may deal a target 3 melee damage.",
+      "starting HP": 1,
+      "max HP": 4,
+      "frequency": 1
+    },
+    "Angel Bunny": {
+      "type": "Pet",
+      "text": ">:] When Fluttershy is dealt damage, this card deals the source of that damage 1 melee damage.\n\t:) The first time Fluttershy and any Pet are dealt damage by any non-hero target each turn, this card deals the source of that damage 2 melee damage.",
+      "starting HP": 2,
+      "max HP": 4,
+      "frequency": 1
+    },
+    "Elizabeak": {
+      "type": "Pet",
+      "text": "Reduce damage dealt to this card by 1. When a Pet would be dealt damage, you may redirect that damage to this card.",
+      "end of turn": ":) At the end of your turn, this card may deal a target 1 melee damage.",
+      "starting HP": 2,
+      "max HP": 4,
+      "frequency": 1
+    },
+    "Regal Eagle": {
+      "type": "Pet",
+      "end of turn": ">:] At the end of your turn, you may discard a card and play a card.\n\t:) At the end of your turn, you may play a card.",
+      "starting HP": 2,
+      "max HP": 4,
+      "frequency": 1
+    },
+    "Li'l Piggington": {
+      "type": "Pet",
+      "end of turn": "At the end of your turn, reveal and replace the top card of a deck.\n\t:) Then you may discard the top card of a deck or bury the top card of a trash.",
+      "starting HP": 2,
+      "max HP": 5,
+      "frequency": 1
+    },
+    "Beaverton": {
+      "type": "Pet",
+      "end of turn": ">:] At the end of your turn, you may destroy a non-target environment card.\n\t:) At the end of your turn, destroy up to 2 ongoing and/or environment cards. If 2 cards are destroyed this way, this card deals itself 2 irreducible psychic damage.",
+      "starting HP": 3,
+      "max HP": 6,
+      "frequency": 1
+    },
+    "Buzzing Buzzard": {
+      "type": "Pet",
+      "end of turn": ">:] At the end of your turn, this card deals the three non-hero targets with the lowest HP 1 sonic damage each.\n\t:) At the end of your turn, this card deals each non-hero target 2 sonic damage.",
+      "starting HP": 3,
+      "max HP": 6,
+      "frequency": 1
+    },
+    "The Orthros": {
+      "type": "Pet",
+      "end of turn": ">:] At the end of your turn, this card deals the two non-hero targets with the highest HP 2 melee damage each.\n\t:) At the end of your turn, this card deals up to two targets 2 melee and 1 toxic damage each.",
+      "starting HP": 3,
+      "max HP": 6,
+      "frequency": 1
+    },
+    "Smoky & Softpad": {
+      "type": "Pet",
+      "end of turn": ">:] At the end of your turn, a player may move a card from their trash to the top of their deck.\n\t:) Then this card deals up to two targets 2 melee damage each.",
+      "starting HP": 3,
+      "max HP": 6,
+      "frequency": 1
+    },
+    "Harry the Bear": {
+      "type": "Pet",
+      "end of turn": "At the end of your turn, this card may deal a target 4 melee damage.\n\t:) If it does not, select a target. If that target is a character, prevent the next damage it would deal. If not, it cannot deal damage until the start of your next turn.",
+      "starting HP": 4,
+      "max HP": 8,
+      "frequency": 1
+    }
+  }
+}

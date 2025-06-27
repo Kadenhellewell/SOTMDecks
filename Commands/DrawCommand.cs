@@ -26,6 +26,7 @@ namespace SOTMDecks.Commands
         public override void Undo()
         {
             player_.UndoDraw(card_, bottom_);
+            player_.PlayerDeck.Shuffle();
         }
     }
 }

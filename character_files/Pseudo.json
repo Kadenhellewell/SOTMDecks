@@ -1,0 +1,92 @@
+﻿{
+  //Brute Force
+  //"Innate Power": Pseudo deals 1 target 2 melee damage. You may play 1 shape",
+  //"Incapacitated": [ "Destroy 1 ongoing.", "Shuffle 1 trash back into its deck.", "One player draws 1 cards now." ],
+  //"Starting HP": 27,
+  //Grue Infiltratior
+  "Innate Power": "Reveal the top card of 1 deck. Replace it or discard it. Draw 1 card.",
+  "Incapacitated": [ "Discard the top card of up to 3 decks.", "One hero used 1 power now.", "Destroy 1 envrionment card." ],
+  "Starting HP": 28,
+  "Name": "Pseudo",
+  "Deck": {
+    "Bait and Swith": {
+      "type": "Oneshot",
+      "text": "Take the top 2 cards of the villian trash. Put 1 on top and 1 on bottom of the villian trash.",
+      "frequency": 2
+    },
+    "Malleable Flesh": {
+      "type": "Ongoing, Limited",
+      "text": "Each time you play a shape, Pseudo regains 1 HP.",
+      "power": "Draw 3 cards. Discard each non-shape card drawn this way.",
+      "frequency": 3
+    },
+    "Try Not to Think About It.": {
+      "type": "Oneshot",
+      "text": "Search the villian deck for 1 card. Shuffle the rest of the villian deck, then put that card on top of bottom of the villian deck.",
+      "frequency": 2
+    },
+    "Stealthy Form": {
+      "type": "Ongoing, Shape, Limited",
+      "text": "The first time Pseudo woild be dealth damage each turn, you may redirect that damage to another hero target. If you do, increase the next damage dealt by Pseudo by 1.",
+      "on entry": "When this card enters play, discard the top card of 1 deck. Then, destroy each shape other than this one.",
+      "frequency": 3
+    },
+    "Risky Impersonation": {
+      "type": "Ongoing, Shape, Limited",
+      "text": "Each time a villain card would enter play, Pseudo may deal himself 5 psychic damage. If he is dealt damage this way, discard that card instead.",
+      "on entry": "When this card enters play, discard 1 card. Then, destroy each shape other than this one.",
+      "frequency": 3
+    },
+    "Clobbering Arms": {
+      "type": "Ongoing, Shape, Limited",
+      "on entry": "When this card enters play, Psuedo deals 1 target 3 melee damage. Then, destroy each shape other than this one.",
+      "end of turn": "At the end of your turn, Pseudo deals 1 target 3 melee damage.",
+      "frequency": 3
+    },
+    "Grue Battle Shifter": {
+      "type": "Ongoing, Limited",
+      "start of turn": "At the start of your turn, you may play 1 shape.",
+      "power": "Until the end of this turn, increase damage dealt by Pseudo by 1. You may play 1 shape.",
+      "frequency": 3
+    },
+    "Thickened Build": {
+      "type": "Ongoing, Shape, Limited",
+      "text": "Reduce damage dealt to Pseudo by 1.",
+      "on entry": "When this card enters play, Pseudo regains 3 HP. Then, destory each shape other than this one.",
+      "frequency": 3
+    },
+    "Mind Over Matter": {
+      "type": "Ongoing, Limited",
+      "text": "Reduce psychic damage dealt to hero targerts by 1. Each time a hero target deals damage, they may change the type of that damage to psychic.",
+      "frequency": 3
+    },
+    "Perfect Disguise": {
+      "type": "Spell, Shape, Limited",
+      "text": "Pseudo is immune to damage dealt by environment targets.",
+      "on entry": "When this card enters play, reveal the top 2 cards of 1 deck. Discard 1 of them and put the other on top of tht deck. Then, destory each shape other than this one.",
+      "frequency": 3
+    },
+    "Barbed Spines": {
+      "type": "Spell, Shape, Limited",
+      "text": "Each time Pseudo is dealt damage by a non-hero target, he deals that target 2 melee damage.",
+      "on entry": "When this card enters play, Pseudo deals each non-hero target 1 projectile damage. Then, destroy each shape other than this one.",
+      "frequency": 3
+    },
+    "Preserved Self-Image": {
+      "type": "Oneshot",
+      "text": "Reveal cards from the top of your deck until 3 shapes are revealed. Put them into your hand. Discard the other cards revealed this way. Shuffle your trash into your deck. Either draw 1 card or play 1 card.",
+      "frequency": 3
+    },
+    "Telepathic Coordination": {
+      "type": "Oneshot",
+      "end of turn": "Each player draws 3 cards and discards 2 cards.",
+      "frequency": 3
+    },
+    "Insubstantial Transmutation": {
+      "type": "Ongoing, Shape, Limited",
+      "text": "Pseudo is immune to melee and projectile damage.",
+      "on entry": "When this card enters play, draw 1 card. Then, destroy each other shape card.",
+      "frequency": 3
+    }
+  }
+}

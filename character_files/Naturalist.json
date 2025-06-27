@@ -46,7 +46,7 @@
     },
     "Cornered Beast": {
       "type": "Ongoing",
-      "text": "Power: Destroy a Target with 3 or fewer HP.\n\tA: If there are more non-Hero Targets than Hero Targets, increase Damage dealt by The Naturalist by 1.",
+      "power": "Destroy a Target with 3 or fewer HP.\n\tA: If there are more non-Hero Targets than Hero Targets, increase Damage dealt by The Naturalist by 1.",
       "frequency": 2
     },
     "Environmental Allies": {
@@ -56,42 +56,80 @@
     },
     "Indomitable Force": {
       "type": "Ongoing",
-      "text": "Reduce Damage dealt to The Naturalist by 1. At the start of your turn, destroy this card.\n\tR: Whenever Damage would be dealt to a Hero Target, redirect it to The Naturalist.",
+      "start of turn": "At the start of your turn, destroy this card.",
+      "text": "Reduce Damage dealt to The Naturalist by 1.\n\tR: Whenever Damage would be dealt to a Hero Target, redirect it to The Naturalist.",
+      "modifiers": [
+        {
+          "text": "-1 damage taken",
+          "color": "Green"
+        }
+      ],
       "frequency": 3
     },
     "Natural Forms Power": {
       "type": "Ongoing",
-      "text": "Power:\n\t\tG: One Player draws 2 cards.\n\t\tR: The Naturalist regains 2 HP.\n\t\tA: The Naturalist deals up to 2 Targets 1 Toxic Damage each.",
+      "power": "G: One Player draws 2 cards.\n\tR: The Naturalist regains 2 HP.\n\tA: The Naturalist deals up to 2 Targets 1 Toxic Damage each.",
       "frequency": 2
     },
     "Resilient Hide": {
       "type": "Ongoing",
-      "text": "Whenever exactly 1 Damage would be dealt to The Naturalist, prevent that Damage.\n\tR: At the start of your turn, The Naturalist regains 1 HP.",
-      "frequency": 3
+      "start of turn": "R: At the start of your turn, The Naturalist regains 1 HP.",
+      "text": "Whenever exactly 1 Damage would be dealt to The Naturalist, prevent that Damage.\n\t",
+      "modifiers": [
+        {
+          "text": "Whenever taking exactly 1 damage, prevent it.",
+          "color": "Green"
+        }
+      ],
+      "frequency": 2
     },
     "The Deadly Crocodile": {
       "type": "Ongoing, Form",
-      "text": "When this card enters play, destroy any other Form cards. Increase Damage dealt by The Naturalist by 1.\n\tPower: The Naturalist deals 1 Target 2 Melee Damage.\n\tYou may activate 'A' effects.",
+      "text": "Increase Damage dealt by The Naturalist by 1.",
+      "modifiers": [
+        {
+          "text": "+1 damage dealt",
+          "color": "Yellow"
+        }
+      ],
+      "on entry": "When this card enters play, destroy any other Form cards.",
+      "power": "The Naturalist deals 1 Target 2 Melee Damage.\n\tYou may activate 'A' effects.",
       "frequency": 1
     },
     "The Formidable Rhinoceros": {
       "type": "Ongoing, Form",
-      "text": "When this card enters play, destroy any other Form cards. Reduce Damage dealt to The Naturalist by 1.\n\tPower: Draw 2 cards.\n\tYou may activate 'R' effects.",
+      "text": "Reduce Damage dealt to The Naturalist by 1.",
+      "modifiers": [
+        {
+          "text": "-1 damage taken",
+          "color": "Green"
+        }
+      ],
+      "on entry": "When this card enters play, destroy any other Form cards.",
+      "power": "Draw 2 cards.\n\tYou may activate 'R' effects.",
       "frequency": 1
     },
     "The Nimble Gazelle": {
       "type": "Ongoing, Form",
-      "text": "When this card enters play, destroy any other Form cards.\n\tPower: The Naturalist regains 3 HP.\n\tYou may activate 'G' effects.",
+      "on entry": "When this card enters play, destroy any other Form cards.",
+      "power": "The Naturalist regains 3 HP.\n\tYou may activate 'G' effects.",
       "frequency": 1
     },
     "Blend Into the Pack": {
       "type": "Ongoing, Limited",
       "text": "The first time The Naturalist would take damage each turn, reduce that Damage by the number of Environment Targets in play.",
+      "modifiers": [
+        {
+          "text": "reduce first damage taken each turn by number of environment targets",
+          "color": "Green"
+        }
+      ],
       "frequency": 2
     },
     "Natural Born Vigor": {
       "type": "Ongoing, Limited",
-      "text": "You may use an additional Power on your turn. At the start of your turn, The Naturalist may regain 4 HP. If he does, destroy this card.",
+      "start of turn": "At the start of your turn, The Naturalist may regain 4 HP. If he does, destroy this card.",
+      "text": "You may use an additional Power on your turn.",
       "frequency": 2
     }
   }

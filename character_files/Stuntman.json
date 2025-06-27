@@ -6,22 +6,30 @@
   "Deck": {
     "Hidden Mine": {
       "type": "Equipment, Limited",
-      "text": "When Stuntman is dealt damage by a non-Hero target, destroy this card. When this card is destroyed, Stuntman deals each target 1 Projectile Damage, then deals each non-Hero target 3 Fire Damage.",
+      "text": "When Stuntman is dealt damage by a non-Hero target, destroy this card.",
+      "on destroy": "When this card is destroyed, Stuntman deals each target 1 Projectile Damage, then deals each non-Hero target 3 Fire Damage.",
       "frequency": 2
     },
     "Lance-Flames": {
       "type": "Equipment, Limited",
-      "text": "Power: Stuntman deals up to 4 targets 2 Fire Damage each. When this Power is used outside your turn and reduces a target to 2 or fewer HP, destroy that target.",
+      "power": "Stuntman deals up to 4 targets 2 Fire Damage each. When this Power is used outside your turn and reduces a target to 2 or fewer HP, destroy that target.",
       "frequency": 2
     },
     "Pistolet-Mitralleur": {
       "type": "Equipment, Limited",
-      "text": "Power: Stuntman deals each non-Hero target 1 Projectile Damage. When this Power is used outside your turn, you may play a card.",
+      "power": "Stuntman deals each non-Hero target 1 Projectile Damage. When this Power is used outside your turn, you may play a card.",
       "frequency": 2
     },
     "Stylish Armour": {
       "type": "Equipment, Limited",
-      "text": "Reduce damage dealt to Stuntman by 1. When this card is destroyed, you may search your deck for an Equipment card. Put it into your hand. Shuffle your deck. Then, you may play a card or use a Power.",
+      "text": "Reduce damage dealt to Stuntman by 1.",
+      "modifiers": [
+        {
+          "text": "-1 damage taken",
+          "color": "Green"
+        }
+      ],
+      "on destroy": "When this card is destroyed, you may search your deck for an Equipment card. Put it into your hand. Shuffle your deck. Then, you may play a card or use a Power.",
       "frequency": 3
     },
     "Coup Vexant": {
@@ -51,17 +59,27 @@
     },
     "L'Embuscade": {
       "type": "Ongoing",
-      "text": "Whenever a non-Hero target enters play, you may destroy this card. When this card is destroyed, Stuntman either deals 1 target 5 Melee Damage or you use a Power.",
+      "text": "Whenever a non-Hero target enters play, you may destroy this card.",
+      "on destroy": "When this card is destroyed, Stuntman either deals 1 target 5 Melee Damage or you use a Power.",
       "frequency": 2
     },
     "Coute Que Coute": {
       "type": "Ongoing, Limited",
-      "text": "Increase damage dealt to and by Stuntman by 1. At the start of your turn, you may destroy this card. When this card is destroyed, you may draw a card.",
+      "start of turn": "At the start of your turn, you may destroy this card.",
+      "text": "Increase damage dealt to and by Stuntman by 1.",
+      "modifiers": [
+        {
+          "text": "+1 damage dealt and taken",
+          "color": "DarkGreen"
+        }
+      ],
+      "on destroy": "When this card is destroyed, you may draw a card.",
       "frequency": 2
     },
     "Dramatic Cliffhanger": {
       "type": "Ongoing, Limited",
-      "text": "At the end of the Environment turn, you may destroy this card. When this card is destroyed, you may play a card, use a Power, and draw a card in any order.",
+      "text": "At the end of the Environment turn, you may destroy this card.",
+      "on destroy": "When this card is destroyed, you may play a card, use a Power, and draw a card in any order.",
       "frequency": 3
     },
     "Moving Target": {
@@ -71,17 +89,20 @@
     },
     "No Time to Bleed": {
       "type": "Ongoing, Limited",
-      "text": "Whenever Stuntman is dealt damage by a non-Hero target, he deals that target 1 Projectile Damage. If Stuntman is dealt 5 or more damage in one turn, you may destroy this card. When this card is destroyed, draw a card and use a Power.",
+      "text": "Whenever Stuntman is dealt damage by a non-Hero target, he deals that target 1 Projectile Damage. If Stuntman is dealt 5 or more damage in one turn, you may destroy this card.",
+      "on destroy": "When this card is destroyed, draw a card and use a Power.",
       "frequency": 3
     },
     "Planquez-Vous": {
       "type": "Ongoing, Limited",
-      "text": "When a Hero target would be dealt 4 or more damage, you may destroy this card to prevent that damage. When this card is destroyed, you may use a Power.",
+      "text": "When a Hero target would be dealt 4 or more damage, you may destroy this card to prevent that damage.",
+      "on destroy": "When this card is destroyed, you may use a Power.",
       "frequency": 2
     },
     "Steal the Scene": {
       "type": "Ongoing, Limited",
-      "text": "At the start of a Hero turn other than yours, you may destroy this card. When this card is destroyed, Stuntman deals 1 target 2 Projectile Damage, then may use a Power.",
+      "text": "At the start of a Hero turn other than yours, you may destroy this card.",
+      "on destroy": "When this card is destroyed, Stuntman deals 1 target 2 Projectile Damage, then may use a Power.",
       "frequency": 3
     }
   }

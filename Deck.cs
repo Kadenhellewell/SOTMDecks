@@ -29,10 +29,16 @@ namespace SOTMDecks
             string file = File.ReadAllText(fileName);
             JObject json = JObject.Parse(file);
 
+            // InnatePower2 isn't in most decks, whereas the other attributes are in all of them.
+            // This assures that it doesn't get into a weird state
+            InnatePower2 = "";
+
             foreach (var item in json) 
             {
                 if (item.Key == "Innate Power")
                     InnatePower = item.Value.ToString();
+                if (item.Key == "Innate Power 2")
+                    InnatePower2 = item.Value.ToString();
                 else if (item.Key == "Starting HP")
                     StartingHP = int.Parse(item.Value.ToString());
                 else if (item.Key == "Name")
@@ -49,6 +55,7 @@ namespace SOTMDecks
         
         public string Name { get; }
         public string InnatePower { get; }
+        public string InnatePower2 { get; }
         public int StartingHP { get; }
         public string[] IncapacitatedAbilities { get; }
 
@@ -58,8 +65,8 @@ namespace SOTMDecks
             foreach (var card in json)
             {
                 for (int i = 0; i < int.Parse(card.Value["frequency"].ToString()); i++)
-                {
-                    cards.Add(new Card(card.Key, card.Value["type"].ToString(), card.Value["text"].ToString()));
+                {   
+                    cards.Add(new Card(card));
                 }
             }
 
@@ -90,6 +97,17 @@ namespace SOTMDecks
                 cards_.RemoveAt(0);
             }
             return drawn;
+        }
+
+        public List<Card>? GetTopCards(int n)
+        {
+            if (cards_.Count < n)
+            {
+                Console.WriteLine($"Fewer than {n} cards");
+                return null;
+            }
+
+            return cards_.Take(n).ToList();
         }
 
         public void RevealCards(int num)

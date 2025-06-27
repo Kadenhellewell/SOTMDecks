@@ -44,17 +44,19 @@
     },
     "Coolant Blast": {
       "type": "Ongoing",
-      "text": "Power: Absolute Zero deals 1 non-Hero Target X Cold Damage, where X = the amount of fire damage that has been dealt to absolute zero since end of your last turn.",
+      "power": "Absolute Zero deals 1 non-Hero Target X Cold Damage, where X = the amount of fire damage that has been dealt to absolute zero since end of your last turn.",
       "frequency": 2
     },
     "Glacial Structure": {
       "type": "Ongoing",
-      "text": "Power: Draw 3 cards. Destroy this card.",
+      "power": "Draw 3 cards. Destroy this card.",
       "frequency": 2
     },
     "Impale": {
       "type": "Ongoing",
-      "text": "Play this card next to a non-Hero Target. At the start of your turn, Absolute Zero deals that Target 2 Cold Damage. If the Target leaves play, destroy this card.",
+      "on entry": "Play this card next to a non-Hero Target. ",
+      "start of turn": "At the start of your turn, Absolute Zero deals that Target 2 Cold Damage. ",
+      "text": "If the Target leaves play, destroy this card.",
       "frequency": 2
     },
     "Sub-zero Atmosphere": {
@@ -64,17 +66,18 @@
     },
     "Cold Snap": {
       "type": "Ongoing, Limited",
-      "text": "At the start of your turn, Absolute Zero deals each non-Hero Target 1 Cold Damage.",
+      "start of turn": "At the start of your turn, Absolute Zero deals each non-Hero Target 1 Cold Damage.",
       "frequency": 2
     },
     "Thermal Shockwave": {
       "type": "Ongoing, Limited",
-      "text": "Power: Absolute Zero deals up to 3 Targets 1 Cold Damage each. Absolute Zero deals himself X Fire Damage, where X = the total amount of Cold Damage dealt by Absolute Zero this turn.",
+      "power": "Absolute Zero deals up to 3 Targets 1 Cold Damage each. Absolute Zero deals himself X Fire Damage, where X = the total amount of Cold Damage dealt by Absolute Zero this turn.",
       "frequency": 2
     },
     "Cryo Chamber": {
       "type": "Equipment, Limited",
-      "text": "Cold Damage dealt to Absolute Zero is increased by 1. Fire Damage dealt to Absolute Zero is reduced by 1.\n\tPower: Absolute Zero deals himself 5 Fire Damage. Destroy this card.",
+      "text": "Cold Damage dealt to Absolute Zero is increased by 1. Fire Damage dealt to Absolute Zero is reduced by 1.",
+      "power": "Absolute Zero deals himself 5 Fire Damage. Destroy this card.",
       "frequency": 2
     },
     "Focused Aperture": {

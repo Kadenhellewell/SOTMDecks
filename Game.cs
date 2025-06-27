@@ -13,14 +13,10 @@ namespace SOTMDecks
         public Game(Player player) 
         {
             Player = player;
-            modifiers.Add(new Modifier("+1 damage dealt", ConsoleColor.Yellow));
-            modifiers.Add(new Modifier("+1 damage taken", ConsoleColor.Magenta));
-            modifiers.Add(new Modifier("-1 damage dealt", ConsoleColor.Blue));
-            modifiers.Add(new Modifier("-1 damage taken", ConsoleColor.Green));
         }
 
         public Player Player { get; }
-        private List<Modifier> modifiers = new List<Modifier>();
+        
         private CardCollection KO = new CardCollection("Cards removed from the game");
         private Stack<Command> commands = new Stack<Command>();
 
@@ -54,19 +50,26 @@ namespace SOTMDecks
             {
                 MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
                 Console.WriteLine(Player.PlayerDeck.InnatePower);
+
+                if (Player.PlayerDeck.InnatePower2 != "")
+                {
+                    MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
+                    Console.WriteLine(Player.PlayerDeck.InnatePower2);
+                }
             }
-            PrintModifiers();
+
+            if (Player.Modifiers.Count > 0) 
+            {
+                PrintModifiers();
+            }
         }
 
         private void PrintModifiers()
         {
             MiscHelpers.ColorPrint(ConsoleColor.DarkYellow, "Modifiers: ", newLine: true);
-            foreach (Modifier modifier in modifiers) 
+            foreach (Modifier modifier in Player.Modifiers) 
             {
-                if (modifier.Number > 0)
-                {
-                    modifier.Print();
-                }
+                modifier.Print();
             }
             Console.WriteLine();
         }
@@ -95,24 +98,38 @@ namespace SOTMDecks
         /// <returns> Whether the command terminates the game </returns>
         private bool GetCommand()
         {
-            string? commandStr = Console.ReadLine()?.ToLower();
+            Console.Write("> ");
+            string? commandStr = Console.ReadLine()?.ToLower().Trim();
             if (commandStr is null) return true;
 
-            Command? command = null;
-
-            switch (commandStr)
+            bool brief = false;
+            if (commandStr.EndsWith(" b"))
             {
+                brief = true;
+                commandStr = commandStr.Trim('b');
+                commandStr = commandStr.Trim();
+
+            }
+
+            Command? command = null;
+            
+            switch (commandStr)
+            { //TODO: add shuffle command
+                // TODO: add search special types command
                 case "draw":
                     command = new DrawCommand(Player, fromBottom: false);
                     break;
                 case "draw bottom":
                     command = new DrawCommand(Player, fromBottom: true);
                     break;
-                case "play":
+                case "play": 
                     command = new PlayCommand(Player);
                     break;
                 case "discard":
                     command = new DiscardCommand(fromDeck: false, Player);
+                    break;
+                case "discard hand":
+                    command = new DiscardHandCommand(Player);
                     break;
                 case "discard from deck":
                     command = new DiscardCommand(fromDeck: true, Player);
@@ -126,7 +143,7 @@ namespace SOTMDecks
                 case "search types":
                     command = new SearchCommand(Player);
                     break;
-                case "move card":
+                case "move card": 
                     command = new MoveCardCommand(Player);
                     break;
                 case "santa":
@@ -136,13 +153,30 @@ namespace SOTMDecks
                     command = new SantaPlayCommand(Player);
                     break;
                 case "hand":
-                    Player.PrintLocation(Location.Hand);
+                    Player.PrintLocation(Location.Hand, brief: brief);
+                    break;
+                case "hand powers":
+                    Player.PrintLocation(Location.Hand, CardCollection.Filter.POWER);
                     break;
                 case "play area":
-                    Player.PrintLocation(Location.PlayArea);
+                case "pa":
+                    Player.PrintLocation(Location.PlayArea, brief: brief);
                     break;
                 case "discard pile":
-                    Player.PrintLocation(Location.DiscardPile);
+                case "dp":
+                    Player.PrintLocation(Location.DiscardPile, brief: brief);
+                    break;
+                case "powers":
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.POWER, brief);
+                    break;
+                case "start":
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.START, brief);
+                    break;
+                case "end":
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.END, brief);
+                    break;
+                case "targets":
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief);
                     break;
                 case "reveal":
                     RevealCards();
@@ -158,9 +192,35 @@ namespace SOTMDecks
                     DealDamage();
                     PrintSetup();
                     break;
+                case "damage card":
+                    DamageCard();
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    break;
+                case "damage cards":
+                    DamageCards();
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    break;
+                case "damage all":
+                    DamageAll();
+                    PrintSetup();
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    break;
                 case "heal":
                     Heal();
                     PrintSetup();
+                    break;
+                case "heal card":
+                    HealCard();
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    break;
+                case "heal cards":
+                    HealCards();
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    break;
+                case "heal all":
+                    HealAll();
+                    PrintSetup();
+                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
                     break;
                 case "add modifier":
                 case "add mod":
@@ -179,6 +239,7 @@ namespace SOTMDecks
                         Console.WriteLine("No commands to undo");
                     break;
                 case "q":
+                case "exit":
                     return false;
                 case "":
                     PrintSetup();
@@ -194,26 +255,24 @@ namespace SOTMDecks
                 {
                     commands.Push(command);
                 }
+                else
+                {
+                    Console.WriteLine("Command failed to execute");
+                }
             }
             return true;
         }
 
         public void RevealCards()
         {
-            Console.WriteLine("How many?");
-            string? intStr = Console.ReadLine();
-            if (intStr is null)
-            {
-                Console.WriteLine("Need to provide a number");
-                return;
-            }
+            int? num = MiscHelpers.GetIntFromPlayer("How many?");
+            if (num is null) return;
 
-            int num = int.Parse(intStr);
             if (Player.PlayerDeck.GetCount() < num)
             {
                 Player.ShuffleDiscardIntoDeck();
             }
-            Player.RevealCards(num);
+            Player.RevealCards(num.Value);
         }
 
         private void SetCount()
@@ -227,9 +286,123 @@ namespace SOTMDecks
             card.Count = count.Value;
         }
 
+        private void DamageCard()
+        {
+            Card? card = MiscHelpers.GetCardFromIndex(Player.PlayArea());
+            if (card is null) return;
+
+            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
+            if (damage is null) return;
+
+            if (card.MaxHP == 0)
+            {
+                Console.WriteLine("You must choose a target");
+                return;
+            }
+
+            card.HP -= damage.Value;
+            if (card.HP <= 0)
+            {
+                Console.WriteLine($"{card.Name} has died. If applicable, destroy it.");
+                card.HP = 0;
+            }
+        }
+
+        private void DamageCards()
+        {
+            List<Card>? cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
+            if (cards is null) return;
+
+            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
+            if (damage is null) return;
+
+            foreach (Card card in cards)
+            {
+                if (card.MaxHP == 0)
+                {
+                    Console.WriteLine($"{card.Name} is not a target (HP will still be removed from targets)");
+                    continue;
+                }
+
+                card.HP -= damage.Value;
+            }
+        }
+
+        private void DamageAll()
+        {
+            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
+            if (damage is null) return;
+
+            Player.DealDamage(damage.Value);
+
+            foreach (Card card in Player.GetLocation(Location.PlayArea).GetCards())
+            {
+                if (card.MaxHP == 0)
+                {
+                    continue;
+                }
+
+                card.HP -= damage.Value;
+                if (card.HP <= 0)
+                {
+                    Console.WriteLine($"{card.Name} has died. If applicable, destroy it.");
+                    card.HP = 0;
+                }
+            }
+        }
+
+        private void HealCard()
+        {
+            Card? card = MiscHelpers.GetCardFromIndex(Player.PlayArea());
+            if (card is null) return;
+
+            int? health = MiscHelpers.GetIntFromPlayer("How much?");
+            if (health is null) return;
+
+            card.HP += health.Value;
+        }
+
+        private void HealCards()
+        {
+            List<Card>? cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
+            if (cards is null) return;
+
+            int? health = MiscHelpers.GetIntFromPlayer("How much?");
+            if (health is null) return;
+
+            foreach (Card card in cards)
+            {
+                if (card.MaxHP == 0)
+                {
+                    Console.WriteLine($"{card.Name} is not a target (HP will still be added to targets)");
+                    continue;
+                }
+
+                card.HP += health.Value;
+            }
+        }
+
+        private void HealAll()
+        {
+            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
+            if (damage is null) return;
+
+            Player.Heal(damage.Value);
+
+            foreach (Card card in Player.GetLocation(Location.PlayArea).GetCards())
+            {
+                if (card.MaxHP == 0)
+                {
+                    continue;
+                }
+
+                card.HP += damage.Value;
+            }
+        }
+
         private void DealDamage()
         {
-
+            // TODO: implement multi-select
             int? damage = MiscHelpers.GetIntFromPlayer("How much?");
             if (damage is null) return;
             Player.DealDamage(damage.Value);
@@ -249,68 +422,39 @@ namespace SOTMDecks
 
         private void AddMod()
         {
-            for (int i = 0; i <= modifiers.Count; i++)
+            string? modStr = MiscHelpers.GetStringFromPlayer("Description");
+            if (modStr is null)
             {
-                if (i < modifiers.Count) 
-                {
-                    Console.WriteLine($"\t{i}: {modifiers[i].Description}");
-                }
-                else
-                {
-                    Console.WriteLine($"\t{i}: Other");
-                }
-            }
-
-            int? index = MiscHelpers.GetIntFromPlayer("");
-
-            if (index is null) return;
-
-            if (index > modifiers.Count)
-            {
-                Console.WriteLine("Selection out of range");
+                Console.WriteLine("Didn't get that; try again");
                 return;
             }
 
-            if (index < modifiers.Count)
-            {
-                modifiers[index.Value].Increment();
-            }
-            else // index == damageModifiers.Count (Other)
-            {
-                string? modStr = MiscHelpers.GetStringFromPlayer("Description");
-                if (modStr is null)
-                {
-                    return;
-                }
-                Modifier modToAdd = new Modifier(modStr, ConsoleColor.Cyan);
-                modToAdd.Increment();
-                modifiers.Add(modToAdd);
-            }
+            Modifier modToAdd = new Modifier(modStr, ConsoleColor.Cyan);
+            Player.Modifiers.Add(modToAdd);
         }
 
         public void RemoveMod()
         {
             Console.WriteLine("Which one?");
-            for (int i = 0; i < modifiers.Count; i++)
+            for (int i = 0; i < Player.Modifiers.Count; i++)
             {
-                if (modifiers[i].Number > 0)
-                    Console.WriteLine($"\t{i}: {modifiers[i]}");
+                Console.WriteLine($"\t{i}: {Player.Modifiers[i]}");
             }
 
             int? modIndex = MiscHelpers.GetIntFromPlayer("");
 
             if (modIndex is null) return;
-            if (modIndex >= modifiers.Count)
+            if (modIndex >= Player.Modifiers.Count)
             {
                 Console.WriteLine("Index out of range");
                 return;
             }
-            modifiers[modIndex.Value].Decrement();
+            Player.RemoveMod(modIndex.Value);
         }
 
         private Modifier? ModifierPresent(string desc)
         {
-            foreach (Modifier mod in modifiers)
+            foreach (Modifier mod in Player.Modifiers)
             {
                 if (mod.Description == desc)
                     return mod;

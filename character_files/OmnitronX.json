@@ -6,27 +6,31 @@
   "Deck": {
     "Rocket Punch": {
       "type": "Equipment",
-      "text": "Power: Omnitron-X deals 1 Target 2 Projectile Damage. Omnitron-X may deal 1 Target 1 Projectile Damage.",
+      "power": "Omnitron-X deals 1 Target 2 Projectile Damage. Omnitron-X may deal 1 Target 1 Projectile Damage.",
       "frequency": 2
     },
     "Electro-Deployment Unit": {
       "type": "Equipment, Component",
-      "text": "At the start of your turn, either draw a card or play a card. If Omnitron-X is dealt 5 or more Damage in one turn, destroy this card.",
+      "start of turn": "At the start of your turn, either draw a card or play a card.",
+      "text": "If Omnitron-X is dealt 5 or more Damage in one turn, destroy this card.",
       "frequency": 2
     },
     "Focused Plasma Cannon": {
       "type": "Equipment, Component",
-      "text": "At the start of your turn, Omnitron-X may deal 1 Target 2 Irreducible Fire Damage. If Omnitron-X is dealt 5 or more Damage in one turn, destroy this card.",
+      "start of turn": "At the start of your turn, Omnitron-X may deal 1 Target 2 Irreducible Fire Damage.",
+      "text": "If Omnitron-X is dealt 5 or more Damage in one turn, destroy this card.",
       "frequency": 2
     },
     "Guassian Coil Blaster": {
       "type": "Equipment, Component",
-      "text": "At the start of your turn, Omnitron-X deals up to 3 Targets 1 Lightning Damage each. If Omnitron-X is dealt 5 or more Damage in one turn, destroy this card.",
+      "start of turn": "At the start of your turn, Omnitron-X deals up to 3 Targets 1 Lightning Damage each.",
+      "text": "If Omnitron-X is dealt 5 or more Damage in one turn, destroy this card.",
       "frequency": 2
     },
     "Innervation Ray": {
       "type": "Equipment, Component",
-      "text": "At the start of your turn, up to 3 Hero Targets regain 1 HP each. If Omnitron-X is dealt 5 or more Damage in one turn, destroy this card.",
+      "start of turn": "At the start of your turn, up to 3 Hero Targets regain 1 HP each.",
+      "text": "If Omnitron-X is dealt 5 or more Damage in one turn, destroy this card.",
       "frequency": 2
     },
     "Disruptive Flechettes": {
@@ -56,12 +60,12 @@
     },
     "Bio-Engineering Beam": {
       "type": "Ongoing",
-      "text": "Power: Destroy an Environment card. Omnitron-X deals 1 non-Hero Target 2 Energy Damage.",
+      "power": "Destroy an Environment card. Omnitron-X deals 1 non-Hero Target 2 Energy Damage.",
       "frequency": 2
     },
     "Defensive Blast": {
       "type": "Ongoing, Limited",
-      "text": "Power: Discard a Plating card. If you do, Omnitron-X deals each non-Hero Target 1 Damage of each type currently reduced by a Plating card.",
+      "power": "Discard a Plating card. If you do, Omnitron-X deals each non-Hero Target 1 Damage of each type currently reduced by a Plating card.",
       "frequency": 2
     },
     "Reactive Plating Subroutine": {
@@ -71,22 +75,26 @@
     },
     "Slip Through Time": {
       "type": "Ongoing, Limited",
-      "text": "At the end of your turn, you may play a card and you may use a Power. At the start of your turn, destroy this card.",
+      "start of turn": "At the start of your turn, destroy this card.",
+      "end of turn": "At the end of your turn, you may play a card and you may use a Power.",
       "frequency": 2
     },
     "Ablative Coating": {
       "type": "Equipment, Plating",
-      "text": "Reduce Melee, Projectile, and Toxic Damage dealt to Omnitron-X by 2. When this card enters play, return all other Plating cards to your hand.",
+      "text": "Reduce Melee, Projectile, and Toxic Damage dealt to Omnitron-X by 2.",
+      "on entry": "When this card enters play, return all other Plating cards to your hand.",
       "frequency": 2
     },
     "Elemental Exochassis": {
       "type": "Equipment, Plating",
-      "text": "Reduce Cold, Fire, Lightning, and Energy Damage dealt to Omnitron-X by 2. When this card enters play, return all other Plating cards to your hand.",
+      "text": "Reduce Cold, Fire, Lightning, and Energy Damage dealt to Omnitron-X by 2.",
+      "on entry": "When this card enters play, return all other Plating cards to your hand.",
       "frequency": 2
     },
     "Temporal Shielding": {
       "type": "Equipment, Plating",
-      "text": "Reduce Psychic, Infernal, Radiant, and Sonic Damage dealt to Omnitron-X by 2. When this card enters play, return all other Plating cards to your hand.",
+      "text": "Reduce Psychic, Infernal, Radiant, and Sonic Damage dealt to Omnitron-X by 2.",
+      "on entry": "When this card enters play, return all other Plating cards to your hand.",
       "frequency": 2
     }
   }

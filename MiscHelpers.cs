@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,54 @@ namespace SOTMDecks
             return num;
         }
 
+        public static List<int>? GetIntsFromPlayer(string prompt)
+        {
+            Console.WriteLine(prompt);
+            string? intListStr = Console.ReadLine();
+            if (intListStr is null)
+            {
+                Console.WriteLine("No input provided");
+                return null;
+            }
+
+            List<int>? intList = StringOfIntsToListOfInts(intListStr);
+            if (intList is null)
+            {
+                Console.WriteLine("Input must be space-separated integers");
+                return null;
+            }
+
+            return intList;
+        }
+
+        public static bool YesOrNo()
+        {
+            string? str = Console.ReadLine();
+            if (str is null)
+            {
+                Console.WriteLine("No input provided - providing no");
+                return false;
+            }
+
+            str = str.ToLower();
+            return str == "y" || str == "yes";
+        }
+
+        public static List<int>? StringOfIntsToListOfInts(string ints)
+        {
+            try
+            {
+                return ints.Split(' ') // Split by spaces
+                    .Where(s => !string.IsNullOrWhiteSpace(s)) // Remove empty entries
+                    .Select(int.Parse) // Convert to integers
+                    .ToList(); // Convert to list
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public static string? GetStringFromPlayer(string prompt)
         {
             Console.WriteLine(prompt);
@@ -71,6 +120,29 @@ namespace SOTMDecks
             return col.GetCards()[index.Value];
         }
 
+        public static List<Card>? GetCardsFromInput(CardCollection col, bool verbose = false)
+        {
+            Console.WriteLine("Select cards space-separated numbers");
+            col.ListPrint(verbose);
+
+            List<int>? intList = GetIntsFromPlayer("");
+            if (intList is null) return null;
+
+            List<Card>? cards = new List<Card>();
+            foreach (var i in intList) 
+            {
+                if (i >= col.GetCount())
+                {
+                    Console.WriteLine($"Index {i} out of range");
+                    return null;
+                }
+
+                cards.Add(col.GetCards()[i]);
+            }
+
+            return cards;
+        }
+
         public static Location? GetLocationFromPlayer(string prompt)
         {
             Console.WriteLine(prompt);
@@ -78,6 +150,8 @@ namespace SOTMDecks
             Console.WriteLine("1. Hand");
             Console.WriteLine("2. Play Area");
             Console.WriteLine("3. Discard Pile");
+            Console.WriteLine("4. Top of Deck");
+            Console.WriteLine("5. Bottom of Deck");
 
             int? loc = MiscHelpers.GetIntFromPlayer("");
             if (loc is null)
@@ -91,6 +165,8 @@ namespace SOTMDecks
                 case 1: return Location.Hand;
                 case 2: return Location.PlayArea;
                 case 3: return Location.DiscardPile;
+                case 4: return Location.TopOfDeck;
+                case 5: return Location.BottomOfDeck;
                 default: return null;
             }
         }

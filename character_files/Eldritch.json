@@ -1,0 +1,98 @@
+﻿{
+  //Meditation
+  //"Innate Power": "Draw one card or add one token to one spell.",
+  //"Incapacitated": [ "Destroy one ongoing.", "One players uses one power now.", "Discard the top card of one deck. Put the top card of that deck in to play." ],
+  //"Starting HP": 25,
+  //Concentration
+  "Innate Power": "Discard one card. Add 3 tokens to one spell.",
+  "Incapacitated": [ "One player plays one card now.", "Shuffle one ongoing card into its deck.", "Select one non-character target. Reduce its HP by half, rounding up." ],
+  "Starting HP": 24,
+  "Name": "Eldritch",
+  "Deck": {
+    "Illusions of Idolon": {
+      "type": "Spell, Adept",
+      "end of turn": "At the end of your turn you may remove two tokens from this card. If you do, reveal the top and bottom cards of one deck. Discard one and put the other on the top or bottom of the deck.",
+      "frequency": 3
+    },
+    "Volatile Elixir": {
+      "type": "Equipment, Relic",
+      "on destroy": "When this card is destroyed, add three tokens to one spell, draw three cards, or Eldritch regains three HP.",
+      "power": "Destroy this card.",
+      "frequency": 3
+    },
+    "Scourage of Shatachan": {
+      "type": "Spell ,Adept",
+      "end of turn": "At the end of your turn, you may remove two tokens from this card. If you do, Eldritch deals up to three targets two infernal damage each.",
+      "frequency": 3
+    },
+    "Staff of Ghorummaz": {
+      "type": "Equipment, Relic, Limited",
+      "start of turn": "At the start of your turn, you may add two tokens to one spell.",
+      "power": "Eldritch may deal one target one fire damage. You may move any number of tokens from one spell to one other spell.",
+      "frequency": 3
+    },
+    "Obscuring Orb of Obroros": {
+      "type": "Spell, Adept",
+      "end of turn": "At the end of your turn, you may remove two tokens from this card. If you do, select one target. Until the start of your next turn, prevent the first damage dealt to that target each turn.",
+      "frequency": 3
+    },
+    "Medallion of Modrossus": {
+      "type": "Equipment, Relic, Limited",
+      "start of turn": "At the start of your turn, you may add one token to up to three spells.",
+      "power": "Remove one token from one spell. You may destroy one ongoing or environment card.",
+      "frequency": 3
+    },
+    "All Seeing Eyes of Abbridon": {
+      "type": "Spell, Adept",
+      "end of turn": "At the end of your turn, you may remove two tokens from this card. If you do, up to two players draw two cards each.",
+      "frequency": 3
+    },
+    "The Locarno Scrolls": {
+      "type": "Equipment, Relic, Limited",
+      "start of turn": "At the start of your turn, you may destroy one of your spells. If you do, add three tokens to one spell.",
+      "power": "Draw two cards. Play up to two spells.",
+      "frequency": 3
+    },
+    "Everwatching Eye of Ios": {
+      "type": "Spell, Cantrip, Limited",
+      "start of turn": "At the start of your turn, you may destroy this card.",
+      "text": "You may draw one additional card during your draw phase.",
+      "on destroy": "When this card is destroyed move all tokens on this card to one other spell.",
+      "frequency": 4
+    },
+    "The Wheels of Weyan": {
+      "type": "Spell, Cantrip, Limited",
+      "start of turn": "At the start of your turn you may destroy this card.",
+      "text": "You may use one additional power during your power phase.",
+      "on destroy": "When this card is destroyed, move all tokens on this card to one other spell card.",
+      "frequency": 4
+    },
+    "Hand of Heshen": {
+      "type": "Spell, Cantrip, Limited",
+      "start of turn": "At the start of your turn you may destroy this card.",
+      "text": "You may play one additional card during your play phase.",
+      "on destroy": "When this card is destroyed, move all tokens on this card to one other spell card.",
+      "frequency": 4
+    },
+    "Flames of Phoros": {
+      "type": "Spell, Master",
+      "end of turn": "At the end of your turn, you may remove four tokens from this card. If you do, Eldritch deals up to five targets three fire damage each.",
+      "frequency": 1
+    },
+    "Auspicious Augury of Ahgrazul": {
+      "type": "Spell, Master",
+      "end of turn": "At the end of your turn, you may remove four tokens from this card. If you do, up to three players use one power each.",
+      "frequency": 1
+    },
+    "Triluminary Searing": {
+      "type": "Spell, Master",
+      "end of turn": "At the end of your turn, you may remove four tokens from this card. If you do, Eldritch deals one target six irreducible energy damage.",
+      "frequency": 1
+    },
+    "Lamal's Labyrinth": {
+      "type": "Spell, Master",
+      "end of turn": "At the end of your turn, you may remove four tokens from this card. If you do, destroy up to two ongoing cards, up to two spells, up to two environment cards, and up to two targets with two or fewer HP.",
+      "frequency": 1
+    }
+  }
+}

@@ -1,0 +1,108 @@
+﻿{
+  //Tough Choices
+  //"Innate Power": Draw a card or play a card. Guise deals 1 target 1 melee damage.",
+  //"Incapacitated": [ "One player discards 1 card. If the discarded card was a one-shot, that player my dray 2 cards. If the discarded card was an equimpent of ongoing card, 1 hero target regains 2 HP.", "Reveal the bottom 3 cards of the villain deck. Put one on top of the villian deck, one in the trash, and one into play.", " If there are H or fewer envrionment cards in play, destroy 1 of them. If there are more than H envronment cards in play, destroy 2 of them."],
+  //"Starting HP": 27,
+  //Impressive Collection
+  //"Innate Power": Replace a hero character card in play with a variant of that hero. Put the replaced card safely under this card. Either use the power on the replaced card (treating any hero names on that card as Guise) or Guise deals 1 target 2 psychic damage.",
+  //"Incapacitated": [ "Switch a card under your card with a character in play with the same hero name.", "Remove a card under your card from the game. A hero with the same name as that card uses a power now.", "Remove all variants in your collection of an active hero from the game. If any cards are removed from the game this way, that hero may take a full turn now."],
+  //"Starting HP": 26,
+  //It's Gift-mas Time!
+  "Innate Power": "Put the top card of each hero deck face-down in their play area.",
+  "Innate Power 2": "One player may flip all face-down cards in their play area, treating them as if they were just put into play.",
+  "Incapacitated": [ "Each player may discard 1 cards to draw 1 cards.", "One hero uses a power, then turns 1 hero non-character card in play face-down.", "Flip 1 face-down card, treating it as if it were just put into play." ],
+  "Starting HP": 25,
+  "Name": "Guise",
+  "Deck": {
+    "X-treeeeeeeeme!!!": {
+      "type": "Ongoing, Limited",
+      "text": "Damage dealt by Guise is irreducible and cannot be redirected.",
+      "start of turn": "Destroy this card.",
+      "frequency": 2
+    },
+    "Guise the Barbarian": {
+      "type": "Ongoing, Limited",
+      "text": "Increase damage dealt by Guise by 1.",
+      "start of turn": "Destroy this card.",
+      "frequency": 2
+    },
+    "Best Card Ever.": {
+      "type": "One-shot",
+      "text": "Draw 2 cards. Guise deals 1 target 2 melee damage. Guise regains 1 HP. You may play a card now.",
+      "frequency": 2
+    },
+    "Say Cheese": {
+      "type": "One-shot",
+      "text": "Gusie deals 1 target 1 cold damage. Then, if that target is still in play and has 5 or fewer HP, you may play 1 card.",
+      "frequency": 3
+    },
+    "Gritty Reboot": {
+      "type": "Ongoing, Limited",
+      "text": "Whenever Guise is dealt damage, you may draw a card.",
+      "start of turn": "Destroy this card.",
+      "frequency": 2
+    },
+    "Super Ultra Kawaii!!": {
+      "type": "Ongoing, Limited",
+      "text": "At the end of each hero turn, if you have more than H cards in your hand, you may play a card.",
+      "start of turn": "Destroy this card.",
+      "frequency": 2
+    },
+    "Selling Out": {
+      "type": "Ongoing, Limited",
+      "start of turn": "Destroy this card.",
+      "text": "At the end of the envrionment turn, you may discard 1 card. You my play up to 3 cards that share a keyword with the discarded card.",
+      "frequency": 2
+    },
+    "Lemme See That...": {
+      "type": "Ongoing, Limited",
+      "text": "Play this card by an equipment card. That card affects Guise as if the hero name on that card were Guise and 'you' on that card means Guise's player.",
+      "start of turn": "Destroy this card.",
+      "frequency": 3
+    },
+    "I Can Do That, Too!": {
+      "type": "One-shot",
+      "text": "Guise uses a power on an active hero character card in play. If that power has the name of the hero in it, treat that name as if it were Guise instread.",
+      "frequency": 3
+    },
+    "Total Beefcake": {
+      "type": "Ongoing, Limited",
+      "text": "The first time Guise would be dealt damage each turn, redirect that damage to the non-hero target with the lowest HP. ",
+      "start of turn": "Destroy this card.",
+      "frequency": 2
+    },
+    "Retcon": {
+      "type": "One-shot",
+      "text": "Destroy 1 ongoing or envrionment card. You may draw a card or play a card.",
+      "frequency": 3
+    },
+    "Look What I Found!": {
+      "type": "One-shot",
+      "text": "Guise deals 1 target 3 melee damage. If that target is still in play, increase the next damage dealt by Guise by one.",
+      "frequency": 3
+    },
+    "Where Did I Leave That...": {
+      "type": "One-shot",
+      "text": " Draw 2 cards. You may discard the 2 cards you just drew to put a card from your trash into you hand.",
+      "frequency": 3
+    },
+    "Gimmicky Character": {
+      "type": "One-shot",
+      "text": "Discard the top card of every deck. Gusie regains HP equal to the number of target cards discarded. You my play a card.",
+      "frequency": 3
+    },
+    "Blatant Reference": {
+      "type": "Ongoing, Limited",
+      "text": "At the end of each hero turn, you may discard 1 card. If you do, Guise deals 1 target 1 projectile damage.",
+      "start of turn": "Destroy this card.",
+      "frequency": 2
+    },
+    "Uh, Yeah, I'm That Guy!": {
+      "type": "Ongoing, Limited",
+      "text": "Treat this card as if it had the game text of every ongoing card in that player's play area, replace their hero's name with Guise.",
+      "on entry": "When this card enters play, pick another hero character.",
+      "start of turn": "Destroy this card.",
+      "frequency": 3
+    }
+  }
+}

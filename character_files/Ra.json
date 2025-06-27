@@ -1,0 +1,119 @@
+﻿{
+  "Innate Power": "Ra deals 1 target 2 fire damage.",
+  "Incapacitated": [ "One Hero may use a Power now.", "Put an Environment Card in play on the bottom of the Environment deck.", "Destroy an Ongoing card." ],
+  "Starting HP": 30,
+  "Name": "Ra",
+  "Deck": {
+    "Excavation": {
+      "type": "Oneshot",
+      "text": "Put up to 3 cards from the Environment trash on the bottom of the Environment deck. You may draw as many cards as you moved this way.",
+      "frequency": 2
+    },
+    "Fire Blast": {
+      "type": "Oneshot",
+      "text": "Ra deals 1 Target 5 Fire Damage.",
+      "frequency": 3
+    },
+    "Flame Spike": {
+      "type": "Oneshot",
+      "text": "Ra deals 1 target 1 Fire Damage. You may use an additional power this turn.",
+      "frequency": 3
+    },
+    "Inferno": {
+      "type": "Oneshot",
+      "text": "Ra deals 1 target 3 Fire Damage. Ra deals up to 5 other Targets 1 Fire Damage each.",
+      "frequency": 3
+    },
+    "Scorched Earth": {
+      "type": "Oneshot",
+      "text": "Ra deals each non-Hero Target X Fire Damage, where X = the number of Environment cards in play.",
+      "frequency": 3
+    },
+    "Summon Staff": {
+      "type": "Oneshot",
+      "text": "Search your deck for the Staff of Ra and put it into your hand. Shuffle your deck. You may draw a card. You may play a card.",
+      "frequency": 4
+    },
+    "Drawn to the Flame": {
+      "type": "Ongoing",
+      "power": "Ra deals each non-Hero Target X Fire Damage, where X = the number of Villain Ongoing cards in play.",
+      "frequency": 2
+    },
+    "Flesh of the Sun God": {
+      "type": "Ongoing",
+      "text": "Ra is immune to Fire damage.",
+      "modifiers": [
+        {
+          "text": "Immune to fire damage",
+          "color": "Cyan"
+        }
+      ],
+      "power": "Ra deals each non-Hero Target X Fire Damage, where X = the number of Villain Ongoing cards in play.",
+      "frequency": 3
+    },
+    "Living Conflagration": {
+      "type": "Ongoing",
+      "on entry": "When this card enters play, Ra deals 1 Target 2 Fire Damage.",
+      "power": "Ra deals 1 Target 1 Fire Damage. You may draw a card.",
+      "frequency": 3
+    },
+    "Solar Flare": {
+      "type": "Ongoing",
+      "text": "Increase Fire Damage dealt by Ra by 2.",
+      "modifiers": [
+        {
+          "text": "Increase fire damage by 2",
+          "color": "Yellow"
+        }
+      ],
+      "end of turn": "At the end of your turn, Ra may deal himself 4 Psychic Damage. If he takes no Damage this way, this card is destroyed.",
+      "frequency": 2
+    },
+    "Wrathful Gaze": {
+      "type": "Ongoing",
+      "power": "Destroy 1 Target with 2 or fewer HP.",
+      "frequency": 2
+    },
+    "Blazing Tornado": {
+      "type": "Ongoing, Limited",
+      "power": "Ra deals 1 Target 3 Fire Damage.",
+      "frequency": 2
+    },
+    "Flame Barrier": {
+      "type": "Ongoing, Limited",
+      "text": "The first time Ra is dealt Damage by a Target each turn, Ra deals that Target 2 Fire Damage.",
+      "modifiers": [
+        {
+          "text": "First time dealt damage by target each turn, deal back 2 fire damage",
+          "color": "Cyan"
+        }
+      ],
+      "frequency": 2
+    },
+    "Imbued Fire": {
+      "type": "Ongoing, Limited",
+      "text": "Increase all Fire Damage by 1. Change the Damage type of Damage dealt by Hero Targets to Fire.",
+      "modifiers": [
+        {
+          "text": "All fire damage +1. All heroes deal fire damage.",
+          "color": "Red"
+        }
+      ],
+      "power": "Destroy this card.",
+      "frequency": 2
+    },
+    "Staff of Ra": {
+      "type": "Equipment, Relic, Limited",
+      "on entry": "When this card enters play, Ra regains 3 HP.",
+      "text": "Increase Damage dealt by Ra by 1. ",
+      "modifiers": [
+        {
+          "text": "Damage dealt +1",
+          "color": "Yellow"
+        }
+      ],
+      "power": "Ra deals 1 Target 3 Projectile Damage. Destroy this card.",
+      "frequency": 4
+    }
+  }
+}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -12,6 +13,8 @@ namespace SOTMDecks
         Hand,
         PlayArea,
         DiscardPile,
+        TopOfDeck,
+        BottomOfDeck,
         SantasBag
     }
 
@@ -23,6 +26,7 @@ namespace SOTMDecks
             PlayerDeck = deck;
             Name = deck.Name;
             HP = deck.StartingHP;
+            MaxHP = deck.StartingHP;
 
             CardGroups = new Dictionary<Location, CardCollection>
             {
@@ -36,6 +40,8 @@ namespace SOTMDecks
         public Deck PlayerDeck { get; }
         public string Name { get; }
         private int HP;
+        private int MaxHP;
+        public List<Modifier> Modifiers { get; } = new List<Modifier>();
 
         Dictionary<Location, CardCollection> CardGroups;
 
@@ -69,6 +75,37 @@ namespace SOTMDecks
             return HP;
         }
 
+        public void AddMod(Modifier newMod)
+        {
+            Modifiers.Add(newMod);
+        }
+
+        public void AddMods(List<Modifier> newMods)
+        {
+            foreach (Modifier mod in newMods)
+            {
+                Modifiers.Add(mod);
+            }
+        }
+
+        public void RemoveMod(Modifier mod) 
+        {
+            Modifiers.Remove(mod); 
+        }
+
+        public void RemoveMod(int index)
+        {
+            Modifiers.RemoveAt(index);
+        }
+
+        public void RemoveMods(List<Modifier> mods)
+        {
+            foreach (Modifier mod in mods)
+            {
+                Modifiers.Remove(mod);
+            }
+        }
+
         public void DealDamage(int damage)
         {
             if (damage <= 0)
@@ -89,6 +126,7 @@ namespace SOTMDecks
             }
 
             HP += healing;
+            if (HP > MaxHP) HP = MaxHP;
         }
 
         public bool Discard(Card card) 
@@ -102,6 +140,17 @@ namespace SOTMDecks
 
             Console.WriteLine($"{card.Name} not in hand");
             return false;
+        }
+
+        public bool DiscardHand()
+        {
+            if (CardGroups[Location.Hand].GetCount() == 0) 
+            {
+                Console.WriteLine("Hand is empty");
+                return false;
+            }
+
+            return MoveAllCards(Location.Hand, Location.DiscardPile);
         }
 
         public bool DiscardFromDeck(int num)
@@ -124,39 +173,14 @@ namespace SOTMDecks
             return true;
         }
 
-        public bool UndoPreviousDiscard(int num, bool fromDeck = false)
-        {
-            bool success = true;
-            for (int i = 0; i < num; ++i)
-            {
-                if (fromDeck)
-                {
-                    Card? card = DiscardPile().GetLastCard();
-                    if (card is null) // Discard pile is empty
-                    {
-                        return false;
-                    }
-
-                    PlayerDeck.Add(card);
-                }
-                else
-                {
-                    Card? card = DiscardPile().GetLastCard();
-                    if (card is null) // Discard pile is empty
-                    {
-                        return false;
-                    }
-
-                    CardGroups[Location.Hand].Add(card);
-                }
-            }
-
-            if (fromDeck) Shuffle();
-            return success;
-        }
-
         public bool MoveCard(Card card, Location src, Location dest)
         {
+            if (src == dest)
+            {
+                Console.WriteLine("What are you talking about?");
+                return false;
+            }
+
             if (!CardGroups[src].Contains(card))
             {
                 Console.WriteLine($"{card.Name} is not in {CardGroups[src].Description}");
@@ -168,7 +192,86 @@ namespace SOTMDecks
                 Console.WriteLine($"Error removing {card.Name} from {CardGroups[src].Description}");
                 return false;
             }
-            CardGroups[dest].Add(card);
+
+            if (src == Location.PlayArea && card.Modifiers.Count > 0)
+            {
+                RemoveMods(card.Modifiers);
+            }
+            else if (dest == Location.PlayArea)
+            {
+                OnCardPlayed(card);
+            }
+
+            if (dest == Location.TopOfDeck)
+            {
+                PlayerDeck.Insert(0, card);
+            }
+            else if (dest == Location.BottomOfDeck)
+            {
+                PlayerDeck.Insert(PlayerDeck.GetCount() - 1, card);
+            }
+            else
+            {
+                CardGroups[dest].Add(card);
+            }
+            return true;
+        }
+
+        public bool PlayCard(Card card)
+        {
+            Location dest = card.IsOneshot() ? Location.DiscardPile : Location.PlayArea;
+            if (card.IsOneshot()) { Console.WriteLine($"{card.Text}");  }
+
+            return MoveCard(card, Location.Hand, dest);
+        }
+
+        public void OnCardPlayed(Card card)
+        {
+            Console.WriteLine($"{card.OnEntry}");
+
+            if (card.Modifiers.Count > 0)
+            {
+                AddMods(card.Modifiers);
+            }
+        }
+
+        public bool DestroyCard(Card card)
+        {
+            bool result = MoveCard(card, Location.PlayArea, Location.DiscardPile);
+
+            OnCardDestroyed(card);
+
+            return result;
+        }
+
+        public void OnCardDestroyed(Card card)
+        {
+            Console.WriteLine($"{card.OnDestroy}");
+
+            if (card.Modifiers.Count > 0)
+            {
+                RemoveMods(card.Modifiers);
+            }
+        }
+
+        public bool MoveAllCards(Location src, Location dest)
+        {
+            if (CardGroups[src].GetCount() == 0)
+            {
+                Console.WriteLine($"No cards in {src}");
+                return false;
+            }
+
+            if (dest == Location.TopOfDeck || dest == Location.BottomOfDeck)
+            {
+                PlayerDeck.AddCollection(CardGroups[src]);
+                CardGroups[src].Clear();
+                PlayerDeck.Shuffle();
+                return true;
+            }
+
+            CardGroups[dest].AddCollection(CardGroups[src]);
+            CardGroups[src].Clear();
             return true;
         }
 
@@ -188,7 +291,7 @@ namespace SOTMDecks
             if (newCard is null) return null;
             CardGroups[Location.Hand].Add(newCard);
             if (verbose)
-                Console.WriteLine($"Drew {newCard.Name}");
+                Console.WriteLine($"Drew {newCard.Name} [{newCard.Type}]");
             return newCard;
         }
 
@@ -243,9 +346,9 @@ namespace SOTMDecks
             PlayerDeck.Shuffle();
         }
 
-        public void PrintLocation(Location loc)
+        public void PrintLocation(Location loc, CardCollection.Filter filter = CardCollection.Filter.NONE, bool brief = false)
         {
-            CardGroups[loc].PrettyPrint();
+            CardGroups[loc].PrettyPrint(filter, brief);
             if (loc == Location.PlayArea && CardGroups[Location.SantasBag].GetCount() > 0)
             {
                 MiscHelpers.ColorPrint(ConsoleColor.DarkCyan, "Santa's bag: ", newLine: false);

@@ -23,6 +23,19 @@ namespace SOTMDecks.Commands
             if (src is null) return false;
             src_ = src.Value;
 
+
+            if (src == Location.TopOfDeck)
+            {
+                Console.WriteLine("Use the command 'draw' instead.");
+                return false;
+            }
+
+            if (src == Location.BottomOfDeck)
+            {
+                Console.WriteLine("Use the command 'draw bottom' instead.");
+                return false;
+            }
+
             Card? card = MiscHelpers.GetCardFromIndex(player_.GetLocation(src_));
             if (card is null) return false;
             card_ = card;

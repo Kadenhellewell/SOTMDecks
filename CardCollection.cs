@@ -9,6 +9,15 @@ namespace SOTMDecks
 {
     internal class CardCollection
     {
+        public enum Filter
+        {
+            NONE,
+            START,
+            POWER,
+            TARGET,
+            END
+        }
+
         public CardCollection(string desc) 
         {
             cards_ = new List<Card>();
@@ -94,6 +103,18 @@ namespace SOTMDecks
             return cards_.Remove(card);
         }
 
+        public bool RemoveAll(CardCollection collection)
+        {
+            if (collection.GetCount() == 0)
+            {
+                Console.WriteLine("Cannot remove list of cards - empty");
+                return false;
+            }
+
+            cards_ = cards_.Except(collection.GetCards()).ToList();
+            return true;
+        }
+
         public void Clear()
         {
             cards_.Clear();
@@ -105,29 +126,52 @@ namespace SOTMDecks
             {
                 Console.Write($"\t{i}: ");
                 MiscHelpers.ColorPrint(ConsoleColor.Green, cards_[i].Name);
+                Console.Write($" ({cards_[i].Type})");
                 if (verbose)
                 {
-                    Console.WriteLine($"; {cards_[i].Type}; {cards_[i].Text}");
+                    cards_[i].PrintText();
                 }
                 Console.WriteLine();
             }
         }
 
-        public void PrettyPrint()
+        public void PrettyPrint(Filter filter = Filter.NONE, bool brief = false)
         {
             Console.WriteLine($"{Description} ({cards_.Count}):\n");
             bool first = true;
             foreach (Card card in cards_)
             {
-                if (first)
+                bool print = true;
+                switch (filter)
                 {
-                    card.PrettyPrint();
-                    first = false;
+                    case Filter.NONE:
+                        print = true; break;
+                    case Filter.START:
+                        print = card.StartOfTurn != ""; break;
+                    case Filter.POWER:
+                        print = card.Power != ""; break;
+                    case Filter.END:
+                        print = card.EndOfTurn != ""; break;
+                    case Filter.TARGET:
+                        print = card.MaxHP > 0;
+                        break;
+                    default: 
+                        print = true; break;
                 }
-                else
+
+                if (print)
                 {
-                    Console.WriteLine("----");
-                    card.PrettyPrint();
+
+                    if (first)
+                    {
+                        card.PrettyPrint(brief);
+                        first = false;
+                    }
+                    else
+                    {
+                        if (!brief) Console.WriteLine("----");
+                        card.PrettyPrint(brief);
+                    }
                 }
             }
         }

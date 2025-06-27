@@ -13,26 +13,14 @@ namespace SOTMDecks
         {
             Description = desc;
             Color = color;
-            Number = 0;
         }
 
         public string Description { get; }
-        public int Number;
         ConsoleColor Color;
-
-        public void Increment()
-        {
-            Number++;
-        }
-
-        public void Decrement()
-        {
-            Number--;
-        }
 
         public override string ToString()
         {
-            return $"\t{Description} ({Number})";
+            return $"\t{Description}";
         }
 
         public void Print()

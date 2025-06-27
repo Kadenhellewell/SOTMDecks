@@ -21,19 +21,12 @@ namespace SOTMDecks.Commands
 
             card_ = card;
 
-            if (card.Type.Contains("Oneshot"))
-            {
-                return player_.MoveCard(card, Location.Hand, Location.DiscardPile);
-            }
-            else
-            {
-                return player_.MoveCard(card, Location.Hand, Location.PlayArea);
-            }
+            return player_.PlayCard(card_);
         }
 
         public override void Undo()
         {
-            if (card_.Type.Contains("Oneshot"))
+            if (card_.IsOneshot())
             {
                 player_.MoveCard(card_, Location.DiscardPile, Location.Hand);
             }
