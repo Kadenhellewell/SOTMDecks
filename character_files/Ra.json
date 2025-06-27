@@ -1,7 +1,16 @@
 ﻿{
-  "Innate Power": "Ra deals 1 target 2 fire damage.",
-  "Incapacitated": [ "One Hero may use a Power now.", "Put an Environment Card in play on the bottom of the Environment deck.", "Destroy an Ongoing card." ],
-  "Starting HP": 30,
+  "Identities": [
+    {
+      "Title": "title",
+      "Innate Power": "Ra deals 1 target 2 fire damage.",
+      "Starting HP": 30,
+      "Incapacitated": [
+        "One Hero may use a Power now.",
+        "Put an Environment Card in play on the bottom of the Environment deck.",
+        "Destroy an Ongoing card."
+      ]
+    }
+  ],
   "Name": "Ra",
   "Deck": {
     "Excavation": {

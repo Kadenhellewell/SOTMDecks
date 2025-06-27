@@ -1,7 +1,16 @@
 ﻿{
-  "Innate Power": "Three non-character hero targets regain 1 HP each.",
-  "Incapacitated": [ "Two hero targets regain 1 HP each.", "One player may draw a card.", "Select a damage type. Reduce damage of that type dealt to hero targets by 1 until the start of your turn." ],
-  "Starting HP": 24,
+  "Identities": [
+    {
+      "Title": "title",
+      "Innate Power": "Three non-character hero targets regain 1 HP each.",
+      "Starting HP": 24,
+      "Incapacitated": [
+        "Two hero targets regain 1 HP each.",
+        "One player may draw a card.",
+        "Select a damage type. Reduce damage of that type dealt to hero targets by 1 until the start of your turn."
+      ]
+    }
+  ],
   "Name": "Fluttershy",
   "Deck": {
     "The Element of Kindness": {

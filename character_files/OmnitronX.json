@@ -1,7 +1,16 @@
 ﻿{
-  "Innate Power": "Reveal the top card of a deck. Put it into play or into the trash.",
-  "Incapacitated": [ "One player may draw a card now", "One player may play a card now", "Select a Target. Reduce damage dealt to that Target by 1 until the start of your next turn." ],
-  "Starting HP": 25,
+  "Identities": [
+    {
+      "Title": "title",
+      "Innate Power": "Reveal the top card of a deck. Put it into play or into the trash.",
+      "Starting HP": 25,
+      "Incapacitated": [
+        "One player may draw a card now",
+        "One player may play a card now",
+        "Select a Target. Reduce damage dealt to that Target by 1 until the start of your next turn."
+      ]
+    }
+  ],
   "Name": "Omnitron-X",
   "Deck": {
     "Rocket Punch": {

@@ -1,12 +1,26 @@
 ﻿{
-  //Brute Force
-  //"Innate Power": Pseudo deals 1 target 2 melee damage. You may play 1 shape",
-  //"Incapacitated": [ "Destroy 1 ongoing.", "Shuffle 1 trash back into its deck.", "One player draws 1 cards now." ],
-  //"Starting HP": 27,
-  //Grue Infiltratior
-  "Innate Power": "Reveal the top card of 1 deck. Replace it or discard it. Draw 1 card.",
-  "Incapacitated": [ "Discard the top card of up to 3 decks.", "One hero used 1 power now.", "Destroy 1 envrionment card." ],
-  "Starting HP": 28,
+  "Identities": [
+    {
+      "Title": "Brute Force",
+      "Innate Power": "Pseudo deals 1 target 2 melee damage. You may play 1 shape",
+      "Starting HP": 27,
+      "Incapacitated": [
+        "Destroy 1 ongoing.",
+        "Shuffle 1 trash back into its deck.",
+        "One player draws 1 cards now."
+      ]
+    },
+    {
+      "Title": "Grue Infiltratior",
+      "Innate Power": "Reveal the top card of 1 deck. Replace it or discard it. Draw 1 card.",
+      "Starting HP": 28,
+      "Incapacitated": [
+        "Discard the top card of up to 3 decks.",
+        "One hero used 1 power now.",
+        "Destroy 1 envrionment card."
+      ]
+    }
+  ],
   "Name": "Pseudo",
   "Deck": {
     "Bait and Swith": {

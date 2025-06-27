@@ -1,12 +1,26 @@
 ﻿{
-  //Meditation
-  //"Innate Power": "Draw one card or add one token to one spell.",
-  //"Incapacitated": [ "Destroy one ongoing.", "One players uses one power now.", "Discard the top card of one deck. Put the top card of that deck in to play." ],
-  //"Starting HP": 25,
-  //Concentration
-  "Innate Power": "Discard one card. Add 3 tokens to one spell.",
-  "Incapacitated": [ "One player plays one card now.", "Shuffle one ongoing card into its deck.", "Select one non-character target. Reduce its HP by half, rounding up." ],
-  "Starting HP": 24,
+  "Identities": [
+    {
+      "Title": "Meditation",
+      "Innate Power": "Draw one card or add one token to one spell.",
+      "Starting HP": 25,
+      "Incapacitated": [
+        "Destroy one ongoing.",
+        "One players uses one power now.",
+        "Discard the top card of one deck. Put the top card of that deck in to play."
+      ]
+    },
+    {
+      "Title": "Concentration",
+      "Innate Power": "Discard one card. Add 3 tokens to one spell.",
+      "Starting HP": 24,
+      "Incapacitated": [
+        "One player plays one card now.",
+        "Shuffle one ongoing card into its deck.",
+        "Select one non-character target. Reduce its HP by half, rounding up."
+      ]
+    }
+  ],
   "Name": "Eldritch",
   "Deck": {
     "Illusions of Idolon": {

@@ -1,7 +1,16 @@
 ﻿{
-  "Innate Power": "Deal 1 target 2 Melee damage",
-  "Incapacitated": [ "One target regains 1 HP", "One player may play one card now", "Reduce all damage dealt by 2 until the start of your next turn" ],
-  "Starting HP": 34,
+  "Identities": [
+    {
+      "Title": "title",
+      "Innate Power": "Deal 1 target 2 Melee damage",
+      "Starting HP": 34,
+      "Incapacitated": [
+        "One target regains 1 HP",
+        "One player may play one card now",
+        "Reduce all damage dealt by 2 until the start of your next turn"
+      ]
+    }
+  ],
   "Name": "Haka",
   "Deck": {
     "Savage Mana": {

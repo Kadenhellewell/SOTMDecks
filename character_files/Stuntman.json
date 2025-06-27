@@ -1,7 +1,16 @@
 ﻿{
-  "Innate Power": "Stuntman deals 1 Target 1 Irreducible Projectile damage. Increase that damage by 2 when this Power is used outside your turn.",
-  "Incapacitated": [ "One player may play a card", "Destroy an environment target", "One hero target may deal 1 target 1 projectile damage" ],
-  "Starting HP": 27,
+  "Identities": [
+    {
+      "Title": "title",
+      "Innate Power": "Stuntman deals 1 Target 1 Irreducible Projectile damage. Increase that damage by 2 when this Power is used outside your turn.",
+      "Starting HP": 27,
+      "Incapacitated": [
+        "One player may play a card",
+        "Destroy an environment target",
+        "One hero target may deal 1 target 1 projectile damage"
+      ]
+    }
+  ],
   "Name": "Stuntman",
   "Deck": {
     "Hidden Mine": {

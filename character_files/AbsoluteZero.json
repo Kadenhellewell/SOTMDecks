@@ -1,20 +1,46 @@
 ﻿{
-  // Thermodynamics
-  //"Innate Power": "Absolute Zero deals himself either 1 Cold Damage or 1 Fire Damage.",
-  //"Incapacitated": [ "One hero may use a power", "Select a Hero. Increase the next Damage dealt by that Hero by 2.", "Destory 1 target with 1 HP" ],
-  //"Starting HP": 29,
-  // Elemental Wrath
-  //"Innate Power": "Absolute Zero deals 1 non-Hero Target 2 Cold Damage.",
-  //"Incapacitated": [ "One Player may Draw a Card.", "One Target deals itself 1 Cold Damage.", "Until the start of your next turn, Environment Cards cannot be played." ],
-  //"Starting HP": 28,
-  // Pilot light
-  //"Innate Power": "Absolute Zero deals himself 2 Fire Damage. If he takes Damage this way, search your Deck for an Ongoing Card and put it into play. Shuffle your Deck.",
-  //"Incapacitated": [ "Destory an Environment card", "Each target deals itself 1 cold damage", "Until the start of your next turn, increase all Damage dealt to and by Targets by 1." ],
-  //"Starting HP": 28,
-  // Violent Shivers
-  "Innate Power": "Until the end of your next turn, increase all Damage dealt to and by Absolute Zero by 2.",
-  "Incapacitated": [ "One Player may Play a Card.", "Destroy an Ongoing Card.", "Until the start of your next turn, reduce all non-Cold Damage by 1." ],
-  "Starting HP": 25,
+  "Identities": [
+    {
+      "Title": "Thermodynamics",
+      "Innate Power": "Absolute Zero deals himself either 1 Cold Damage or 1 Fire Damage.",
+      "Starting HP": 29,
+      "Incapacitated": [
+        "One hero may use a power",
+        "Select a Hero. Increase the next Damage dealt by that Hero by 2.",
+        "Destory 1 target with 1 HP"
+      ]
+    },
+    {
+      "Title": "Elemental Wrath",
+      "Innate Power": "Absolute Zero deals 1 non-Hero Target 2 Cold Damage.",
+      "Starting HP": 28,
+      "Incapacitated": [
+        "One Player may Draw a Card.",
+        "One Target deals itself 1 Cold Damage.",
+        "Until the start of your next turn, Environment Cards cannot be played."
+      ]
+    },
+    {
+      "Title": "Pilot light",
+      "Innate Power": "Absolute Zero deals himself 2 Fire Damage. If he takes Damage this way, search your Deck for an Ongoing Card and put it into play. Shuffle your Deck.",
+      "Starting HP": 28,
+      "Incapacitated": [
+        "Destory an Environment card",
+        "Each target deals itself 1 cold damage",
+        "Until the start of your next turn, increase all Damage dealt to and by Targets by 1."
+      ]
+    },
+    {
+      "Title": "Violent Shivers",
+      "Innate Power": "Until the end of your next turn, increase all Damage dealt to and by Absolute Zero by 2.",
+      "Starting HP": 25,
+      "Incapacitated": [
+        "One Player may Play a Card.",
+        "Destroy an Ongoing Card.",
+        "Until the start of your next turn, reduce all non-Cold Damage by 1."
+      ]
+    }
+  ],
   "Name": "Absolute Zero",
   "Deck": {
     "Frost-bound Drain": {

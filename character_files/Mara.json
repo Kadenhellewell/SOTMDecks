@@ -1,16 +1,36 @@
 ﻿{
-  // Pull the strings
-  //"Innate Power": "Magnificent Mara deals one target one psychic damage, that target then deals another target one melee damage.",
-  //"Incapacitated": [ "One hero may put a card from their trash on top of their deck.", "Destroy one ongoing card.", "Select a target. Until the start of your next turn, that target is immune to damage from environment cards." ],
-  //"Starting HP": 27,
-  // Conjure Relic
-  "Innate Power": "One play may play a relic card. Another player may move a relic from their trash to the top of their deck. If neither happens, draw a card.",
-  "Incapacitated": [ "One target deals another target one mele damage.", "Put a card in a trash pile under its associated deck.", "One player selects a keyword and revels the top three cards of their deck, putting any revealed cards with that keyword into their hand and discarding the rest." ],
-  "Starting HP": 24,
-  // Illusory Veil
-  //"Innate Power": "Magnificent Mara deals one target two radiant damage. Increase damage dealt by that target by one until the start of your next turn.",
-  //"Incapacitated": [ "One player may draw a card now.", "Reduce the next damage dealt to a hero target by two.", "The next time a hero ongoing card is destroyed, put that card in its owner's hand." ],
-  //"Starting HP": 25,
+  "Identities": [
+    {
+      "Title": "Pull the strings",
+      "Innate Power": "Magnificent Mara deals one target one psychic damage, that target then deals another target one melee damage.",
+      "Starting HP": 27,
+      "Incapacitated": [
+        "One hero may put a card from their trash on top of their deck.",
+        "Destroy one ongoing card.",
+        "Select a target. Until the start of your next turn, that target is immune to damage from environment cards."
+      ]
+    },
+    {
+      "Title": "Illusory Veil",
+      "Innate Power": "Magnificent Mara deals one target two radiant damage. Increase damage dealt by that target by one until the start of your next turn.",
+      "Starting HP": 25,
+      "Incapacitated": [
+        "One player may draw a card now.",
+        "Reduce the next damage dealt to a hero target by two.",
+        "The next time a hero ongoing card is destroyed, put that card in its owner's hand."
+      ]
+    },
+    {
+      "Title": "Conjure Relic",
+      "Innate Power": "One play may play a relic card. Another player may move a relic from their trash to the top of their deck. If neither happens, draw a card.",
+      "Starting HP": 24,
+      "Incapacitated": [
+        "One target deals another target one mele damage.",
+        "Put a card in a trash pile under its associated deck.",
+        "One player selects a keyword and revels the top three cards of their deck, putting any revealed cards with that keyword into their hand and discarding the rest."
+      ]
+    }
+  ],
   "Name": "Magnificent Mara",
   "Deck": {
     "Dowsing Crystal": {

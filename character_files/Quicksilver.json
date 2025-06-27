@@ -1,17 +1,46 @@
 {
-	// Razor's Edge
-	"Innate Power": "Quicksilver deals 1 target 2 melee damage.",
-	"Starting HP": 26,
-	// Returning Spear
-	//"Innate Power": "Discard the top 2 cards of your deck, or put 1 card from your trash into your hand.",
-	//"Starting HP: Returning Spear": 26,
-	//Revenge
-	//"Starting HP: Revenge": 27,
-	//"Innate Power": "Discard a card. Search your deck or trash for Iron Retort and put it into your hand. Shuffle your deck.",
-	//Reshape
-	//"Innate Power": "Discard a card. If you do, draw 2 cards.",
-	"Incapacitated": [ "One player may play a card now.", "Destroy 1 ongoing card", "Until the start of your next turn, increase melee damage dealth by hero targets by 1." ],
-	//"Starting HP": 25,
+	"Identities": [
+		{
+			"Title": "Razor's Edge",
+			"Innate Power": "Quicksilver deals 1 target 2 melee damage.",
+			"Starting HP": 26,
+			"Incapacitated": [
+				"One player may play a card now.",
+				"Destroy 1 ongoing card",
+				"Until the start of your next turn, increase melee damage dealth by hero targets by 1."
+			]
+		},
+		{
+			"Title": "Returning Spear",
+			"Innate Power": "Discard the top 2 cards of your deck, or put 1 card from your trash into your hand.",
+			"Starting HP": 26,
+			"Incapacitated": [
+				"One player may play a card now.",
+				"Destroy 1 ongoing card",
+				"Until the start of your next turn, increase melee damage dealth by hero targets by 1."
+			]
+		},
+		{
+			"Title": "Revenge",
+			"Innate Power": "Discard a card. Search your deck or trash for Iron Retort and put it into your hand. Shuffle your deck.",
+			"Starting HP": 27,
+			"Incapacitated": [
+				"One player may play a card now.",
+				"Destroy 1 ongoing card",
+				"Until the start of your next turn, increase melee damage dealth by hero targets by 1."
+			]
+		},
+		{
+			"Title": "Reshape",
+			"Innate Power": "Discard a card. If you do, draw 2 cards.",
+			"Starting HP": 25,
+			"Incapacitated": [
+				"One player may play a card now.",
+				"Destroy 1 ongoing card",
+				"Until the start of your next turn, increase melee damage dealth by hero targets by 1."
+			]
+		}
+	],
 	"Name": "Quicksilver",
 	"Deck": {
 		"Stress Hardening": {

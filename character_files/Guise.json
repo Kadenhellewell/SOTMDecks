@@ -1,17 +1,37 @@
 ﻿{
-  //Tough Choices
-  //"Innate Power": Draw a card or play a card. Guise deals 1 target 1 melee damage.",
-  //"Incapacitated": [ "One player discards 1 card. If the discarded card was a one-shot, that player my dray 2 cards. If the discarded card was an equimpent of ongoing card, 1 hero target regains 2 HP.", "Reveal the bottom 3 cards of the villain deck. Put one on top of the villian deck, one in the trash, and one into play.", " If there are H or fewer envrionment cards in play, destroy 1 of them. If there are more than H envronment cards in play, destroy 2 of them."],
-  //"Starting HP": 27,
-  //Impressive Collection
-  //"Innate Power": Replace a hero character card in play with a variant of that hero. Put the replaced card safely under this card. Either use the power on the replaced card (treating any hero names on that card as Guise) or Guise deals 1 target 2 psychic damage.",
-  //"Incapacitated": [ "Switch a card under your card with a character in play with the same hero name.", "Remove a card under your card from the game. A hero with the same name as that card uses a power now.", "Remove all variants in your collection of an active hero from the game. If any cards are removed from the game this way, that hero may take a full turn now."],
-  //"Starting HP": 26,
-  //It's Gift-mas Time!
-  "Innate Power": "Put the top card of each hero deck face-down in their play area.",
-  "Innate Power 2": "One player may flip all face-down cards in their play area, treating them as if they were just put into play.",
-  "Incapacitated": [ "Each player may discard 1 cards to draw 1 cards.", "One hero uses a power, then turns 1 hero non-character card in play face-down.", "Flip 1 face-down card, treating it as if it were just put into play." ],
-  "Starting HP": 25,
+  "Identities": [
+    {
+      "Title": "Tough Choices",
+      "Innate Power": "Draw a card or play a card. Guise deals 1 target 1 melee damage.",
+      "Starting HP": 27,
+      "Incapacitated": [
+        "One player discards 1 card. If the discarded card was a one-shot, that player my dray 2 cards. If the discarded card was an equimpent of ongoing card, 1 hero target regains 2 HP.",
+        "Reveal the bottom 3 cards of the villain deck. Put one on top of the villian deck, one in the trash, and one into play.",
+        "If there are H or fewer envrionment cards in play, destroy 1 of them. If there are more than H envronment cards in play, destroy 2 of them."
+      ]
+    },
+    {
+      "Title": "Impressive Collection",
+      "Innate Power": "Replace a hero character card in play with a variant of that hero. Put the replaced card safely under this card. Either use the power on the replaced card (treating any hero names on that card as Guise) or Guise deals 1 target 2 psychic damage.",
+      "Starting HP": 26,
+      "Incapacitated": [
+        "Switch a card under your card with a character in play with the same hero name.",
+        "Remove a card under your card from the game. A hero with the same name as that card uses a power now.",
+        "Remove all variants in your collection of an active hero from the game. If any cards are removed from the game this way, that hero may take a full turn now."
+      ]
+    },
+    {
+      "Title": "It's Gift-mas Time!",
+      "Innate Power": "Put the top card of each hero deck face-down in their play area.",
+      "Innate Power 2": "One player may flip all face-down cards in their play area, treating them as if they were just put into play.",
+      "Starting HP": 25,
+      "Incapacitated": [
+        "Each player may discard 1 cards to draw 1 cards.",
+        "One hero uses a power, then turns 1 hero non-character card in play face-down.",
+        "Flip 1 face-down card, treating it as if it were just put into play."
+      ]
+    }
+  ],
   "Name": "Guise",
   "Deck": {
     "X-treeeeeeeeme!!!": {

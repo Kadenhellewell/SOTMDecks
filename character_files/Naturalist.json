@@ -1,7 +1,16 @@
 ﻿{
-  "Innate Power": "Select A, G, or R. Until the end of your next turn, you may activate that icon's effects. Either draw a card or play a card.",
-  "Incapacitated": [ "One Player may Draw 1 card now.", "One Player may Play 1 card now.", "The Environment Target with the highest HP deals each Non-Hero Target 2 Melee damage." ],
-  "Starting HP": 27,
+  "Identities": [
+    {
+      "Title": "title",
+      "Innate Power": "Select A, G, or R. Until the end of your next turn, you may activate that icon's effects. Either draw a card or play a card.",
+      "Starting HP": 27,
+      "Incapacitated": [
+        "One Player may Draw 1 card now.",
+        "One Player may Play 1 card now.",
+        "The Environment Target with the highest HP deals each Non-Hero Target 2 Melee damage."
+      ]
+    }
+  ],
   "Name": "Naturalist",
   "Deck": {
     "Bestial Shift": {
