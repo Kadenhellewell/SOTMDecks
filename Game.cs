@@ -114,7 +114,7 @@ namespace SOTMDecks
             Command? command = null;
             
             switch (commandStr)
-            { //TODO: add shuffle command
+            {
                 // TODO: add search special types command
                 case "draw":
                     command = new DrawCommand(Player, fromBottom: false);
@@ -142,6 +142,9 @@ namespace SOTMDecks
                     break;
                 case "search types":
                     command = new SearchCommand(Player);
+                    break;
+                case "search special type":
+                    command = new SearchSpecialCommand(Player);
                     break;
                 case "move card": 
                     command = new MoveCardCommand(Player);
@@ -183,6 +186,9 @@ namespace SOTMDecks
                     break;
                 case "discard pile to deck":
                     Player.ShuffleDiscardIntoDeck();
+                    break;
+                case "shuffle":
+                    Player.Shuffle();
                     break;
                 case "set count":
                     SetCount();

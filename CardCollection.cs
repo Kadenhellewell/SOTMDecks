@@ -76,10 +76,34 @@ namespace SOTMDecks
 
             foreach (Card card in cards_)
             {
-                if (card.Type.Contains(type)) collection.Add(card);
+                if (card.IsType(type)) collection.Add(card);
             }
 
             return collection;
+        }
+
+        public Card? GetSpecialType()
+        {
+            HashSet<string> ignoredTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "Ongoing",
+                "Limited",
+                "Equipment",
+                "Oneshot",
+                "One-Shot"
+            };
+
+            foreach (Card card in cards_)
+            {
+                if (card.Type.Any(t => !ignoredTypes.Contains(t)))
+                {
+                    return card;
+                }
+            }
+
+            Console.WriteLine("No special cards found");
+
+            return null;
         }
 
         public Card? GetCardFromName(string name)

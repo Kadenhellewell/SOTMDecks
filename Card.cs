@@ -12,7 +12,12 @@ namespace SOTMDecks
         public Card(KeyValuePair<string, JToken?> json) 
         {
             Name = json.Key;
-            Type = json.Value["type"].ToString();
+            var typeStr = json.Value["type"]?.ToString() ?? throw new Exception($"Card {Name} doesn't provide a type");
+            Type = typeStr.Split(',')
+                          .Select(t => t.Trim())
+                          .Where(t => !string.IsNullOrEmpty(t))
+                          .ToList();
+
             Text = json.Value["text"] is null ? "" : json.Value["text"].ToString();
             OnEntry = json.Value["on entry"] is null ? "" : json.Value["on entry"].ToString();
             OnDestroy = json.Value["on destroy"] is null ? "" : json.Value["on destroy"].ToString();
@@ -53,7 +58,13 @@ namespace SOTMDecks
 
         public bool IsOneshot()
         {
-            return Type.Contains("Oneshot") || Type.Contains("One-Shot");
+            return Type.Any(t => t.Equals("Oneshot", StringComparison.OrdinalIgnoreCase)
+                      || t.Equals("One-Shot", StringComparison.OrdinalIgnoreCase));
+        }
+
+        public bool IsType(string type)
+        {
+            return Type.Any(t => t.Equals(type, StringComparison.OrdinalIgnoreCase));
         }
 
         public void PrintHP()
@@ -121,7 +132,7 @@ namespace SOTMDecks
 
             if (brief) return;
 
-            Console.WriteLine($"\t{Type}");
+            Console.WriteLine($"\t{string.Join(", ", Type)}");
 
             if (OnEntry != "")
             {
@@ -163,7 +174,7 @@ namespace SOTMDecks
         }
 
         public string Name { get; }
-        public string Type { get; }
+        public List<string> Type { get; }
         public string OnEntry { get; }
         public string OnDestroy { get; }
         public string StartOfTurn { get; }
