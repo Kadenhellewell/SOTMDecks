@@ -12,6 +12,7 @@ namespace SOTMDecks.Commands
         private Location src_;
         private Location dest_;
         private Option<Card> card_;
+        private Card Card_ => card_.ValueOrThrow();
 
         public MoveCardCommand(Player player) : base(player)
         {
@@ -22,7 +23,7 @@ namespace SOTMDecks.Commands
         {
             Option<Location> srcOpt = MiscHelpers.GetLocationFromPlayer("Select the source location:");
             if (!srcOpt.HasValue) return false;
-            src_ = srcOpt.ValueOr(() => throw new InvalidOperationException("No source location."));
+            src_ = srcOpt.ValueOrThrow();
 
             if (src_ == Location.TopOfDeck)
             {
@@ -41,16 +42,14 @@ namespace SOTMDecks.Commands
 
             Option<Location> destOpt = MiscHelpers.GetLocationFromPlayer("Select the destination location:");
             if (!destOpt.HasValue) return false;
-            dest_ = destOpt.ValueOr(() => throw new InvalidOperationException("No destination location."));
+            dest_ = destOpt.ValueOrThrow();
 
-            var card = card_.ValueOr(() => throw new InvalidOperationException("No card selected."));
-            return player_.MoveCard(card, src_, dest_);
+            return player_.MoveCard(Card_, src_, dest_);
         }
 
         public override void Undo()
         {
-            var card = card_.ValueOr(() => throw new InvalidOperationException("No card to undo."));
-            player_.MoveCard(card, dest_, src_);
+            player_.MoveCard(Card_, dest_, src_);
         }
     }
 }

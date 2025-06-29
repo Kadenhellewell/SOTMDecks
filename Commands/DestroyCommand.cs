@@ -11,6 +11,8 @@ namespace SOTMDecks.Commands
     {
         private Option<Card> card_;
 
+        private Card Card_ => card_.ValueOrThrow();
+
         public DestroyCommand(Player player) : base(player)
         {
             card_ = Option.None<Card>();
@@ -21,14 +23,12 @@ namespace SOTMDecks.Commands
             card_ = MiscHelpers.GetCardFromIndex(player_.PlayArea());
             if (!card_.HasValue) return false;
 
-            var card = card_.ValueOr(() => throw new InvalidOperationException("No card selected"));
-            return player_.DestroyCard(card);
+            return player_.DestroyCard(Card_);
         }
 
         public override void Undo()
         {
-            var card = card_.ValueOr(() => throw new InvalidOperationException("No card to undo"));
-            player_.MoveCard(card, Location.DiscardPile, Location.PlayArea);
+            player_.MoveCard(Card_, Location.DiscardPile, Location.PlayArea);
         }
     }
 }

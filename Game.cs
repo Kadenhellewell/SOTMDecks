@@ -314,8 +314,7 @@ namespace SOTMDecks
             Option<int> countOpt = MiscHelpers.GetIntFromPlayer("Set count to what?");
             if (!countOpt.HasValue) return;
 
-            var card = cardOpt.ValueOr(() => throw new InvalidOperationException("No card selected"));
-            card.Count = countOpt.ValueOr(0);
+            cardOpt.ValueOrThrow().Count = countOpt.ValueOr(0);
         }
 
         private void DamageCard()
@@ -326,7 +325,7 @@ namespace SOTMDecks
             Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
             if (!damageOpt.HasValue) return;
 
-            var card = cardOpt.ValueOr(() => throw new InvalidOperationException("No card selected"));
+            var card = cardOpt.ValueOrThrow();
 
             if (card.MaxHP == 0)
             {
@@ -395,8 +394,7 @@ namespace SOTMDecks
             Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
             if (!healthOpt.HasValue) return;
 
-            var card = cardOpt.ValueOr(() => throw new InvalidOperationException("No card selected"));
-            card.HP += healthOpt.ValueOr(0);
+            cardOpt.ValueOrThrow().HP += healthOpt.ValueOr(0);
         }
 
         private void HealCards()

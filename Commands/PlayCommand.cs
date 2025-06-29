@@ -10,6 +10,7 @@ namespace SOTMDecks.Commands
     internal class PlayCommand : Command
     {
         private Option<Card> card_;
+        private Card Card_ => card_.ValueOrThrow();
 
         public PlayCommand(Player player) : base(player)
         {
@@ -21,21 +22,18 @@ namespace SOTMDecks.Commands
             card_ = MiscHelpers.GetCardFromIndex(player_.Hand());
             if (!card_.HasValue) return false;
 
-            var card = card_.ValueOr(() => throw new InvalidOperationException("No card."));
-
-            return player_.PlayCard(card);
+            return player_.PlayCard(Card_);
         }
 
         public override void Undo()
         {
-            var card = card_.ValueOr(() => throw new InvalidOperationException("No card."));
-            if (card.IsOneshot())
+            if (Card_.IsOneshot())
             {
-                player_.MoveCard(card, Location.DiscardPile, Location.Hand);
+                player_.MoveCard(Card_, Location.DiscardPile, Location.Hand);
             }
             else
             {
-                player_.MoveCard(card, Location.PlayArea, Location.Hand);
+                player_.MoveCard(Card_, Location.PlayArea, Location.Hand);
             }
         }
     }

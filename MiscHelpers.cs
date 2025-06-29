@@ -174,5 +174,11 @@ namespace SOTMDecks
                     return Option.None<Location>();
             }
         }
+
+        // This functions extends the option class to allow me to grab values from options without needing to pass crap in
+        public static T ValueOrThrow<T>(this Option<T> option)
+        {
+            return option.ValueOr(() => throw new InvalidOperationException("Option did not have a value"));
+        }
     }
 }

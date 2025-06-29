@@ -11,6 +11,7 @@ namespace SOTMDecks.Commands
     {
         private Option<CardCollection> src_;
         private Option<Card> card_;
+        private Card Card_ => card_.ValueOrThrow();
         private CardCollection ko_;
 
         public RemoveCommand(CardCollection KO, Player player) : base(player)
@@ -44,23 +45,21 @@ namespace SOTMDecks.Commands
                     return false;
             }
 
-            var srcVal = src_.ValueOr(() => throw new InvalidOperationException("Source not set"));
-            card_ = MiscHelpers.GetCardFromIndex(srcVal, verbose: true);
+            var srcVal = src_.ValueOrThrow();
+            card_ = MiscHelpers.GetCardFromIndex(src_.ValueOrThrow(), verbose: true);
             if (!card_.HasValue) return false;
 
-            var cardVal = card_.ValueOr(() => throw new InvalidOperationException("No card selected"));
-            srcVal.Remove(cardVal);
-            ko_.Add(cardVal);
+            srcVal.Remove(Card_);
+            ko_.Add(Card_);
             return true;
         }
 
         public override void Undo()
         {
-            var srcVal = src_.ValueOr(() => throw new InvalidOperationException("Source not set"));
-            var cardVal = card_.ValueOr(() => throw new InvalidOperationException("No card to undo"));
+            var srcVal = src_.ValueOrThrow();
 
-            ko_.Remove(cardVal);
-            srcVal.Add(cardVal);
+            ko_.Remove(Card_);
+            srcVal.Add(Card_);
         }
     }
 }

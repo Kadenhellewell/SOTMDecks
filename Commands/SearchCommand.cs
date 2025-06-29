@@ -10,7 +10,8 @@ namespace SOTMDecks.Commands
 {
     internal class SearchCommand : Command
     {
-        Option<Card> card_;
+        private Option<Card> card_;
+        private Card Card_ => card_.ValueOrThrow();
 
         public SearchCommand(Player player) : base(player) 
         {
@@ -39,18 +40,15 @@ namespace SOTMDecks.Commands
             card_ = MiscHelpers.GetCardFromIndex(col, verbose: true);
             if (!card_.HasValue) return false;
 
-            var card = card_.ValueOr(() => throw new InvalidOperationException("No card."));
-
-            player_.MoveCardFromDeckToHand(card);
+            player_.MoveCardFromDeckToHand(Card_);
             
             return true;
         }
 
         public override void Undo()
         {
-            var card = card_.ValueOr(() => throw new InvalidOperationException("No card."));
-            player_.Hand().Remove(card);
-            player_.PlayerDeck.Add(card);
+            player_.Hand().Remove(Card_);
+            player_.PlayerDeck.Add(Card_);
             player_.Shuffle();
         }
     }
