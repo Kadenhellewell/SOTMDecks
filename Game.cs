@@ -484,15 +484,15 @@ namespace SOTMDecks
             Player.RemoveMod(modIndex);
         }
 
-        private Modifier? ModifierPresent(string desc)
+        private Option<Modifier> ModifierPresent(string desc)
         {
             foreach (Modifier mod in Player.Modifiers)
             {
                 if (mod.Description == desc)
-                    return mod;
+                    return Option.Some(mod);
             }
 
-            return null;
+            return Option.None<Modifier>();
         }
     }
 }

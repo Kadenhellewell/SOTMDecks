@@ -110,12 +110,12 @@ namespace SOTMDecks
             cards_ = cards_.OrderBy(a => Guid.NewGuid()).ToList();
         }
 
-        public Card? Draw(bool fromBottom = false)
+        public Option<Card> Draw(bool fromBottom = false)
         {
             if (cards_.Count == 0)
             {
                 Console.WriteLine("No cards to draw");
-                return null;
+                return Option.None<Card>();
             }
             Card drawn;
             if (fromBottom)
@@ -128,7 +128,7 @@ namespace SOTMDecks
                 drawn = cards_.First();
                 cards_.RemoveAt(0);
             }
-            return drawn;
+            return Option.Some(drawn);
         }
 
         public Option<List<Card>> GetTopCards(int n)

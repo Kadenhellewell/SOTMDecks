@@ -41,21 +41,21 @@ namespace SOTMDecks
             }
         }
 
-        public static List<int>? GetIntsFromPlayer(string prompt)
+        public static Option<List<int>> GetIntsFromPlayer(string prompt)
         {
             Console.WriteLine(prompt);
             string? intListStr = Console.ReadLine();
             if (intListStr is null)
             {
                 Console.WriteLine("No input provided");
-                return null;
+                return Option.None<List<int>>();
             }
 
-            List<int>? intList = StringOfIntsToListOfInts(intListStr);
-            if (intList is null)
+            Option<List<int>> intList = StringOfIntsToListOfInts(intListStr);
+            if (!intList.HasValue)
             {
                 Console.WriteLine("Input must be space-separated integers");
-                return null;
+                return Option.None<List<int>>();
             }
 
             return intList;
@@ -74,18 +74,18 @@ namespace SOTMDecks
             return str == "y" || str == "yes";
         }
 
-        public static List<int>? StringOfIntsToListOfInts(string ints)
+        public static Option<List<int>> StringOfIntsToListOfInts(string ints)
         {
             try
             {
-                return ints.Split(' ') // Split by spaces
+                return Option.Some(ints.Split(' ') // Split by spaces
                     .Where(s => !string.IsNullOrWhiteSpace(s)) // Remove empty entries
                     .Select(int.Parse) // Convert to integers
-                    .ToList(); // Convert to list
+                    .ToList()); // Convert to list
             }
             catch
             {
-                return null;
+                return Option.None<List<int>>();
             }
         }
 
@@ -124,14 +124,15 @@ namespace SOTMDecks
 
         public static Option<List<Card>> GetCardsFromInput(CardCollection col, bool verbose = false)
         {
+
             Console.WriteLine("Select cards space-separated numbers");
             col.ListPrint(verbose);
 
-            List<int>? intList = GetIntsFromPlayer("");
-            if (intList is null) return Option.None<List<Card>>();
+            Option<List<int>> intList = GetIntsFromPlayer("");
+            if (!intList.HasValue) return Option.None<List<Card>>();
 
-            List<Card>? cards = new List<Card>();
-            foreach (var i in intList) 
+            List<Card> cards = new List<Card>();
+            foreach (var i in intList.ValueOrThrow()) 
             {
                 if (i >= col.GetCount())
                 {
@@ -142,6 +143,11 @@ namespace SOTMDecks
                 cards.Add(col.GetCards()[i]);
             }
 
+            if (cards.Count == 0)
+            {
+                Console.WriteLine("Not cards were selected");
+                return Option.None<List<Card>>();
+            }
             return Option.Some(cards);
         }
 
@@ -175,7 +181,7 @@ namespace SOTMDecks
             }
         }
 
-        // This functions extends the option class to allow me to grab values from options without needing to pass crap in
+        // This functions extends the Option class to allow me to grab values from options without needing to pass crap in
         public static T ValueOrThrow<T>(this Option<T> option)
         {
             return option.ValueOr(() => throw new InvalidOperationException("Option did not have a value"));

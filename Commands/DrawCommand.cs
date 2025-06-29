@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Optional;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace SOTMDecks.Commands
 {
     internal class DrawCommand : Command
     {
-        private Card? card_;
+        private Option<Card> card_;
+        private Card Card_ => card_.ValueOrThrow();
         private bool bottom_;
         public DrawCommand(Player player, bool fromBottom) : base(player)
         {
@@ -17,15 +19,15 @@ namespace SOTMDecks.Commands
 
         public override bool Execute()
         {
-            Card? card = player_.Draw(verbose: true, fromBottom: bottom_);
-            if (card == null) return false;
-            card_ = card;
-            return player_.Hand().GetCards().Contains(card_);
+            card_ = player_.Draw(verbose: true, fromBottom: bottom_);
+            if (!card_.HasValue) return false;
+
+            return player_.Hand().GetCards().Contains(Card_);
         }
 
         public override void Undo()
         {
-            player_.UndoDraw(card_, bottom_);
+            player_.UndoDraw(Card_, bottom_);
             player_.PlayerDeck.Shuffle();
         }
     }

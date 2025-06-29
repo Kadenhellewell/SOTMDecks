@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using Optional;
 
 namespace SOTMDecks
 {
@@ -164,12 +165,12 @@ namespace SOTMDecks
 
             for (int i = 0; i < num; ++i)
             {
-                Card? card = PlayerDeck.Draw();
-                if (card is null) return false;
+                Option<Card> card = PlayerDeck.Draw();
+                if (!card.HasValue) return false;
 
-                CardGroups[Location.DiscardPile].Add(card);
+                CardGroups[Location.DiscardPile].Add(card.ValueOrThrow());
                 Console.Write("Discarded ");
-                MiscHelpers.ColorPrint(ConsoleColor.Green, card.Name, newLine: true);
+                MiscHelpers.ColorPrint(ConsoleColor.Green, card.ValueOrThrow().Name, newLine: true);
             }
 
             return true;
@@ -292,14 +293,17 @@ namespace SOTMDecks
             return CardGroups[Location.SantasBag].Remove(card);
         }
 
-        public Card? Draw(bool verbose = true, bool fromBottom = false)
+        public Option<Card> Draw(bool verbose = true, bool fromBottom = false)
         {
-            Card? newCard = PlayerDeck.Draw(fromBottom);
-            if (newCard is null) return null;
+            Option<Card> newCardOpt = PlayerDeck.Draw(fromBottom);
+            if (!newCardOpt.HasValue) return Option.None<Card>();
+
+            Card newCard = newCardOpt.ValueOrThrow();
+
             CardGroups[Location.Hand].Add(newCard);
             if (verbose)
                 Console.WriteLine($"Drew {newCard.Name} [{newCard.TypeAsString()}]");
-            return newCard;
+            return newCardOpt;
         }
 
         public void UndoDraw(Card card, bool fromBottom)
