@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Optional;
 
 namespace SOTMDecks
 {
@@ -17,28 +19,26 @@ namespace SOTMDecks
             if (newLine) Console.WriteLine();
         }
 
-        public static int? GetIntFromPlayer(string prompt)
+        public static Option<int> GetIntFromPlayer(string prompt)
         {
             Console.WriteLine(prompt);
             string? intStr = Console.ReadLine();
-            if (intStr is null)
+
+            if (string.IsNullOrWhiteSpace(intStr))
             {
                 Console.WriteLine("No input provided");
-                return null;
+                return Option.None<int>();
             }
 
-            int? num;
-            try
+            if (int.TryParse(intStr, out int result))
             {
-                num = int.Parse(intStr);
+                return Option.Some(result);
             }
-            catch
+            else
             {
                 Console.WriteLine("Need to provide an integer");
-                num = null;
+                return Option.None<int>();
             }
-
-            return num;
         }
 
         public static List<int>? GetIntsFromPlayer(string prompt)
@@ -89,44 +89,46 @@ namespace SOTMDecks
             }
         }
 
-        public static string? GetStringFromPlayer(string prompt)
+        public static Option<string> GetStringFromPlayer(string prompt)
         {
             Console.WriteLine(prompt);
             string? modStr = Console.ReadLine();
             if (modStr is null)
             {
-                Console.WriteLine("No description provided");
-                return null;
+                Console.WriteLine("No string provided");
+                return Option.None<string>();
             }
 
-            return modStr;
+            return Option.Some(modStr);
         }
 
 
-        public static Card? GetCardFromIndex(CardCollection col, bool verbose = false)
+        public static Option<Card> GetCardFromIndex(CardCollection col, bool verbose = false)
         {
             Console.WriteLine("Card?");
             col.ListPrint(verbose);
 
-            int? index = GetIntFromPlayer("");
-            if (index is null) return null;
+            Option<int> indexOpt = GetIntFromPlayer("");
+            if (!indexOpt.HasValue) return Option.None<Card>();
 
-            if (index >= col.GetCount())
+            int index = indexOpt.ValueOr(-1);
+
+            if (index >= col.GetCount() || index < 0)
             {
                 Console.WriteLine("Index out of range");
-                return null;
+                return Option.None<Card>();
             }
 
-            return col.GetCards()[index.Value];
+            return Option.Some(col.GetCards()[index]);
         }
 
-        public static List<Card>? GetCardsFromInput(CardCollection col, bool verbose = false)
+        public static Option<List<Card>> GetCardsFromInput(CardCollection col, bool verbose = false)
         {
             Console.WriteLine("Select cards space-separated numbers");
             col.ListPrint(verbose);
 
             List<int>? intList = GetIntsFromPlayer("");
-            if (intList is null) return null;
+            if (intList is null) return Option.None<List<Card>>();
 
             List<Card>? cards = new List<Card>();
             foreach (var i in intList) 
@@ -134,16 +136,16 @@ namespace SOTMDecks
                 if (i >= col.GetCount())
                 {
                     Console.WriteLine($"Index {i} out of range");
-                    return null;
+                    return Option.None<List<Card>>();
                 }
 
                 cards.Add(col.GetCards()[i]);
             }
 
-            return cards;
+            return Option.Some(cards);
         }
 
-        public static Location? GetLocationFromPlayer(string prompt)
+        public static Option<Location> GetLocationFromPlayer(string prompt)
         {
             Console.WriteLine(prompt);
 
@@ -153,21 +155,23 @@ namespace SOTMDecks
             Console.WriteLine("4. Top of Deck");
             Console.WriteLine("5. Bottom of Deck");
 
-            int? loc = MiscHelpers.GetIntFromPlayer("");
-            if (loc is null)
+            Option<int> locOpt = MiscHelpers.GetIntFromPlayer("");
+            if (!locOpt.HasValue)
             {
                 Console.WriteLine("Must give an integer 1-3");
-                return null;
+                return Option.None<Location>();
             }
 
-            switch (loc)
+            switch (locOpt.ValueOr(0))
             {
-                case 1: return Location.Hand;
-                case 2: return Location.PlayArea;
-                case 3: return Location.DiscardPile;
-                case 4: return Location.TopOfDeck;
-                case 5: return Location.BottomOfDeck;
-                default: return null;
+                case 1: return Option.Some(Location.Hand);
+                case 2: return Option.Some(Location.PlayArea);
+                case 3: return Option.Some(Location.DiscardPile);
+                case 4: return Option.Some(Location.TopOfDeck);
+                case 5: return Option.Some(Location.BottomOfDeck);
+                default:
+                    Console.WriteLine("Must provided integer 1-5");
+                    return Option.None<Location>();
             }
         }
     }

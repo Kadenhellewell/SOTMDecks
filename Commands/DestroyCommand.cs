@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Optional;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +9,26 @@ namespace SOTMDecks.Commands
 {
     internal class DestroyCommand : Command
     {
-        private Card? card_;
+        private Option<Card> card_;
 
-        public DestroyCommand(Player player) : base(player) { }
+        public DestroyCommand(Player player) : base(player)
+        {
+            card_ = Option.None<Card>();
+        }
+
         public override bool Execute()
         {
-            Card? card = MiscHelpers.GetCardFromIndex(player_.PlayArea());
-            if (card is null) return false;
+            card_ = MiscHelpers.GetCardFromIndex(player_.PlayArea());
+            if (!card_.HasValue) return false;
 
-            card_ = card;
-            return player_.DestroyCard(card_);
+            var card = card_.ValueOr(() => throw new InvalidOperationException("No card selected"));
+            return player_.DestroyCard(card);
         }
 
         public override void Undo()
         {
-            player_.MoveCard(card_, Location.DiscardPile, Location.PlayArea);
+            var card = card_.ValueOr(() => throw new InvalidOperationException("No card to undo"));
+            player_.MoveCard(card, Location.DiscardPile, Location.PlayArea);
         }
     }
 }

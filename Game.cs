@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Optional;
 
 namespace SOTMDecks
 {
@@ -287,34 +288,45 @@ namespace SOTMDecks
 
         public void RevealCards()
         {
-            int? num = MiscHelpers.GetIntFromPlayer("How many?");
-            if (num is null) return;
+            Option<int> numOpt = MiscHelpers.GetIntFromPlayer("How many?");
+            if (!numOpt.HasValue) return;
+
+            int num = numOpt.ValueOr(0);
+
+            if (num <= 0)
+            {
+                Console.WriteLine($"I can't reveal {num} cards...");
+                return;
+            }
 
             if (Player.PlayerDeck.GetCount() < num)
             {
                 Player.ShuffleDiscardIntoDeck();
             }
-            Player.RevealCards(num.Value);
+            Player.RevealCards(num);
         }
 
         private void SetCount()
         {
-            Card? card = MiscHelpers.GetCardFromIndex(Player.PlayArea());
-            if (card is null) return;
+            Option<Card> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
+            if (!cardOpt.HasValue) return;
 
-            int? count = MiscHelpers.GetIntFromPlayer("Set count to what?");
-            if (count is null) return;
+            Option<int> countOpt = MiscHelpers.GetIntFromPlayer("Set count to what?");
+            if (!countOpt.HasValue) return;
 
-            card.Count = count.Value;
+            var card = cardOpt.ValueOr(() => throw new InvalidOperationException("No card selected"));
+            card.Count = countOpt.ValueOr(0);
         }
 
         private void DamageCard()
         {
-            Card? card = MiscHelpers.GetCardFromIndex(Player.PlayArea());
-            if (card is null) return;
+            Option<Card> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
+            if (!cardOpt.HasValue) return;
 
-            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
-            if (damage is null) return;
+            Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
+            if (!damageOpt.HasValue) return;
+
+            var card = cardOpt.ValueOr(() => throw new InvalidOperationException("No card selected"));
 
             if (card.MaxHP == 0)
             {
@@ -322,7 +334,7 @@ namespace SOTMDecks
                 return;
             }
 
-            card.HP -= damage.Value;
+            card.HP -= damageOpt.ValueOr(0);
             if (card.HP <= 0)
             {
                 Console.WriteLine($"{card.Name} has died. If applicable, destroy it.");
@@ -332,13 +344,13 @@ namespace SOTMDecks
 
         private void DamageCards()
         {
-            List<Card>? cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
-            if (cards is null) return;
+            Option<List<Card>> cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
+            if (!cards.HasValue) return;
 
-            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
-            if (damage is null) return;
+            Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
+            if (!damageOpt.HasValue) return;
 
-            foreach (Card card in cards)
+            foreach (Card card in cards.ValueOr(new List<Card>()))
             {
                 if (card.MaxHP == 0)
                 {
@@ -346,16 +358,18 @@ namespace SOTMDecks
                     continue;
                 }
 
-                card.HP -= damage.Value;
+                card.HP -= damageOpt.ValueOr(0);
             }
         }
 
         private void DamageAll()
         {
-            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
-            if (damage is null) return;
+            Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
+            if (!damageOpt.HasValue) return;
 
-            Player.DealDamage(damage.Value);
+            int damage = damageOpt.ValueOr(0);
+
+            Player.DealDamage(damage);
 
             foreach (Card card in Player.GetLocation(Location.PlayArea).GetCards())
             {
@@ -364,7 +378,7 @@ namespace SOTMDecks
                     continue;
                 }
 
-                card.HP -= damage.Value;
+                card.HP -= damage;
                 if (card.HP <= 0)
                 {
                     Console.WriteLine($"{card.Name} has died. If applicable, destroy it.");
@@ -375,24 +389,25 @@ namespace SOTMDecks
 
         private void HealCard()
         {
-            Card? card = MiscHelpers.GetCardFromIndex(Player.PlayArea());
-            if (card is null) return;
+            Option<Card> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
+            if (!cardOpt.HasValue) return;
 
-            int? health = MiscHelpers.GetIntFromPlayer("How much?");
-            if (health is null) return;
+            Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
+            if (!healthOpt.HasValue) return;
 
-            card.HP += health.Value;
+            var card = cardOpt.ValueOr(() => throw new InvalidOperationException("No card selected"));
+            card.HP += healthOpt.ValueOr(0);
         }
 
         private void HealCards()
         {
-            List<Card>? cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
-            if (cards is null) return;
+            Option<List<Card>> cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
+            if (!cards.HasValue) return;
 
-            int? health = MiscHelpers.GetIntFromPlayer("How much?");
-            if (health is null) return;
+            Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
+            if (!healthOpt.HasValue) return;
 
-            foreach (Card card in cards)
+            foreach (Card card in cards.ValueOr(new List<Card>()))
             {
                 if (card.MaxHP == 0)
                 {
@@ -400,16 +415,18 @@ namespace SOTMDecks
                     continue;
                 }
 
-                card.HP += health.Value;
+                card.HP += healthOpt.ValueOr(0);
             }
         }
 
         private void HealAll()
         {
-            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
-            if (damage is null) return;
+            Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
+            if (!healthOpt.HasValue) return;
 
-            Player.Heal(damage.Value);
+            int health = healthOpt.ValueOr(0);
+
+            Player.Heal(health);
 
             foreach (Card card in Player.GetLocation(Location.PlayArea).GetCards())
             {
@@ -418,39 +435,32 @@ namespace SOTMDecks
                     continue;
                 }
 
-                card.HP += damage.Value;
+                card.HP += health;
             }
         }
 
         private void DealDamage()
         {
-            int? damage = MiscHelpers.GetIntFromPlayer("How much?");
-            if (damage is null) return;
-            Player.DealDamage(damage.Value);
+            Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
+            if (!damageOpt.HasValue) return;
+
+            Player.DealDamage(damageOpt.ValueOr(0));
         }
 
         private void Heal()
         {
-            int? heal = MiscHelpers.GetIntFromPlayer("How much?");
-            if (heal is null)
-            {
-                Console.WriteLine("Must provide an integer");
-                return;
-            }
+            Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
+            if (!healthOpt.HasValue) return;
 
-            Player.Heal(heal.Value);
+            Player.Heal(healthOpt.ValueOr(0));
         }
 
         private void AddMod()
         {
-            string? modStr = MiscHelpers.GetStringFromPlayer("Description");
-            if (modStr is null)
-            {
-                Console.WriteLine("Didn't get that; try again");
-                return;
-            }
+            Option<string> modStr = MiscHelpers.GetStringFromPlayer("Description");
+            if (!modStr.HasValue) return;
 
-            Modifier modToAdd = new Modifier(modStr, ConsoleColor.Cyan);
+            Modifier modToAdd = new Modifier(modStr.ValueOr(""), ConsoleColor.Cyan);
             Player.Modifiers.Add(modToAdd);
         }
 
@@ -462,15 +472,18 @@ namespace SOTMDecks
                 Console.WriteLine($"\t{i}: {Player.Modifiers[i]}");
             }
 
-            int? modIndex = MiscHelpers.GetIntFromPlayer("");
+            Option<int> modIndexOpt = MiscHelpers.GetIntFromPlayer("");
 
-            if (modIndex is null) return;
-            if (modIndex >= Player.Modifiers.Count)
+            if (!modIndexOpt.HasValue) return;
+
+            int modIndex = modIndexOpt.ValueOr(-1);
+
+            if (modIndex >= Player.Modifiers.Count || modIndex < 0)
             {
                 Console.WriteLine("Index out of range");
                 return;
             }
-            Player.RemoveMod(modIndex.Value);
+            Player.RemoveMod(modIndex);
         }
 
         private Modifier? ModifierPresent(string desc)

@@ -4,19 +4,25 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Optional;
 
 namespace SOTMDecks.Commands
 {
     internal class SearchCommand : Command
     {
-        Card? card_;
+        Option<Card> card_;
 
-        public SearchCommand(Player player) : base(player) { }
+        public SearchCommand(Player player) : base(player) 
+        {
+            card_ = Option.None<Card>();
+        }
 
         public override bool Execute()
         {
-            string? types = MiscHelpers.GetStringFromPlayer("What types (separate with spaces)?");
-            if (types is null) return false;
+            Option<string> typesOpt = MiscHelpers.GetStringFromPlayer("What types (separate with spaces)?");
+            if (!typesOpt.HasValue) return false;
+
+            string types = typesOpt.ValueOr("");
 
             CardCollection col = new CardCollection($"Types: {types}");
             foreach (string type in types.Split(" "))
@@ -30,18 +36,21 @@ namespace SOTMDecks.Commands
                 return false;
             }
 
-            Card? card = MiscHelpers.GetCardFromIndex(col, verbose: true);
-            if (card is null) return false;
+            card_ = MiscHelpers.GetCardFromIndex(col, verbose: true);
+            if (!card_.HasValue) return false;
 
-            card_ = card;
-            player_.MoveCardFromDeckToHand(card_);
+            var card = card_.ValueOr(() => throw new InvalidOperationException("No card."));
+
+            player_.MoveCardFromDeckToHand(card);
+            
             return true;
         }
 
         public override void Undo()
         {
-            player_.Hand().Remove(card_);
-            player_.PlayerDeck.Add(card_);
+            var card = card_.ValueOr(() => throw new InvalidOperationException("No card."));
+            player_.Hand().Remove(card);
+            player_.PlayerDeck.Add(card);
             player_.Shuffle();
         }
     }

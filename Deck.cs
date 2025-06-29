@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Optional;
 
 namespace SOTMDecks
 {
@@ -53,13 +54,13 @@ namespace SOTMDecks
                         Console.WriteLine($"{i}: {title} - Power: {innatePower}");
                     }
 
-                    int? inputChoice = null;
+                    Option<int> inputChoice;
                     do
                     {
                         inputChoice = MiscHelpers.GetIntFromPlayer("Select Identity by number:");
-                    } while (inputChoice == null || inputChoice < 0 || inputChoice >= identitiesArray.Count);
+                    } while (!inputChoice.HasValue || inputChoice.ValueOr(-1) < 0 || inputChoice.ValueOr(0) >= identitiesArray.Count);
 
-                    choice = (int)inputChoice;
+                    choice = inputChoice.ValueOr(0);
                 }
 
                 var chosen = identitiesArray[(int)choice];
@@ -130,15 +131,15 @@ namespace SOTMDecks
             return drawn;
         }
 
-        public List<Card>? GetTopCards(int n)
+        public Option<List<Card>> GetTopCards(int n)
         {
             if (cards_.Count < n)
             {
                 Console.WriteLine($"Fewer than {n} cards");
-                return null;
+                return Option.None<List<Card>>();
             }
 
-            return cards_.Take(n).ToList();
+            return Option.Some(cards_.Take(n).ToList());
         }
 
         public void RevealCards(int num)

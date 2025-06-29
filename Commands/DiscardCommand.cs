@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Optional;
 
 namespace SOTMDecks.Commands
 {
@@ -23,25 +24,25 @@ namespace SOTMDecks.Commands
         {
             if (fromDeck_)
             {
-                int? num = MiscHelpers.GetIntFromPlayer("How many?");
-                if (num is null) return false;
+                Option<int> num = MiscHelpers.GetIntFromPlayer("How many?");
+                if (!num.HasValue) return false;
 
-                num_ = num.Value;
-                List<Card>? cards = player_.PlayerDeck.GetTopCards(num_);
-                if (cards is null || cards.Count == 0) return false;
+                num_ = num.ValueOr(0);
+                Option<List<Card>> cards = player_.PlayerDeck.GetTopCards(num_);
+                if (!cards.HasValue || cards.ValueOr(new List<Card>()).Count == 0) return false;
 
-                cards_ = cards.ToList();
+                cards_ = cards.ValueOr(new List<Card>()).ToList();
                 return player_.DiscardFromDeck(num_);
             }
             else
             {
-                List<Card>? cards = MiscHelpers.GetCardsFromInput(player_.Hand());
-                if (cards is null) return false;
+                Option<List<Card>> cards = MiscHelpers.GetCardsFromInput(player_.Hand());
+                if (!cards.HasValue) return false;
 
-                num_ = cards.Count;
-                cards_ = cards.ToList();
+                num_ = cards.ValueOr(new List<Card>()).Count;
+                cards_ = cards.ValueOr(new List<Card>()).ToList();
                 bool result = true;
-                foreach (Card card in cards)
+                foreach (Card card in cards_)
                 {
                     bool thisResult = player_.Discard(card);
                     if (!thisResult) Console.WriteLine($"Failure discarding {card.Name}");

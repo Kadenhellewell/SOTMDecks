@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Optional;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,48 +9,48 @@ namespace SOTMDecks.Commands
 {
     internal class MoveCardCommand : Command
     {
-        Location src_;
-        Location dest_;
-        Card? card_;
+        private Location src_;
+        private Location dest_;
+        private Option<Card> card_;
 
-        public MoveCardCommand(Player player) : base(player) 
+        public MoveCardCommand(Player player) : base(player)
         {
-            
+            card_ = Option.None<Card>();
         }
 
         public override bool Execute()
         {
-            Location? src = MiscHelpers.GetLocationFromPlayer("Select the source location:");
-            if (src is null) return false;
-            src_ = src.Value;
+            Option<Location> srcOpt = MiscHelpers.GetLocationFromPlayer("Select the source location:");
+            if (!srcOpt.HasValue) return false;
+            src_ = srcOpt.ValueOr(() => throw new InvalidOperationException("No source location."));
 
-
-            if (src == Location.TopOfDeck)
+            if (src_ == Location.TopOfDeck)
             {
                 Console.WriteLine("Use the command 'draw' instead.");
                 return false;
             }
 
-            if (src == Location.BottomOfDeck)
+            if (src_ == Location.BottomOfDeck)
             {
                 Console.WriteLine("Use the command 'draw bottom' instead.");
                 return false;
             }
 
-            Card? card = MiscHelpers.GetCardFromIndex(player_.GetLocation(src_));
-            if (card is null) return false;
-            card_ = card;
+            card_ = MiscHelpers.GetCardFromIndex(player_.GetLocation(src_));
+            if (!card_.HasValue) return false;
 
-            Location? dest = MiscHelpers.GetLocationFromPlayer("Select the destination location:");
-            if (dest is null) return false;
-            dest_ = dest.Value;
+            Option<Location> destOpt = MiscHelpers.GetLocationFromPlayer("Select the destination location:");
+            if (!destOpt.HasValue) return false;
+            dest_ = destOpt.ValueOr(() => throw new InvalidOperationException("No destination location."));
 
-            return player_.MoveCard(card_, src_, dest_);
+            var card = card_.ValueOr(() => throw new InvalidOperationException("No card selected."));
+            return player_.MoveCard(card, src_, dest_);
         }
 
         public override void Undo()
         {
-            player_.MoveCard(card_, dest_, src_);
+            var card = card_.ValueOr(() => throw new InvalidOperationException("No card to undo."));
+            player_.MoveCard(card, dest_, src_);
         }
     }
 }
