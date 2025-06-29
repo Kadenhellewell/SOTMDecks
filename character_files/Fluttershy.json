@@ -1,13 +1,53 @@
 ﻿{
   "Identities": [
     {
-      "Title": "title",
+      "Title": "Animal Care",
       "Innate Power": "Three non-character hero targets regain 1 HP each.",
       "Starting HP": 24,
       "Incapacitated": [
         "Two hero targets regain 1 HP each.",
         "One player may draw a card.",
         "Select a damage type. Reduce damage of that type dealt to hero targets by 1 until the start of your turn."
+      ]
+    },
+    {
+      "Title": "New Fluttershy",
+      "Innate Power": "Fluttershy deals a target 1 irreducible psychic dmage. A pet that takes damage this way gains its :) test instead of any >:] text until the start of your next turn.",
+      "Starting HP": 26,
+      "Incapacitated": [
+        "A target deals itself 1 psychic damage.",
+        "Three targets regain 1 HP each.",
+        "A player may use a power."
+      ]
+    },
+    {
+      "Title": "The Mysterious Mare-Do-Well",
+      "Innate Power": "Draw a card or play a card.",
+      "Starting HP": 25,
+      "Incapacitated": [
+        "A player may draw a card.",
+        "A player may use a power..",
+        "Bury the top card of a trash."
+      ]
+    },
+    {
+      "Title": "Changeling Hunger",
+      "Innate Power": "Draw 2 cards. Until the start of your next turn, when a target enters play, you may discard a pet to have Fluttershy deal that target 3 melee Damage.",
+      "Starting HP": 27,
+      "Incapacitated": [
+        "A hero deals a villain target 1 irreducible melee damage.",
+        "Reveal and replace the top card of a deck.",
+        "A hero target regains 1 HP."
+      ]
+    },
+    {
+      "Title": "So Many Wonders",
+      "Innate Power": "Discover a pet.",
+      "Starting HP": 20,
+      "Incapacitated": [
+        "Destroy an environment card.",
+        "Destroy a target with 1 HP.",
+        "A player may draw a card."
       ]
     }
   ],

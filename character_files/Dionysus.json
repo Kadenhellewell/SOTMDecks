@@ -1,0 +1,148 @@
+﻿{
+  "Identities": [
+    {
+      "Title": "Top Shelf",
+      "Innate Power": "All characters regain x HP, where x is the number of Beverage cards in their play area",
+      "Starting HP": 24,
+      "Incapacitated": [
+        "One target deals itself 2 toxic damage.",
+        "One player may use a power.",
+        "Select a target. Increase the next damage dealt by that target by 2."
+      ]
+    },
+    {
+      "Title": "High Proof",
+      "Innate Power": "All characters may take x toxic damage, where x is the number of Beverage cards in their play area. Any heroes that take damage this way may either draw or play a card.",
+      "Starting HP": 24,
+      "Incapacitated": [
+        "Select a target. Decrease the next damage dealt by that target by 2.",
+        "One player may play a card.",
+        "Reveal the top card of a deck. Play it or discard it."
+      ]
+    },
+    {
+      "Title": "Black Label",
+      "Innate Power": "Increase the next damage dealt by each Hero character by x, where x is the number of Beverage cards in their play area",
+      "Starting HP": 24,
+      "Incapacitated": [
+        "First",
+        "Second",
+        "Third"
+      ]
+    }
+  ],
+  "Name": "Dionysus",
+  "Deck": {
+    "Order a Drink": {
+      "type": "Ongoing, Limited",
+      "text": "All players other than Dionysus gain the following:\n\tPower: Search Dionysus’s deck for a Beverage card. Put it into play in your play area.",
+      "frequency": 4
+    },
+    "Bottomless Bottle": {
+      "type": "Equipment, Limited",
+      "power": "One player my drink a Beverage without destroying it.",
+      "frequency": 3
+    },
+    "Ragnarok on the Rocks": {
+      "type": "Ongoing, Beverage",
+      "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
+      "power": "Drink up to 3 beverages in your play area.",
+      "custom": {
+        "name": "Drink",
+        "color": "DarkRed",
+        "text": "Until the end of your next turn, the next time you deal damage, destroy an ongoing or environment card. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+      },
+      "frequency": 2
+    },
+    "Sunforge Whiskey": {
+      "type": "Ongoing, Beverage",
+      "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
+      "power": "Drink up to 3 beverages in your play area.",
+      "custom": {
+        "name": "Drink",
+        "color": "DarkRed",
+        "text": "Until the end of your next turn, the next time you deal damage, deal an additional 2 irreducible fire damage. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+      },
+      "frequency": 2
+    },
+    "Doomshine": {
+      "type": "Ongoing, Beverage",
+      "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
+      "power": "Drink up to 3 beverages in your play area.",
+      "custom": {
+        "name": "Drink",
+        "color": "DarkRed",
+        "text": "Until the end of your next turn, damage you deal is irreducible and increased by 1. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+      },
+      "frequency": 2
+    },
+    "Tipsy Oracle": {
+      "type": "Ongoing, Beverage",
+      "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
+      "power": "Drink up to 3 beverages in your play area.",
+      "custom": {
+        "name": "Drink",
+        "color": "DarkRed",
+        "text": "Look at the top 5 cards of a deck. Discard one, put on on bottom, and put the remaining cards back on top in a random order. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+      },
+      "frequency": 2
+    },
+    "Hex on the Beach": {
+      "type": "Ongoing, Beverage",
+      "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
+      "power": "Drink up to 3 beverages in your play area.",
+      "custom": {
+        "name": "Drink",
+        "color": "DarkRed",
+        "text": "Until the end of your next turn, the next time you deal damage, reduce the next damage dealt by that target by 2. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+      },
+      "frequency": 2
+    },
+    "Ambrosia Twist": {
+      "type": "Ongoing, Beverage",
+      "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
+      "power": "Drink up to 3 beverages in your play area.",
+      "custom": {
+        "name": "Drink",
+        "color": "DarkRed",
+        "text": "Until the end of your next turn, the next time you deal damage, regain as much HP as was taken. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+      },
+      "frequency": 2
+    },
+    "Bottoms Up": {
+      "type": "Oneshot",
+      "text": "All players drink all of the beverage cards in their respective play areas.",
+      "frequency": 3
+    },
+    "Bar Fight": {
+      "type": "Oneshot",
+      "text": "Each hero with Beverage deals 1 target 2 melee.",
+      "frequency": 3
+    },
+    "Liquid Courage": {
+      "type": "Oneshot",
+      "text": "Each hero may drink one Beverage. Each hero that does so deals the hero target with the highest HP 3 melee damage.",
+      "frequency": 3
+    },
+    "Serve Drinks": {
+      "type": "Oneshot",
+      "text": "Reveal cards from the top of your deck until 3 Beverages are revealed. Put two into play and one into your hand. Shuffle the other revealed cards back into your deck.",
+      "frequency": 2
+    },
+    "Molotov Cocktail": {
+      "type": "Oneshot",
+      "text": "Dionysus deals 1 target 3 fire damage. OR One player may trash x beverage cards from their play area to deal one target 3 times x fire damage.",
+      "frequency": 3
+    },
+    "Beer Bottle to the Back of the Head": {
+      "type": "Ongoing",
+      "text": "Dionysus deals 1 target 2 melee damage.",
+      "frequency": 3
+    },
+    "On The House": {
+      "type": "Oneshot",
+      "text": "Reveal cards from the top of your deck until a Beverage is revealed. Put it into play. Shuffle the other revealed cards back into your deck.",
+      "frequency": 4
+    }
+  }
+}

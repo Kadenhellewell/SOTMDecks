@@ -5,9 +5,9 @@
       "Innate Power": "Absolute Zero deals himself either 1 Cold Damage or 1 Fire Damage.",
       "Starting HP": 29,
       "Incapacitated": [
-        "One hero may use a power",
+        "One hero may use a power.",
         "Select a Hero. Increase the next Damage dealt by that Hero by 2.",
-        "Destory 1 target with 1 HP"
+        "Destory 1 target with 1 HP."
       ]
     },
     {

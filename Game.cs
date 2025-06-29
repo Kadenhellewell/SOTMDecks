@@ -114,8 +114,7 @@ namespace SOTMDecks
             Command? command = null;
             
             switch (commandStr)
-            {
-                // TODO: add search special types command
+            {//TODO: add a search for a target command
                 case "draw":
                     command = new DrawCommand(Player, fromBottom: false);
                     break;
@@ -240,7 +239,17 @@ namespace SOTMDecks
                     break;
                 case "undo":
                     if (commands.Count > 0)
-                        commands.Pop().Undo();
+                    {
+                        try
+                        {
+                            commands.Pop().Undo();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Exception undoing command: {ex}");
+                        }
+                    }
+                        
                     else
                         Console.WriteLine("No commands to undo");
                     break;
@@ -257,13 +266,20 @@ namespace SOTMDecks
 
             if (command is not null)
             {
-                if (command.Execute())
+                try
                 {
-                    commands.Push(command);
+                    if (command.Execute())
+                    {
+                        commands.Push(command);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Command failed to execute");
+                    }
                 }
-                else
+                catch (Exception ex )
                 {
-                    Console.WriteLine("Command failed to execute");
+                    Console.WriteLine($"Excpetion executing command: {ex}");
                 }
             }
             return true;
@@ -408,7 +424,6 @@ namespace SOTMDecks
 
         private void DealDamage()
         {
-            // TODO: implement multi-select
             int? damage = MiscHelpers.GetIntFromPlayer("How much?");
             if (damage is null) return;
             Player.DealDamage(damage.Value);

@@ -39,7 +39,7 @@
     },
     "Yet another card": {
       "type": "Equpment, Limited",
-      "text": "Card text",
+      "text": "Card text.\n\tText that would appear in a new paragraph, also add a tab.",
       "modifiers": [
         {
           "text": "If a card adds a modifier, denote that here. If it reduces damage, set color to 'Green'. If it increases damage, 'Yellow' (follow tile colors as much as possible)",
@@ -50,6 +50,11 @@
           "color": "Magenta"
         }
       ],
+      "custom": {
+        "name": "Name",
+        "color": "Green",
+        "text": "This is a custom mechanic (like Dionysus' Drink mechanic). The 'color' property determines the color that the name will be printed in."
+      }
       "frequency": 2
     }
   }

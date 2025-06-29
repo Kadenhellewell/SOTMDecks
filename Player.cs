@@ -13,6 +13,7 @@ namespace SOTMDecks
         Hand,
         PlayArea,
         DiscardPile,
+        Deck,
         TopOfDeck,
         BottomOfDeck,
         SantasBag
@@ -33,7 +34,8 @@ namespace SOTMDecks
                 { Location.Hand, new CardCollection("Hand") },
                 { Location.PlayArea, new CardCollection("Play Area") },
                 { Location.DiscardPile, new CardCollection("Discard Pile") },
-                { Location.SantasBag, new CardCollection("SantasBag") }
+                { Location.SantasBag, new CardCollection("SantasBag") },
+                {Location.Deck, deck }
             };
         }
 
@@ -181,6 +183,11 @@ namespace SOTMDecks
                 return false;
             }
 
+            if (src == Location.TopOfDeck || src == Location.BottomOfDeck)
+            {
+                src = Location.Deck;
+            }
+
             if (!CardGroups[src].Contains(card))
             {
                 Console.WriteLine($"{card.Name} is not in {CardGroups[src].Description}");
@@ -291,7 +298,7 @@ namespace SOTMDecks
             if (newCard is null) return null;
             CardGroups[Location.Hand].Add(newCard);
             if (verbose)
-                Console.WriteLine($"Drew {newCard.Name} [{newCard.Type}]");
+                Console.WriteLine($"Drew {newCard.Name} [{newCard.TypeAsString()}]");
             return newCard;
         }
 

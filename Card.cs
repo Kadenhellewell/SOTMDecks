@@ -9,6 +9,7 @@ namespace SOTMDecks
 {
     internal class Card
     {
+        // TODO: add logic for starting HP. On destroy, set HP to starting HP
         public Card(KeyValuePair<string, JToken?> json) 
         {
             Name = json.Key;
@@ -24,6 +25,7 @@ namespace SOTMDecks
             StartOfTurn = json.Value["start of turn"] is null ? "" : json.Value["start of turn"].ToString();
             Power = json.Value["power"] is null ? "" : json.Value["power"].ToString();
             EndOfTurn = json.Value["end of turn"] is null ? "" : json.Value["end of turn"].ToString();
+            Custom = json.Value["custom"] is JObject customJson ? new CustomMechanic(customJson) : null;
 
             if (json.Value["starting HP"] is null)
             {
@@ -100,6 +102,11 @@ namespace SOTMDecks
                 Console.Write($"{Power}");
             }
 
+            if (Custom != null)
+            {
+                Custom.Print();
+            }
+
             if (EndOfTurn != "")
             {
                 Console.Write($" {EndOfTurn}");
@@ -118,6 +125,11 @@ namespace SOTMDecks
             Console.WriteLine();
         }
 
+        public string TypeAsString()
+        {
+            return string.Join(", ", Type);
+        }
+
         public void PrettyPrint(bool brief = false)
         {
             MiscHelpers.ColorPrint(ConsoleColor.Green, Name);
@@ -132,7 +144,7 @@ namespace SOTMDecks
 
             if (brief) return;
 
-            Console.WriteLine($"\t{string.Join(", ", Type)}");
+            Console.WriteLine($"\t{TypeAsString()}");
 
             if (OnEntry != "")
             {
@@ -153,6 +165,11 @@ namespace SOTMDecks
             {
                 MiscHelpers.ColorPrint(ConsoleColor.Blue, $"\tPower: ");
                 Console.WriteLine($"{Power}");
+            }
+
+            if (Custom != null)
+            {
+                Custom.Print(newline: true);
             }
 
             if (EndOfTurn != "")
@@ -181,6 +198,7 @@ namespace SOTMDecks
         public string EndOfTurn { get; }
         public string Text { get; }
         public string Power { get; }
+        public CustomMechanic? Custom { get; }
         public int Count { get; set; }
 
         private int hp_;

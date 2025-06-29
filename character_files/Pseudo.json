@@ -42,6 +42,12 @@
     "Stealthy Form": {
       "type": "Ongoing, Shape, Limited",
       "text": "The first time Pseudo woild be dealth damage each turn, you may redirect that damage to another hero target. If you do, increase the next damage dealt by Pseudo by 1.",
+      "modifiers": [
+        {
+          "text": "May redirect first damage to another hero target. If you do, next damage dealt +1",
+          "color": "Cyan"
+        }
+      ],
       "on entry": "When this card enters play, discard the top card of 1 deck. Then, destroy each shape other than this one.",
       "frequency": 3
     },
@@ -66,17 +72,35 @@
     "Thickened Build": {
       "type": "Ongoing, Shape, Limited",
       "text": "Reduce damage dealt to Pseudo by 1.",
+      "modifiers": [
+        {
+          "text": "Damage taken -1",
+          "color": "Green"
+        }
+      ],
       "on entry": "When this card enters play, Pseudo regains 3 HP. Then, destory each shape other than this one.",
       "frequency": 3
     },
     "Mind Over Matter": {
       "type": "Ongoing, Limited",
       "text": "Reduce psychic damage dealt to hero targerts by 1. Each time a hero target deals damage, they may change the type of that damage to psychic.",
+      "modifiers": [
+        {
+          "text": "Reduce psychic damage dealt to heroes by 1.",
+          "color": "Magenta"
+        }
+      ],
       "frequency": 3
     },
     "Perfect Disguise": {
       "type": "Spell, Shape, Limited",
       "text": "Pseudo is immune to damage dealt by environment targets.",
+      "modifiers": [
+        {
+          "text": "Immune to damage from Environment targets",
+          "color": "Green"
+        }
+      ],
       "on entry": "When this card enters play, reveal the top 2 cards of 1 deck. Discard 1 of them and put the other on top of tht deck. Then, destory each shape other than this one.",
       "frequency": 3
     },
@@ -99,6 +123,12 @@
     "Insubstantial Transmutation": {
       "type": "Ongoing, Shape, Limited",
       "text": "Pseudo is immune to melee and projectile damage.",
+      "modifiers": [
+        {
+          "text": "Immune to melee and projectile damage",
+          "color": "Green"
+        }
+      ],
       "on entry": "When this card enters play, draw 1 card. Then, destroy each other shape card.",
       "frequency": 3
     }

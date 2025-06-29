@@ -150,7 +150,7 @@ namespace SOTMDecks
             {
                 Console.Write($"\t{i}: ");
                 MiscHelpers.ColorPrint(ConsoleColor.Green, cards_[i].Name);
-                Console.Write($" ({cards_[i].Type})");
+                Console.Write($" ({cards_[i].TypeAsString()})");
                 if (verbose)
                 {
                     cards_[i].PrintText();

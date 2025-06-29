@@ -92,10 +92,6 @@
         {
           "text": "Damage taken -1",
           "color": "Green"
-        },
-        {
-          "text": "some test text",
-          "color": "Magenta"
         }
       ],
       "frequency": 3
