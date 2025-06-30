@@ -116,6 +116,7 @@ namespace SOTMDecks
             
             switch (commandStr)
             {//TODO: add a search for a target command
+                //TODO: add play area to hand command
                 case "draw":
                     command = new DrawCommand(Player, fromBottom: false);
                     break;

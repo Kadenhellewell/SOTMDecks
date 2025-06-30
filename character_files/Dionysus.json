@@ -50,7 +50,7 @@
       "custom": {
         "name": "Drink",
         "color": "DarkRed",
-        "text": "Until the end of your next turn, the next time you deal damage, destroy an ongoing or environment card. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        "text": "The next time you deal damage, destroy an ongoing or environment card. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
       },
       "frequency": 2
     },
@@ -61,7 +61,7 @@
       "custom": {
         "name": "Drink",
         "color": "DarkRed",
-        "text": "Until the end of your next turn, the next time you deal damage, deal an additional 2 irreducible fire damage. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        "text": "The next time you deal damage, deal an additional 2 irreducible fire damage. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
       },
       "frequency": 2
     },
@@ -94,7 +94,7 @@
       "custom": {
         "name": "Drink",
         "color": "DarkRed",
-        "text": "Until the end of your next turn, the next time you deal damage, reduce the next damage dealt by that target by 2. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        "text": "The next time you deal damage, reduce the next damage dealt by that target by 2. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
       },
       "frequency": 2
     },
@@ -105,7 +105,7 @@
       "custom": {
         "name": "Drink",
         "color": "DarkRed",
-        "text": "Until the end of your next turn, the next time you deal damage, regain as much HP as was taken. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        "text": "The next time you deal damage, regain as much HP as was taken. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
       },
       "frequency": 2
     },
@@ -114,9 +114,9 @@
       "text": "All players drink all of the beverage cards in their respective play areas.",
       "frequency": 3
     },
-    "Bar Fight": {
+    "Restock": {
       "type": "Oneshot",
-      "text": "Each hero with Beverage deals 1 target 2 melee.",
+      "text": "Shuffle your trash into your deck. You may draw a card. You may play a card.",
       "frequency": 3
     },
     "Liquid Courage": {
@@ -135,8 +135,8 @@
       "frequency": 3
     },
     "Free Refill": {
-      "type": "Ongoing, Limited",
-      "power": "One player may drink a Beverage and prevent its Destruction.",
+      "type": "Oneshot",
+      "text": "One player may drink a Beverage and prevent its Destruction.",
       "frequency": 3
     },
     "On The House": {
