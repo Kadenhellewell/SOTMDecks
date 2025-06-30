@@ -12,7 +12,7 @@
     },
     {
       "Title": "High Proof",
-      "Innate Power": "All characters may take x toxic damage, where x is the number of Beverage cards in their play area. Any heroes that take damage this way may either draw or play a card.",
+      "Innate Power": "All characters may take x toxic damage, where x is the number of Beverage cards in their play area. Any heroes that take damage this way may either draw x cards or play x random cards.",
       "Starting HP": 24,
       "Incapacitated": [
         "Select a target. Decrease the next damage dealt by that target by 2.",
@@ -134,9 +134,9 @@
       "text": "Dionysus deals 1 target 3 fire damage. OR One player may trash x beverage cards from their play area to deal one target 3 times x fire damage.",
       "frequency": 3
     },
-    "Beer Bottle to the Back of the Head": {
-      "type": "Ongoing",
-      "text": "Dionysus deals 1 target 2 melee damage.",
+    "Free Refill": {
+      "type": "Ongoing, Limited",
+      "power": "One player may drink a Beverage and prevent its Destruction.",
       "frequency": 3
     },
     "On The House": {
