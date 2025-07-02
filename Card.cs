@@ -9,7 +9,7 @@ namespace SOTMDecks
 {
     internal class Card
     {
-        // TODO: add logic for starting HP. On destroy, set HP to starting HP
+        // TODO: add support for multiple custom mechanics, then have Fluttershy's happy and sad faces each be their own mechanic
         public Card(KeyValuePair<string, JToken?> json) 
         {
             Name = json.Key;
@@ -36,11 +36,14 @@ namespace SOTMDecks
             {
                 MaxHP = json.Value["max HP"] is null ? 0 : int.Parse(json.Value["max HP"].ToString());
                 hp_ = int.Parse(json.Value["starting HP"].ToString());
+                startingHP_ = hp_;
             }
+
+            IsTarget = MaxHP > 0;
             
             if (json.Value["modifiers"] is not null)
             {
-                foreach (JObject mod in ((JArray)json.Value["modifiers"]))
+                foreach (JObject mod in (JArray)json.Value["modifiers"])
                 {
                     string text = mod.GetValue("text").ToString();
                     try
@@ -51,7 +54,7 @@ namespace SOTMDecks
                     catch (ArgumentException ex)
                     {
                         Console.WriteLine(ex.Message);
-                        Console.WriteLine($"'{mod.GetValue("color").ToString()}' is not a valid color");
+                        Console.WriteLine($"'{mod.GetValue("color")}' is not a valid color");
                         Environment.Exit(1);
                     }
                 }
@@ -67,6 +70,12 @@ namespace SOTMDecks
         public bool IsType(string type)
         {
             return Type.Any(t => t.Equals(type, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public void OnDestroyed()
+        {
+            hp_ = startingHP_;
+            Console.WriteLine($"{OnDestroy}");
         }
 
         public void PrintHP()
@@ -199,9 +208,11 @@ namespace SOTMDecks
         public string Text { get; }
         public string Power { get; }
         public CustomMechanic? Custom { get; }
+        public bool IsTarget { get; }
         public int Count { get; set; }
 
         private int hp_;
+        private int startingHP_;
         public int HP 
         {
             get { return hp_;  }

@@ -12,7 +12,7 @@
     },
     {
       "Title": "High Proof",
-      "Innate Power": "All characters may take x toxic damage, where x is the number of Beverage cards in their play area. Any heroes that take damage this way may either draw x cards or play x random cards.",
+      "Innate Power": "All characters may take x toxic damage, where x is the number of Beverage cards in their play area. Any heroes that take damage this way may either draw x cards from the bottom of their deck or play x random cards.",
       "Starting HP": 24,
       "Incapacitated": [
         "Select a target. Decrease the next damage dealt by that target by 2.",
@@ -25,9 +25,9 @@
       "Innate Power": "Increase the next damage dealt by each Hero character by x, where x is the number of Beverage cards in their play area",
       "Starting HP": 24,
       "Incapacitated": [
-        "First",
-        "Second",
-        "Third"
+        "One player may play two random cards.",
+        "One player may draw two cards.",
+        "Reveal the top card of the villain deck. Replace it or discard it."
       ]
     }
   ],
@@ -40,7 +40,7 @@
     },
     "Bottomless Bottle": {
       "type": "Equipment, Limited",
-      "power": "One player my drink a Beverage without destroying it.",
+      "power": "One player my drink a Beverage in their play and acount it as 3 Beverages.",
       "frequency": 3
     },
     "Ragnarok on the Rocks": {
@@ -121,28 +121,28 @@
     },
     "Liquid Courage": {
       "type": "Oneshot",
-      "text": "Each hero may drink one Beverage. Each hero that does so deals the hero target with the highest HP 3 melee damage.",
-      "frequency": 3
-    },
-    "Serve Drinks": {
-      "type": "Oneshot",
-      "text": "Reveal cards from the top of your deck until 3 Beverages are revealed. Put two into play and one into your hand. Shuffle the other revealed cards back into your deck.",
-      "frequency": 2
-    },
-    "Molotov Cocktail": {
-      "type": "Oneshot",
-      "text": "Dionysus deals 1 target 3 fire damage. OR One player may trash x beverage cards from their play area to deal one target 3 times x fire damage.",
-      "frequency": 3
-    },
-    "Free Refill": {
-      "type": "Oneshot",
-      "text": "One player may drink a Beverage and prevent its Destruction.",
+      "text": "Each hero may drink one Beverage in their play area. Each hero that does so deals the hero target with the highest HP 3 melee damage.",
       "frequency": 3
     },
     "On The House": {
       "type": "Oneshot",
-      "text": "Reveal cards from the top of your deck until a Beverage is revealed. Put it into play. Shuffle the other revealed cards back into your deck.",
-      "frequency": 4
+      "text": "Reveal cards from the top of your deck until 3 Beverages are revealed. Put two into play and one into your hand. Shuffle the other revealed cards back into your deck.",
+      "frequency": 3
+    },
+    "Molotov Cocktail": {
+      "type": "Oneshot",
+      "text": "One player may destroy any number Beverage cards from their play area to deal one target x fire damage where x is 3 times the number of cards destroyed this way.",
+      "frequency": 3
+    },
+    "Free Refill": {
+      "type": "Oneshot",
+      "text": "One player may drink a Beverage in their play area without destroying it.",
+      "frequency": 3
+    },
+    "Toast": {
+      "type": "Ongoing",
+      "power": "One player may use the power on a Beverage card in their play area.",
+      "frequency": 3
     }
   }
 }

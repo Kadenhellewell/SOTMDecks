@@ -9,26 +9,27 @@ namespace SOTMDecks.Commands
 {
     internal class DestroyCommand : Command
     {
-        private Option<Card> card_;
+        private Option<List<Card>> cards_;
 
-        private Card Card_ => card_.ValueOrThrow();
+        private List<Card> Cards_ => cards_.ValueOrThrow();
 
         public DestroyCommand(Player player) : base(player)
         {
-            card_ = Option.None<Card>();
+            cards_ = Option.None<List<Card>>();
         }
 
         public override bool Execute()
         {
-            card_ = MiscHelpers.GetCardFromIndex(player_.PlayArea());
-            if (!card_.HasValue) return false;
+            cards_ = MiscHelpers.GetCardsFromInput(player_.PlayArea());
+            if (!cards_.HasValue) return false;
 
-            return player_.DestroyCard(Card_);
+            return player_.DestroyCards(Cards_);
         }
 
         public override void Undo()
         {
-            player_.MoveCard(Card_, Location.DiscardPile, Location.PlayArea);
+            foreach (Card card in Cards_)
+                player_.MoveCard(card, Location.DiscardPile, Location.PlayArea);
         }
     }
 }

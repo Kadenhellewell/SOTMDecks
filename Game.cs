@@ -115,8 +115,7 @@ namespace SOTMDecks
             Command? command = null;
             
             switch (commandStr)
-            {//TODO: add a search for a target command
-                //TODO: add play area to hand command
+            {
                 case "draw":
                     command = new DrawCommand(Player, fromBottom: false);
                     break;
@@ -147,8 +146,14 @@ namespace SOTMDecks
                 case "search special type":
                     command = new SearchSpecialCommand(Player);
                     break;
+                case "search target":
+                    command = new SearchTargetCommand(Player);
+                    break;
                 case "move card": 
                     command = new MoveCardCommand(Player);
+                    break;
+                case "pa to hand":
+                    command = new PlayAreaToHandCommand(Player);
                     break;
                 case "santa":
                     command = new SantaCommand(Player);
@@ -186,6 +191,7 @@ namespace SOTMDecks
                     RevealCards();
                     break;
                 case "discard pile to deck":
+                case "dp to deck":
                     Player.ShuffleDiscardIntoDeck();
                     break;
                 case "shuffle":

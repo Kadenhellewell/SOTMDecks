@@ -247,19 +247,36 @@ namespace SOTMDecks
         {
             bool result = MoveCard(card, Location.PlayArea, Location.DiscardPile);
 
-            OnCardDestroyed(card);
+            if (result) OnCardDestroyed(card);
+            else Console.WriteLine($"Failed to destroy {card.Name}.");
+
+            return result;
+        }
+
+        public bool DestroyCards(List<Card> cards)
+        {
+            bool result = true; 
+            
+            foreach (Card card in cards)
+            {
+                if (!DestroyCard(card))
+                {
+                    Console.WriteLine("Because of failure to destroy a card, you may need to double check your setup.");
+                    result = false;
+                }
+            }
 
             return result;
         }
 
         public void OnCardDestroyed(Card card)
         {
-            Console.WriteLine($"{card.OnDestroy}");
-
             if (card.Modifiers.Count > 0)
             {
                 RemoveMods(card.Modifiers);
             }
+
+            card.OnDestroyed();
         }
 
         public bool MoveAllCards(Location src, Location dest)

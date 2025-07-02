@@ -82,6 +82,18 @@ namespace SOTMDecks
             return collection;
         }
 
+        public CardCollection SearchForTargets()
+        {
+            CardCollection collection = new CardCollection("Targets");
+
+            foreach (Card card in cards_)
+            {
+                if (card.IsTarget) collection.Add(card);
+            }
+
+            return collection;
+        }
+
         public Card? GetSpecialType()
         {
             HashSet<string> ignoredTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
