@@ -25,7 +25,14 @@ namespace SOTMDecks
             StartOfTurn = json.Value["start of turn"] is null ? "" : json.Value["start of turn"].ToString();
             Power = json.Value["power"] is null ? "" : json.Value["power"].ToString();
             EndOfTurn = json.Value["end of turn"] is null ? "" : json.Value["end of turn"].ToString();
-            Custom = json.Value["custom"] is JObject customJson ? new CustomMechanic(customJson) : null;
+
+            if (json.Value["custom"] is JArray customArray)
+            {
+                foreach (JObject cm in customArray)
+                {
+                    CustomMechanics.Add(new CustomMechanic(cm));
+                }
+            }
 
             if (json.Value["starting HP"] is null)
             {
@@ -88,17 +95,27 @@ namespace SOTMDecks
             Console.WriteLine(")");
         }
 
+        public void PrintMechanics(MiscHelpers.Timing timing, bool newline = false)
+        {
+            foreach (var mechanic in CustomMechanics) 
+            {
+                mechanic.Print(timing, newline);
+            }
+        }
+
         public void PrintText()
         {
             if (OnEntry != "")
             {
-                Console.Write($" {OnEntry}");
+                Console.Write($" {OnEntry} ");
             }
+            PrintMechanics(MiscHelpers.Timing.ENTRY);
 
             if (StartOfTurn != "")
             {
-                Console.Write($" {StartOfTurn}");
+                Console.Write($"{StartOfTurn} ");
             }
+            PrintMechanics(MiscHelpers.Timing.START);
 
             if (Text != "")
             {
@@ -111,20 +128,19 @@ namespace SOTMDecks
                 Console.Write($"{Power}");
             }
 
-            if (Custom != null)
-            {
-                Custom.Print();
-            }
+            PrintMechanics(MiscHelpers.Timing.NONE);
 
             if (EndOfTurn != "")
             {
                 Console.Write($" {EndOfTurn}");
             }
+            PrintMechanics(MiscHelpers.Timing.END);
 
             if (OnDestroy != "")
             {
                 Console.Write($" {OnDestroy}");
             }
+            PrintMechanics(MiscHelpers.Timing.DESTROY);
 
             if (Count != 0)
             {
@@ -159,11 +175,13 @@ namespace SOTMDecks
             {
                 Console.WriteLine($"\t{OnEntry}");
             }
+            PrintMechanics(MiscHelpers.Timing.ENTRY, newline: true);
 
             if (StartOfTurn != "")
             {
                 Console.WriteLine($"\t{StartOfTurn}");
             }
+            PrintMechanics(MiscHelpers.Timing.START, newline: true);
 
             if (Text != "")
             {
@@ -176,20 +194,19 @@ namespace SOTMDecks
                 Console.WriteLine($"{Power}");
             }
 
-            if (Custom != null)
-            {
-                Custom.Print(newline: true);
-            }
+            PrintMechanics(MiscHelpers.Timing.NONE, newline: true);
 
             if (EndOfTurn != "")
             {
                 Console.WriteLine($"\t{EndOfTurn}");
             }
+            PrintMechanics(MiscHelpers.Timing.END, newline: true);
 
             if (OnDestroy != "")
             {
                 Console.WriteLine($"\t{OnDestroy}");
             }
+            PrintMechanics(MiscHelpers.Timing.DESTROY, newline: true);
 
             if (Count != 0)
             {
@@ -207,7 +224,7 @@ namespace SOTMDecks
         public string EndOfTurn { get; }
         public string Text { get; }
         public string Power { get; }
-        public CustomMechanic? Custom { get; }
+        public List<CustomMechanic> CustomMechanics { get; } = new();
         public bool IsTarget { get; }
         public int Count { get; set; }
 

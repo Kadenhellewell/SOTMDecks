@@ -113,58 +113,129 @@
     },
     "Fuzzylegs": {
       "type": "Pet",
-      "end of turn": "At the end of your turn, this card deals a target 1 toxic damage.\n\t :) Reduce damage dealt by a target that took damage this way by 1 until the start of your turn.",
+      "end of turn": "At the end of your turn, this card deals a target 1 toxic damage.",
+      "custom": [
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "Reduce damage dealt by a target that took damage this way by 1 until the start of your turn."
+        }
+      ],
       "starting HP": 1,
       "max HP": 2,
       "frequency": 1
     },
     "Giant Monarch": {
       "type": "Pet",
-      "text": ":) A target dealt damage this way deals another non-hero target 3 melee damage.",
-      "end of turn": "At the end of your turn, this card may deal a target 1 psychic damage.",
+      "custom": [
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, this card may deal a target 1 psychic damage. A target dealt damage this way deals another non-hero target 3 melee damage.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 1,
       "max HP": 2,
       "frequency": 1
     },
     "Dark and Mysterious": {
       "type": "Pet",
-      "end of turn": "At the end of your turn, this card may deal a target 2 sonic damage.\n\t:) Destroy a target reduced to 3 or fewer HP this way.",
+      "custom": [
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, this card may deal a target 2 sonic damage. Destroy a target reduced to 3 or fewer HP this way.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 1,
       "max HP": 3,
       "frequency": 1
     },
     "Hummingway": {
       "type": "Pet",
-      "end of turn": "At the end of your turn, this card may deal a target 1 melee and 1 sonic damage.\n\t :) Damage dealt by this card is irreducible.",
+      "end of turn": "",
+      "custom": [
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, this card may deal a target 1 melee and 1 sonic damage. Damage dealt by this card is irreducible.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 1,
       "max HP": 3,
       "frequency": 1
     },
     "Mr. Mousey": {
       "type": "Pet",
-      "text": "When this card regains HP, two other hero targets regain 1 HP each.",
-      "end of turn": ":) At the end of your turn, a hero target regains 2 HP.",
+      "custom": [
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, a hero target regains 2 HP. When this card regains HP, two other hero targets regain 1 HP each.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 1,
       "max HP": 3,
       "frequency": 1
     },
     "Squirrely": {
       "type": "Pet",
-      "end of turn": ">:] At the end of your turn, you may discard a card and draw a card.\n\t:) At the end of your turn, you may draw a card.",
+      "custom": [
+        {
+          "name": ">:]",
+          "color": "Red",
+          "text": "At the end of your turn, you may discard a card and draw a card.",
+          "timing": "end"
+        },
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, you may draw a card.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 2,
       "max HP": 3,
       "frequency": 1
     },
     "The Jackalope": {
       "type": "Pet",
-      "end of turn": ">:] At the end of your turn, this card deals the non-hero target with the lowest HP 3 melee damage.\n\t:) At the end of your turn, this card may deal a target 3 melee damage.",
+      "custom": [
+        {
+          "name": ">:]",
+          "color": "Red",
+          "text": "At the end of your turn, this card deals the non-hero target with the lowest HP 3 melee damage.",
+          "timing": "end"
+        },
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, this card may deal a target 3 melee damage.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 1,
       "max HP": 4,
       "frequency": 1
     },
     "Angel Bunny": {
       "type": "Pet",
-      "text": ">:] When Fluttershy is dealt damage, this card deals the source of that damage 1 melee damage.\n\t:) The first time Fluttershy and any Pet are dealt damage by any non-hero target each turn, this card deals the source of that damage 2 melee damage.",
+      "custom": [
+        {
+          "name": ">:]",
+          "color": "Red",
+          "text": "When Fluttershy is dealt damage, this card deals the source of that damage 1 melee damage."
+        },
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "The first time Fluttershy and any Pet are dealt damage by any non-hero target each turn, this card deals the source of that damage 2 melee damage."
+        }
+      ],
       "starting HP": 2,
       "max HP": 4,
       "frequency": 1
@@ -172,56 +243,142 @@
     "Elizabeak": {
       "type": "Pet",
       "text": "Reduce damage dealt to this card by 1. When a Pet would be dealt damage, you may redirect that damage to this card.",
-      "end of turn": ":) At the end of your turn, this card may deal a target 1 melee damage.",
+      "custom": [
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, this card may deal a target 1 melee damage.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 2,
       "max HP": 4,
       "frequency": 1
     },
     "Regal Eagle": {
       "type": "Pet",
-      "end of turn": ">:] At the end of your turn, you may discard a card and play a card.\n\t:) At the end of your turn, you may play a card.",
+      "custom": [
+        {
+          "name": ">:]",
+          "color": "Red",
+          "text": "At the end of your turn, you may discard a card and play a card.",
+          "timing": "end"
+        },
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, you may play a card.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 2,
       "max HP": 4,
       "frequency": 1
     },
     "Li'l Piggington": {
       "type": "Pet",
-      "end of turn": "At the end of your turn, reveal and replace the top card of a deck.\n\t:) Then you may discard the top card of a deck or bury the top card of a trash.",
+      "custom": [
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, reveal and replace the top card of a deck. Then you may discard the top card of a deck or bury the top card of a trash.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 2,
       "max HP": 5,
       "frequency": 1
     },
     "Beaverton": {
       "type": "Pet",
-      "end of turn": ">:] At the end of your turn, you may destroy a non-target environment card.\n\t:) At the end of your turn, destroy up to 2 ongoing and/or environment cards. If 2 cards are destroyed this way, this card deals itself 2 irreducible psychic damage.",
+      "custom": [
+        {
+          "name": ">:]",
+          "color": "Red",
+          "text": "At the end of your turn, you may destroy a non-target environment card.",
+          "timing": "end"
+        },
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, destroy up to 2 ongoing and/or environment cards. If 2 cards are destroyed this way, this card deals itself 2 irreducible psychic damage.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 3,
       "max HP": 6,
       "frequency": 1
     },
     "Buzzing Buzzard": {
       "type": "Pet",
-      "end of turn": ">:] At the end of your turn, this card deals the three non-hero targets with the lowest HP 1 sonic damage each.\n\t:) At the end of your turn, this card deals each non-hero target 2 sonic damage.",
+      "custom": [
+        {
+          "name": ">:]",
+          "color": "Red",
+          "text": "At the end of your turn, this card deals the three non-hero targets with the lowest HP 1 sonic damage each.",
+          "timing": "end"
+        },
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, this card deals each non-hero target 2 sonic damage.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 3,
       "max HP": 6,
       "frequency": 1
     },
     "The Orthros": {
       "type": "Pet",
-      "end of turn": ">:] At the end of your turn, this card deals the two non-hero targets with the highest HP 2 melee damage each.\n\t:) At the end of your turn, this card deals up to two targets 2 melee and 1 toxic damage each.",
+      "custom": [
+        {
+          "name": ">:]",
+          "color": "Red",
+          "text": "At the end of your turn, this card deals the two non-hero targets with the highest HP 2 melee damage each.",
+          "timing": "end"
+        },
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, this card deals up to two targets 2 melee and 1 toxic damage each.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 3,
       "max HP": 6,
       "frequency": 1
     },
     "Smoky & Softpad": {
       "type": "Pet",
-      "end of turn": ">:] At the end of your turn, a player may move a card from their trash to the top of their deck.\n\t:) Then this card deals up to two targets 2 melee damage each.",
+      "custom": [
+        {
+          "name": ">:]",
+          "color": "Red",
+          "text": "At the end of your turn, a player may move a card from their trash to the top of their deck.",
+          "timing": "end"
+        },
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, a player may move a card from their trash to the top of their deck. Then this card deals up to two targets 2 melee damage each.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 3,
       "max HP": 6,
       "frequency": 1
     },
     "Harry the Bear": {
       "type": "Pet",
-      "end of turn": "At the end of your turn, this card may deal a target 4 melee damage.\n\t:) If it does not, select a target. If that target is a character, prevent the next damage it would deal. If not, it cannot deal damage until the start of your next turn.",
+      "custom": [
+        {
+          "name": ":)",
+          "color": "Green",
+          "text": "At the end of your turn, this card may deal a target 4 melee damage. If it does not, select a target. If that target is a character, prevent the next damage it would deal. If not, it cannot deal damage until the start of your next turn.",
+          "timing": "end"
+        }
+      ],
       "starting HP": 4,
       "max HP": 8,
       "frequency": 1

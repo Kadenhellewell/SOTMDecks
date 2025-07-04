@@ -50,11 +50,19 @@
           "color": "Magenta"
         }
       ],
-      "custom": {
-        "name": "Name",
-        "color": "Green",
-        "text": "This is a custom mechanic (like Dionysus' Drink mechanic). The 'color' property determines the color that the name will be printed in."
-      }
+      "custom": [
+        {
+          "name": "Name",
+          "color": "Green",
+          "text": "This is a custom mechanic (like Dionysus' Drink mechanic). The 'color' property determines the color that the name will be printed in."
+        },
+        {
+          "name": "Another",
+          "color": "Yellow",
+          "text": "You can now list multiple mechanics like this. Timing can be 'start', 'end', 'entry', or 'destroy'.",
+          "timing": "end"
+        }
+      ],
       "frequency": 2
     }
   }

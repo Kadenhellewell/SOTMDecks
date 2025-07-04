@@ -11,6 +11,15 @@ namespace SOTMDecks
 {
     static internal class MiscHelpers
     {
+        public enum Timing
+        {
+            START,
+            END,
+            ENTRY,
+            DESTROY,
+            NONE
+        }
+
         public static void ColorPrint(ConsoleColor coler, string message, bool newLine = false)
         {
             Console.ForegroundColor = coler;

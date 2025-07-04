@@ -47,66 +47,78 @@
       "type": "Ongoing, Beverage",
       "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
       "power": "Drink up to 3 beverages in your play area.",
-      "custom": {
-        "name": "Drink",
-        "color": "DarkRed",
-        "text": "The next time you deal damage, destroy an ongoing or environment card. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
-      },
+      "custom": [
+        {
+          "name": "Drink",
+          "color": "DarkRed",
+          "text": "The next time you deal damage, destroy an ongoing or environment card. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        }
+      ],
       "frequency": 2
     },
     "Sunforge Whiskey": {
       "type": "Ongoing, Beverage",
       "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
       "power": "Drink up to 3 beverages in your play area.",
-      "custom": {
-        "name": "Drink",
-        "color": "DarkRed",
-        "text": "The next time you deal damage, deal an additional 2 irreducible fire damage. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
-      },
+      "custom": [
+        {
+          "name": "Drink",
+          "color": "DarkRed",
+          "text": "The next time you deal damage, deal an additional 2 irreducible fire damage. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        }
+      ],
       "frequency": 2
     },
     "Doomshine": {
       "type": "Ongoing, Beverage",
       "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
       "power": "Drink up to 3 beverages in your play area.",
-      "custom": {
-        "name": "Drink",
-        "color": "DarkRed",
-        "text": "Until the end of your next turn, damage you deal is irreducible and increased by 1. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
-      },
+      "custom": [
+        {
+          "name": "Drink",
+          "color": "DarkRed",
+          "text": "Until the end of your next turn, damage you deal is irreducible and increased by 1. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        }
+      ],
       "frequency": 2
     },
     "Tipsy Oracle": {
       "type": "Ongoing, Beverage",
       "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
       "power": "Drink up to 3 beverages in your play area.",
-      "custom": {
-        "name": "Drink",
-        "color": "DarkRed",
-        "text": "Look at the top 5 cards of a deck. Discard one, put on on bottom, and put the remaining cards back on top in a random order. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
-      },
+      "custom": [
+        {
+          "name": "Drink",
+          "color": "DarkRed",
+          "text": "Look at the top 5 cards of a deck. Discard one, put on on bottom, and put the remaining cards back on top in a random order. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        }
+      ],
       "frequency": 2
     },
     "Hex on the Beach": {
       "type": "Ongoing, Beverage",
       "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
       "power": "Drink up to 3 beverages in your play area.",
-      "custom": {
-        "name": "Drink",
-        "color": "DarkRed",
-        "text": "The next time you deal damage, reduce the next damage dealt by that target by 2. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
-      },
+      "custom": [
+        {
+          "name": "Drink",
+          "color": "DarkRed",
+          "text": "The next time you deal damage, reduce the next damage dealt by that target by 2. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        }
+      ],
       "frequency": 2
     },
     "Ambrosia Twist": {
       "type": "Ongoing, Beverage",
       "text": "Play this next to another character. Players can only have up to 3 drinks in their play area at a time.",
       "power": "Drink up to 3 beverages in your play area.",
-      "custom": {
-        "name": "Drink",
-        "color": "DarkRed",
-        "text": "The next time you deal damage, regain as much HP as was taken. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
-      },
+      "custom": [
+        {
+          "name": "Drink",
+          "color": "DarkRed",
+          "text": "The next time you deal damage, regain as much HP as was taken. Then destroy this card.\n\tIf you drink at least 2 beverages in one turn, play a random card for each beverage you drank after the first. On your next turn, skip either your play phase or your power phase."
+        }
+      ],
       "frequency": 2
     },
     "Bottoms Up": {
@@ -145,4 +157,5 @@
       "frequency": 3
     }
   }
+
 }
