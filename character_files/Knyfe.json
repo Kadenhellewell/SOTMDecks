@@ -1,0 +1,134 @@
+﻿{
+  "Identities": [
+    {
+      "Title": "Agent of FILTER. K.N.Y.F.E.",
+      "Innate Power": "K.N.Y.F.E. deals 1 Target 2 Energy damage.",
+      "Starting HP": 30,
+      "Incapacitated": [
+        "One Hero may use 1 Power now.",
+        "One Player may Play 1 card now.",
+        "Destroy 1 Ongoing card."
+      ]
+    },
+    {
+      "Title": "Rogue Agent. Rogue Agent: K.N.Y.F.E.",
+      "Innate Power": "Reveal the bottom card of a Deck. Either put it into play or discard it.",
+      "Starting HP": 29,
+      "Incapacitated": [
+        "One Hero may Use a Power now.",
+        "Each Target regains 1 HP now.",
+        "Reveal the top card of a Deck. Put it into Play or Discard it."
+      ]
+    }
+  ],
+  "Name": "K.N.Y.F.E.",
+  "Deck": {
+    "Amplified Combatant": {
+      "type": "Oneshot",
+      "text": "K.N.Y.F.E. deals up to 3 targets 1 melee damage and 1 energy damage each.",
+      "frequency": 3
+    },
+    "Energy Burn": {
+      "type": "Oneshot",
+      "text": "K.N.Y.F.E. deals 1 target 3 energy damage. Then, if that target has 10 or more HP, K.N.Y.F.E. deals it 2 energy damage.",
+      "frequency": 3
+    },
+    "For the Greater Good": {
+      "type": "Oneshot",
+      "text": "K.N.Y.F.E. deals herself 3 psychic damage. If she takes damage this way, you may draw 1 card, play 1 card, and use 1 power now.",
+      "frequency": 3
+    },
+    "Incidental Contact": {
+      "type": "Oneshot",
+      "text": "K.N.Y.F.E. deals each target 1 energy damage. K.N.Y.F.E. may deal any target dealt damage this way an additional 1 energy damage.",
+      "frequency": 3
+    },
+    "Wrecking Uppercut": {
+      "type": "Oneshot",
+      "text": "K.N.Y.F.E. deals 1 target 3 melee damage. Discard the top card of the villain deck.",
+      "frequency": 4
+    },
+    "Battlefield Experience": {
+      "type": "Ongoing",
+      "power": "K.N.Y.F.E. deals 1 target 2 melee damage and 2 energy damage, then destroy this card.",
+      "on destroy": "When this card is destroyed, you may draw 1 card and play 1 card.",
+      "frequency": 4
+    },
+    "Primed Punch": {
+      "type": "Ongoing",
+      "start of turn": "At the start of your turn, K.N.Y.F.E. may deal 1 target 4 melee damage. If she deals damage this way, destroy this card.",
+      "power": "K.N.Y.F.E. deals 1 target 1 melee damage and 1 energy damage.",
+      "frequency": 3
+    },
+    "Flawless Execution": {
+      "type": "Ongoing, Limited",
+      "text": "Whenever damage dealt by K.N.Y.F.E. reduces a target to 1 HP, destroy that target.",
+      "frequency": 2
+    },
+    "Inflitrate and Obfuscate": {
+      "type": "Ongoing, Limited",
+      "text": "The first time K.N.Y.F.E. would be dealt damage by an environment target each turn, you may redirect that damage to the villain target with the second highest HP.",
+      "modifiers": [
+        {
+          "text": "First time dealt damage by environment target, redirect to villain with 2nd highest HP",
+          "color": "Cyan"
+        }
+      ],
+      "frequency": 2
+    },
+    "Kinetic Neutralizer": {
+      "type": "Ongoing, Limited",
+      "text": "Increase damage dealt by K.N.Y.F.E. to the villain target with the highest HP by 1.",
+      "modifiers": [
+        {
+          "text": "+1 damage dealt to villain with highest HP",
+          "color": "Yellow"
+        }
+      ],
+      "frequency": 2
+    },
+    "Overdo It": {
+      "type": "Ongoing, Limited",
+      "start of turn": "At the start of your turn, you may play a card.",
+      "end of turn": "At the end of your turn, K.N.Y.F.E. may deal herself 2 psychic damage. If she does not take damage this way, destroy this card.",
+      "frequency": 3
+    },
+    "Focusing Conduit-Blade": {
+      "type": "Equipment, Limited",
+      "text": "Increase energy damage dealt by K.N.Y.F.E. by 1.",
+      "power": "K.N.Y.F.E. deals 1 target 3 energy damage. Destroy this card.",
+      "modifiers": [
+        {
+          "text": "+1 energy damage dealt",
+          "color": "Yellow"
+        }
+      ],
+      "on destroy": "You may play an equipment card.",
+      "frequency": 4
+    },
+    "Overcharged Null-Shield": {
+      "type": "Equipment, Limited",
+      "text": "Reduce damage dealt to K.N.Y.F.E. by the villain target with the highest HP by 1.",
+      "modifiers": [
+        {
+          "text": "-1 taken from villain target with highest HP",
+          "color": "Green"
+        }
+      ],
+      "power": "Draw 2 cards. Destroy this card.",
+      "frequency": 2
+    },
+    "Prototype Servo-Gauntlet": {
+      "type": "Equipment, Limited",
+      "text": "Increase melee damage dealt by K.N.Y.F.E. by 1.",
+      "modifiers": [
+        {
+          "text": "+1 damage dealt",
+          "color": "Yellow"
+        }
+      ],
+      "power": "K.N.Y.F.E. deals 1 target 2 melee damage. If that target is destroyed, you may destroy an Ongoing card.",
+      "frequency": 2
+    }
+  }
+}

@@ -116,6 +116,7 @@ namespace SOTMDecks
             
             switch (commandStr)
             {
+                // TODO: Implement a "search for the first x of a type" command
                 case "draw":
                     command = new DrawCommand(Player, fromBottom: false);
                     break;
@@ -245,6 +246,9 @@ namespace SOTMDecks
                     RemoveMod();
                     PrintSetup();
                     break;
+                case "key words":
+                    PrintKeyWords();
+                    break;
                 case "undo":
                     if (commands.Count > 0)
                     {
@@ -291,6 +295,29 @@ namespace SOTMDecks
                 }
             }
             return true;
+        }
+
+        void PrintKeyWords()
+        {
+            MiscHelpers.ColorPrint(ConsoleColor.Magenta, "Bury: ");
+            Console.WriteLine("Put the indicated card on the bottom of the associated deck, unless that deck has zero cards in it, in which case the card goes to the top of the appropriate trash instead. Character cards cannot be buried.");
+            Console.WriteLine();
+
+            MiscHelpers.ColorPrint(ConsoleColor.Magenta, "Collect: ");
+            Console.WriteLine("Search the corresponding deck for the indicated amount of the indicated card/card-type. Put the card(s) found into your hand. Shuffle the deck.");
+            Console.WriteLine();
+
+            MiscHelpers.ColorPrint(ConsoleColor.Magenta, "Discover: ");
+            Console.WriteLine("Reveal cards from the top of the associated deck until you reveal the indicated card/card-type or reach the bottom of the deck. Shuffle the other revealed cards into the deck, if any. If there are not any other revealed cards, do not shuffle the deck. Then, play the indicated cards in the order revealed.");
+            Console.WriteLine();
+
+            MiscHelpers.ColorPrint(ConsoleColor.Magenta, "Salvage: ");
+            Console.WriteLine("Search the corresponding trash for the indicated amount of the indicated card/card-type, maintaining the order of cards in the trash. Put the card(s) found into your hand.");
+            Console.WriteLine();
+
+            MiscHelpers.ColorPrint(ConsoleColor.Magenta, "Summon: ");
+            Console.WriteLine("Search for the indicated card(s). You may search the associated trash and deck for the indicated amount of the indicated card/card-type. Play the card(s) found. If you searched a deck, shuffle that deck.");
+            Console.WriteLine();
         }
 
         public void RevealCards()

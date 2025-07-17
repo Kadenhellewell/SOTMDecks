@@ -22,7 +22,7 @@
     },
     {
       "Title": "Black Label",
-      "Innate Power": "Increase the next damage dealt by each Hero character by x, where x is the number of Beverage cards in their play area",
+      "Innate Power": "Increase the next damage dealt by each other Hero character by x, where x is the number of Beverage cards in their play area",
       "Starting HP": 24,
       "Incapacitated": [
         "One player may play two random cards.",
@@ -133,7 +133,7 @@
     },
     "Liquid Courage": {
       "type": "Oneshot",
-      "text": "Each hero may drink one Beverage in their play area. Each hero that does so deals the hero target with the highest HP 3 melee damage.",
+      "text": "Each hero may drink one Beverage in their play area. Each hero that does so deals the villain target with the highest HP 3 melee damage.",
       "frequency": 3
     },
     "On The House": {
