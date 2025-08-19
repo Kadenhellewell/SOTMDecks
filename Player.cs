@@ -351,6 +351,14 @@ namespace SOTMDecks
             CardGroups[Location.Hand].Add(card);
         }
 
+        public void MoveCardsFromDeckToHand(CardCollection cards)
+        {
+            foreach (Card card in cards.GetCards())
+            {
+                MoveCardFromDeckToHand(card);
+            }
+        }
+
         public void RevealCards(int num)
         {
             PlayerDeck.RevealCards(num);

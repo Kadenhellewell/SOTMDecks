@@ -103,7 +103,7 @@
           "color": "Yellow"
         }
       ],
-      "on destroy": "You may play an equipment card.",
+      "on destroy": "When this card is destroyed, you may play an equipment card.",
       "frequency": 4
     },
     "Overcharged Null-Shield": {

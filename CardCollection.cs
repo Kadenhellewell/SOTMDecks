@@ -82,6 +82,26 @@ namespace SOTMDecks
             return collection;
         }
 
+        public CardCollection RevealByType(string type, int num)
+        {
+            int numFound = 0;
+
+            CardCollection collection = new CardCollection($"{type} cards");
+
+            foreach (Card card in cards_)
+            {
+                if (card.IsType(type)) 
+                {
+                    collection.Add(card);
+                    ++numFound;
+                }
+
+                if (numFound >= num) break;
+            }
+
+            return collection;
+        }
+
         public CardCollection SearchForTargets()
         {
             CardCollection collection = new CardCollection("Targets");
@@ -183,11 +203,11 @@ namespace SOTMDecks
                     case Filter.NONE:
                         print = true; break;
                     case Filter.START:
-                        print = card.StartOfTurn != ""; break;
+                        print = card.StartOfTurn != "" || card.HasCustomMechanicAtTime(MiscHelpers.Timing.START); break;
                     case Filter.POWER:
                         print = card.Power != ""; break;
                     case Filter.END:
-                        print = card.EndOfTurn != ""; break;
+                        print = card.EndOfTurn != "" || card.HasCustomMechanicAtTime(MiscHelpers.Timing.END); break;
                     case Filter.TARGET:
                         print = card.MaxHP > 0;
                         break;

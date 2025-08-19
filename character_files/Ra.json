@@ -57,7 +57,7 @@
           "color": "Cyan"
         }
       ],
-      "power": "Ra deals each non-Hero Target X Fire Damage, where X = the number of Villain Ongoing cards in play.",
+      "power": "Hero character cards are immune to fire damage until the start of your next turn.",
       "frequency": 3
     },
     "Living Conflagration": {

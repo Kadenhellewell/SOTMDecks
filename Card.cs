@@ -9,7 +9,6 @@ namespace SOTMDecks
 {
     internal class Card
     {
-        // TODO: add support for multiple custom mechanics, then have Fluttershy's happy and sad faces each be their own mechanic
         public Card(KeyValuePair<string, JToken?> json) 
         {
             Name = json.Key;
@@ -83,6 +82,16 @@ namespace SOTMDecks
         {
             hp_ = startingHP_;
             Console.WriteLine($"{OnDestroy}");
+        }
+
+        public bool HasCustomMechanicAtTime(MiscHelpers.Timing time)
+        {
+            foreach (var mech in CustomMechanics)
+            {
+                if (mech.Timing == time) return true;
+            }
+
+            return false;
         }
 
         public void PrintHP()

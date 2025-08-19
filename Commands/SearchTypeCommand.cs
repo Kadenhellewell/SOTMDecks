@@ -8,12 +8,12 @@ using Optional;
 
 namespace SOTMDecks.Commands
 {
-    internal class SearchCommand : Command
+    internal class SearchTypeCommand : Command
     {
         private Option<Card> card_;
         private Card Card_ => card_.ValueOrThrow();
 
-        public SearchCommand(Player player) : base(player) 
+        public SearchTypeCommand(Player player) : base(player) 
         {
             card_ = Option.None<Card>();
         }

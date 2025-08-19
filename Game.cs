@@ -142,13 +142,16 @@ namespace SOTMDecks
                     command = new RemoveCommand(KO, Player);
                     break;
                 case "search types":
-                    command = new SearchCommand(Player);
+                    command = new SearchTypeCommand(Player);
                     break;
                 case "search special type":
                     command = new SearchSpecialCommand(Player);
                     break;
                 case "search target":
                     command = new SearchTargetCommand(Player);
+                    break;
+                case "collect type":
+                    command = new CollectTypeCommand(Player);
                     break;
                 case "move card": 
                     command = new MoveCardCommand(Player);
