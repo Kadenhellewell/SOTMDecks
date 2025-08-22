@@ -105,6 +105,18 @@ namespace SOTMDecks
             return cards;
         }
 
+        public void PrintInnatePower()
+        {
+            MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
+            Console.WriteLine(InnatePower);
+
+            if (InnatePower2 != "")
+            {
+                MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
+                Console.WriteLine(InnatePower2);
+            }
+        }
+
         public void Shuffle()
         {
             cards_ = cards_.OrderBy(a => Guid.NewGuid()).ToList();

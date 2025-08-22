@@ -1,0 +1,150 @@
+﻿{
+  "Identities": [
+    {
+      "Title": "Answer a Question",
+      "Innate Power": "Kyle deals 1 target 2 psychic damage",
+      "Starting HP": 27,
+      "Incapacitated": [
+        "Deal 1 target 1 psychic damage.",
+        "One player may draw a card.",
+        "One player may play a card."
+      ]
+    }
+  ],
+  "Name": "Kyle",
+  "Deck": {
+    "Pythagorean Theorem": {
+      "type": "Oneshot, Proof",
+      "text": "Kyle deals 1 target 3 psychic damage.",
+      "frequency": 2
+    },
+    "Law of Sines": {
+      "type": "Oneshot, Proof",
+      "text": "Kyle deals up to 2 targets 2 psychic damage each. Then, if Law of Cosines is in your hand, put it into play. If Law of Cosines was played this way, increase the next damage dealt by Kyle by 2.",
+      "frequency": 2
+    },
+    "Law of Cosines": {
+      "type": "Oneshot, Proof",
+      "text": "Kyle deals 1 target 4 psychic damage each. Then, if Law of Sines is in your hand, put it into play. If Law of Cosines was played this way, increase the next damage dealt by Kyle by 2.",
+      "frequency": 2
+    },
+    "Euler's Formula": {
+      "type": "Oneshot, Proof",
+      "text": "Kyle deals 1 target 2 psychic damage. Search your deck or trash for 'Trigonometric Identities' and put it into play.",
+      "frequency": 2
+    },
+    "Trigonometric Identities": {
+      "type": "Oneshot, Proof",
+      "text": "Select a target. Increase damage taken by that target by 1. Kyle deals 1 target 2 psychic damage.",
+      "frequency": 2
+    },
+    "Taylor Series Expansion": {
+      "type": "Oneshot, Proof",
+      "text": "Kyle deals each non-hero target 1 psychic damage. You may play a Proof card.",
+      "frequency": 2
+    },
+    "Quadratic Formula": {
+      "type": "Oneshot, Proof",
+      "text": "Kyle deals 1 target 2 psychic damage. If any damage is taken this way, that target deals itself 2 melee damage.",
+      "frequency": 2
+    },
+    "The Fundamental Theorem of Calculus": {
+      "type": "Oneshot, Proof, Fundamental",
+      "text": ".",
+      "frequency": 1
+    },
+    "The Fundamental Theorem of Arithmetic": {
+      "type": "Oneshot, Proof, Fundamental",
+      "text": ".",
+      "frequency": 1
+    },
+    "The Fundamental Theorem of Algebra": {
+      "type": "Oneshot, Proof, Fundamental",
+      "text": ".",
+      "frequency": 1
+    },
+    "Orthogonality of the Fundamental Subspaces": {
+      "type": "Oneshot, Proof, Fundamental",
+      "text": ".",
+      "frequency": 1
+    },
+    "Screechy Chalkboard": {
+      "type": "Equipment, Limited",
+      "text": "Whenever Kyle deals damage from a proof card, he deals an additional two sonic damage.",
+      "frequency": 3
+    },
+    "Really Nice Chalk": {
+      "type": "Equipment, Limited",
+      "text": "Increase psychic damage dealt by Kyle by 1.",
+      "modifiers": [
+        {
+          "text": "+1 psychic damage dealt",
+          "color": "Yellow"
+        }
+      ],
+      "frequency": 3
+    },
+    "AP Test Prep": {
+      "type": "Oneshot",
+      "text": "Select a non-hero target. Reduce damage dealt by that target by 1 until the start of your next turn",
+      "frequency": 4
+    },
+    "Special Lecture": {
+      "type": "Oneshot",
+      "text": "Search your deck for a Fundamental card and add it to your hand. You may play a card.",
+      "frequency": 2
+    },
+    "Lecture": {
+      "type": "Oneshot",
+      "text": "Reveal cards from the top of your deck until 3 Proof cards are found. The first into play, the second into your hand, and the third into the trash.",
+      "frequency": 4
+    },
+    "Teacher's Pet": {
+      "type": "Student, Limited",
+      "text": "Whenever Kyle deals psychic damage, this card deals the same target 1 psychic damage.",
+      "custom": [
+        {
+          "name": "Suddenly",
+          "color": "Red",
+          "text": "When this card enters your hand, play it immediately."
+        }
+      ],
+      "HP": 4,
+      "frequency": 2
+    },
+    "Class Clown": {
+      "type": "Student, Limited",
+      "text": "Reduce psychic damage dealt by Kyle by 1.",
+      "end of turn": "At the end of your turn, this card deals itself and Kyle 1 psychic damage.",
+      "custom": [
+        {
+          "name": "Suddenly",
+          "color": "Red",
+          "text": "When this card enters your hand, play it immediately."
+        }
+      ],
+      "modifiers": [
+        {
+          "text": "-1 psychic damage dealt",
+          "color": "Magenta"
+        }
+      ],
+      "HP": 4,
+      "frequency": 2
+    },
+    "Class Bully": {
+      "type": "Student, Limited",
+      "text": "Whenever this card takes damage from a target, it deals the source of that damage 1 melee damage.",
+      "end of turn": "At the end of your turn, this card deals Kyle 1 psychic damage and the student other than itself with the lowest HP 1 melee damage.",
+      "custom": [
+        {
+          "name": "Suddenly",
+          "color": "Red",
+          "text": "When this card enters your hand, play it immediately."
+        }
+      ],
+      "HP": 4,
+      "frequency": 2
+    }
+  }
+}

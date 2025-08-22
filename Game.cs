@@ -49,14 +49,7 @@ namespace SOTMDecks
             }
             else
             {
-                MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
-                Console.WriteLine(Player.PlayerDeck.InnatePower);
-
-                if (Player.PlayerDeck.InnatePower2 != "")
-                {
-                    MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
-                    Console.WriteLine(Player.PlayerDeck.InnatePower2);
-                }
+                Player.PlayerDeck.PrintInnatePower();
             }
 
             if (Player.Modifiers.Count > 0) 
@@ -180,7 +173,7 @@ namespace SOTMDecks
                     Player.PrintLocation(Location.DiscardPile, brief: brief);
                     break;
                 case "powers":
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.POWER, brief);
+                    Player.PrintPowers(brief);
                     break;
                 case "start":
                     Player.PrintLocation(Location.PlayArea, CardCollection.Filter.START, brief);

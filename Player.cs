@@ -391,5 +391,13 @@ namespace SOTMDecks
                 Console.WriteLine(CardGroups[Location.SantasBag].GetCount());
             }
         }
+
+        public void PrintPowers(bool brief)
+        {
+            Console.WriteLine();
+            PlayerDeck.PrintInnatePower();
+            Console.WriteLine();
+            PrintLocation(Location.PlayArea, CardCollection.Filter.POWER, brief);
+        }
     }
 }
