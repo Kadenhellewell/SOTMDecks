@@ -15,7 +15,7 @@
   "Deck": {
     "Pythagorean Theorem": {
       "type": "Oneshot, Proof",
-      "text": "Kyle deals 1 target 3 psychic damage.",
+      "text": "Kyle deals 1 target 4 psychic damage.",
       "frequency": 2
     },
     "Law of Sines": {
@@ -25,12 +25,12 @@
     },
     "Law of Cosines": {
       "type": "Oneshot, Proof",
-      "text": "Kyle deals 1 target 4 psychic damage each. Then, if Law of Sines is in your hand, put it into play. If Law of Cosines was played this way, increase the next damage dealt by Kyle by 2.",
+      "text": "Kyle deals 1 target 3 psychic damage each. Then, if Law of Sines is in your hand, put it into play. If Law of Sines was played this way, increase the next damage dealt by Kyle by 2.",
       "frequency": 2
     },
     "Euler's Formula": {
       "type": "Oneshot, Proof",
-      "text": "Kyle deals 1 target 2 psychic damage. Search your deck or trash for 'Trigonometric Identities' and put it into play.",
+      "text": "Kyle deals 1 target 3 psychic damage. Search your deck or trash for 'Trigonometric Identities' and put it into play.",
       "frequency": 2
     },
     "Trigonometric Identities": {
@@ -50,22 +50,22 @@
     },
     "The Fundamental Theorem of Calculus": {
       "type": "Oneshot, Proof, Fundamental",
-      "text": ".",
+      "text": "Kyle may gain up to 5 HP. Then kyle deals 1 target x psychic damage where x is the difference between his current health and max health divided by two.",
       "frequency": 1
     },
     "The Fundamental Theorem of Arithmetic": {
       "type": "Oneshot, Proof, Fundamental",
-      "text": ".",
+      "text": "You may draw up to 3 cards. Kyle regains 2 HP for each Proof card that was drawn this way.",
       "frequency": 1
     },
     "The Fundamental Theorem of Algebra": {
       "type": "Oneshot, Proof, Fundamental",
-      "text": ".",
+      "text": "Kyle may deal 1 target up to psychic damage then regains x HP where x is 5 minus the amount of damage taken this way.",
       "frequency": 1
     },
     "Orthogonality of the Fundamental Subspaces": {
       "type": "Oneshot, Proof, Fundamental",
-      "text": ".",
+      "text": "Kyle regains 15 - x HP, where x is the number of targets in play. If more than 6 HP was gained this way, immediately end your turn.",
       "frequency": 1
     },
     "Screechy Chalkboard": {
