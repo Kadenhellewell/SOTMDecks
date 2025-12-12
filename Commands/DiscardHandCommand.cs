@@ -8,10 +8,10 @@ namespace SOTMDecks.Commands
 {
     internal class DiscardHandCommand : Command
     {
-        private CardCollection cards_;
+        private CardCollection<HeroCard> cards_;
         public DiscardHandCommand(Player player) : base(player)
         {
-            cards_ = new CardCollection("discard hand");
+            cards_ = new CardCollection<HeroCard>("discard hand");
         }
 
         public override bool Execute()

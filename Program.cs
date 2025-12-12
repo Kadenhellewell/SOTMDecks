@@ -25,7 +25,7 @@ class Program
         }
         
 
-        Deck myDeck = new Deck(filePath);
+        HeroDeck myDeck = new HeroDeck(filePath);
         if (myDeck.GetCount() != 40) 
         {
             Console.WriteLine($"{myDeck.Name} doesn't have 40 cards - it actually has {myDeck.GetCount()}");

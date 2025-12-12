@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace SOTMDecks
 {
-    internal class CardCollection
+    internal class CardCollection<T> where T : Card
     {
         public enum Filter
         {
@@ -20,29 +20,29 @@ namespace SOTMDecks
 
         public CardCollection(string desc) 
         {
-            cards_ = new List<Card>();
+            cards_ = new List<T>();
             Description = desc;
         }
 
         public string Description { get; }
 
-        protected List<Card> cards_;
+        protected List<T> cards_;
 
-        public void SetCards(List<Card> cards)
+        public void SetCards(List<T> cards)
         {
             cards_ = cards;
         }
 
-        public List<Card> GetCards()
+        public List<T> GetCards()
         {
             return cards_;
         }
 
-        public Card? GetLastCard()
+        public T? GetLastCard()
         {
             if (cards_.Count == 0) return null;
 
-            Card card = cards_[cards_.Count - 1];
+            T card = cards_[cards_.Count - 1];
             cards_.Remove(card);
             return card;
         }
@@ -52,29 +52,29 @@ namespace SOTMDecks
             return cards_.Count;
         }
 
-        public void Add(Card card)
+        public void Add(T card)
         {
             cards_.Add(card);
         }
 
-        public void Insert(int loc, Card card)
+        public void Insert(int loc, T card)
         {
             cards_.Insert(loc, card);
         }
 
-        public void AddCollection(CardCollection newCards)
+        public void AddCollection(CardCollection<T> newCards)
         {
-            foreach (Card card in newCards.GetCards())
+            foreach (T card in newCards.GetCards())
             {
                 Add(card);
             }
         }
 
-        public CardCollection SearchByType(string type)
+        public CardCollection<T> SearchByType(string type)
         {
-            CardCollection collection = new CardCollection($"{type} cards");
+            CardCollection<T> collection = new CardCollection<T>($"{type} cards");
 
-            foreach (Card card in cards_)
+            foreach (T card in cards_)
             {
                 if (card.IsType(type)) collection.Add(card);
             }
@@ -82,13 +82,13 @@ namespace SOTMDecks
             return collection;
         }
 
-        public CardCollection RevealByType(string type, int num)
+        public CardCollection<T> RevealByType(string type, int num)
         {
             int numFound = 0;
 
-            CardCollection collection = new CardCollection($"{type} cards");
+            CardCollection<T> collection = new CardCollection<T>($"{type} cards");
 
-            foreach (Card card in cards_)
+            foreach (T card in cards_)
             {
                 if (card.IsType(type)) 
                 {
@@ -102,11 +102,11 @@ namespace SOTMDecks
             return collection;
         }
 
-        public CardCollection SearchForTargets()
+        public CardCollection<T> SearchForTargets()
         {
-            CardCollection collection = new CardCollection("Targets");
+            CardCollection<T> collection = new CardCollection<T>("Targets");
 
-            foreach (Card card in cards_)
+            foreach (T card in cards_)
             {
                 if (card.IsTarget) collection.Add(card);
             }
@@ -114,7 +114,7 @@ namespace SOTMDecks
             return collection;
         }
 
-        public Card? GetSpecialType()
+        public T? GetSpecialType()
         {
             HashSet<string> ignoredTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
@@ -125,7 +125,7 @@ namespace SOTMDecks
                 "One-Shot"
             };
 
-            foreach (Card card in cards_)
+            foreach (T card in cards_)
             {
                 if (card.Type.Any(t => !ignoredTypes.Contains(t)))
                 {
@@ -138,9 +138,9 @@ namespace SOTMDecks
             return null;
         }
 
-        public Card? GetCardFromName(string name)
+        public T? GetCardFromName(string name)
         {
-            foreach (Card card in cards_)
+            foreach (T card in cards_)
             {
                 if (card.Name == name) return card;
             }
@@ -149,17 +149,17 @@ namespace SOTMDecks
             return null;
         }
 
-        public bool Contains(Card card)
+        public bool Contains(T card)
         {
             return cards_.Contains(card);
         }
 
-        public bool Remove(Card card)
+        public bool Remove(T card)
         {
             return cards_.Remove(card);
         }
 
-        public bool RemoveAll(CardCollection collection)
+        public bool RemoveAll(CardCollection<T> collection)
         {
             if (collection.GetCount() == 0)
             {
@@ -195,7 +195,7 @@ namespace SOTMDecks
         {
             Console.WriteLine($"{Description} ({cards_.Count}):\n");
             bool first = true;
-            foreach (Card card in cards_)
+            foreach (T card in cards_)
             {
                 bool print = true;
                 switch (filter)
@@ -205,7 +205,8 @@ namespace SOTMDecks
                     case Filter.START:
                         print = card.StartOfTurn != "" || card.HasCustomMechanicAtTime(MiscHelpers.Timing.START); break;
                     case Filter.POWER:
-                        print = card.Power != ""; break;
+                        print = (card is HeroCard hc && hc.Power != "");
+                        break;
                     case Filter.END:
                         print = card.EndOfTurn != "" || card.HasCustomMechanicAtTime(MiscHelpers.Timing.END); break;
                     case Filter.TARGET:

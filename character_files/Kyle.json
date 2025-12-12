@@ -2,7 +2,17 @@
   "Identities": [
     {
       "Title": "Answer a Question",
-      "Innate Power": "Kyle deals 1 target 2 psychic damage",
+      "Innate Power": "Kyle deals 1 target 2 psychic damage.",
+      "Starting HP": 27,
+      "Incapacitated": [
+        "Deal 1 target 1 psychic damage.",
+        "One player may draw a card.",
+        "One player may play a card."
+      ]
+    },
+    {
+      "Title": "After School Help",
+      "Innate Power": "You may play a Proof card.",
       "Starting HP": 27,
       "Incapacitated": [
         "Deal 1 target 1 psychic damage.",
@@ -45,7 +55,7 @@
     },
     "Quadratic Formula": {
       "type": "Oneshot, Proof",
-      "text": "Kyle deals 1 target 2 psychic damage. If any damage is taken this way, that target deals itself 2 melee damage.",
+      "text": "Kyle deals 1 target 2 psychic damage. If any damage is taken this way, that target deals itself 1 melee damage.",
       "frequency": 2
     },
     "The Fundamental Theorem of Calculus": {
@@ -60,7 +70,7 @@
     },
     "The Fundamental Theorem of Algebra": {
       "type": "Oneshot, Proof, Fundamental",
-      "text": "Kyle may deal 1 target up to psychic damage then regains x HP where x is 5 minus the amount of damage taken this way.",
+      "text": "Kyle may deal 1 target up to 5 psychic damage then regains x HP where x is 5 minus the amount of damage taken this way.",
       "frequency": 1
     },
     "Orthogonality of the Fundamental Subspaces": {
@@ -75,7 +85,7 @@
     },
     "Really Nice Chalk": {
       "type": "Equipment, Limited",
-      "text": "Increase psychic damage dealt by Kyle by 1.",
+      "text": "Increase psychic damage dealt by Kyle to targets other than himself by 1.",
       "modifiers": [
         {
           "text": "+1 psychic damage dealt",
@@ -96,12 +106,12 @@
     },
     "Lecture": {
       "type": "Oneshot",
-      "text": "Reveal cards from the top of your deck until 3 Proof cards are found. The first into play, the second into your hand, and the third into the trash.",
+      "text": "Reveal cards from the top of your deck until 3 Proof cards are found. Put the first into play, the second into your hand, and the third into the trash.",
       "frequency": 4
     },
     "Teacher's Pet": {
       "type": "Student, Limited",
-      "text": "Whenever Kyle deals psychic damage, this card deals the same target 1 psychic damage.",
+      "text": "Whenever Kyle deals psychic damage, this card deals the same target 1 psychic damage.\n\tWhenever this card takes damage, Kyle deals himself 1 psychic damage.",
       "custom": [
         {
           "name": "Suddenly",
@@ -114,7 +124,7 @@
     },
     "Class Clown": {
       "type": "Student, Limited",
-      "text": "Reduce psychic damage dealt by Kyle by 1.",
+      "text": "Reduce psychic damage dealt by Kyle by 1.\n\tWhenever this card takes damage, Kyle deals himself 1 psychic damage.",
       "end of turn": "At the end of your turn, this card deals itself and Kyle 1 psychic damage.",
       "custom": [
         {
@@ -134,8 +144,8 @@
     },
     "Class Bully": {
       "type": "Student, Limited",
-      "text": "Whenever this card takes damage from a target, it deals the source of that damage 1 melee damage.",
-      "end of turn": "At the end of your turn, this card deals Kyle 1 psychic damage and the student other than itself with the lowest HP 1 melee damage.",
+      "text": "Whenever this card takes damage from a target, it deals the source of that damage 1 melee damage.\n\tWhenever this card takes damage, Kyle deals himself 1 psychic damage.",
+      "end of turn": "At the end of your turn, this card deals the student other than itself with the lowest HP 1 melee damage.",
       "custom": [
         {
           "name": "Suddenly",

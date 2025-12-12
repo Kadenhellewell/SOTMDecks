@@ -10,7 +10,7 @@ using Optional;
 
 namespace SOTMDecks
 {
-    internal class Deck : CardCollection
+    internal class HeroDeck : CardCollection<HeroCard>
     {
         /**
          Layout of json. One deck:
@@ -25,7 +25,7 @@ namespace SOTMDecks
 
 
          */
-        public Deck(string fileName) : base("Deck")
+        public HeroDeck(string fileName) : base("Deck")
         {
             string file = File.ReadAllText(fileName);
             JObject json = JObject.Parse(file);
@@ -91,14 +91,14 @@ namespace SOTMDecks
         public int StartingHP { get; }
         public string[] IncapacitatedAbilities { get; }
 
-        private static List<Card> ParseDeck(JObject json)
+        private static List<HeroCard> ParseDeck(JObject json)
         {
-            List<Card> cards = new List<Card>();
+            List<HeroCard> cards = new List<HeroCard>();
             foreach (var card in json)
             {
                 for (int i = 0; i < int.Parse(card.Value["frequency"].ToString()); i++)
                 {   
-                    cards.Add(new Card(card));
+                    cards.Add(new HeroCard(card));
                 }
             }
 
@@ -122,14 +122,14 @@ namespace SOTMDecks
             cards_ = cards_.OrderBy(a => Guid.NewGuid()).ToList();
         }
 
-        public Option<Card> Draw(bool fromBottom = false)
+        public Option<HeroCard> Draw(bool fromBottom = false)
         {
             if (cards_.Count == 0)
             {
                 Console.WriteLine("No cards to draw");
-                return Option.None<Card>();
+                return Option.None<HeroCard>();
             }
-            Card drawn;
+            HeroCard drawn;
             if (fromBottom)
             {
                 drawn = cards_[cards_.Count - 1];
@@ -143,12 +143,12 @@ namespace SOTMDecks
             return Option.Some(drawn);
         }
 
-        public Option<List<Card>> GetTopCards(int n)
+        public Option<List<HeroCard>> GetTopCards(int n)
         {
             if (cards_.Count < n)
             {
                 Console.WriteLine($"Fewer than {n} cards");
-                return Option.None<List<Card>>();
+                return Option.None<List<HeroCard>>();
             }
 
             return Option.Some(cards_.Take(n).ToList());

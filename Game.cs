@@ -338,7 +338,7 @@ namespace SOTMDecks
 
         private void SetCount()
         {
-            Option<Card> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
+            Option<HeroCard> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
             if (!cardOpt.HasValue) return;
 
             Option<int> countOpt = MiscHelpers.GetIntFromPlayer("Set count to what?");
@@ -349,7 +349,7 @@ namespace SOTMDecks
 
         private void DamageCard()
         {
-            Option<Card> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
+            Option<HeroCard> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
             if (!cardOpt.HasValue) return;
 
             Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
@@ -373,13 +373,13 @@ namespace SOTMDecks
 
         private void DamageCards()
         {
-            Option<List<Card>> cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
+            Option<List<HeroCard>> cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
             if (!cards.HasValue) return;
 
             Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
             if (!damageOpt.HasValue) return;
 
-            foreach (Card card in cards.ValueOr(new List<Card>()))
+            foreach (HeroCard card in cards.ValueOr(new List<HeroCard>()))
             {
                 if (card.MaxHP == 0)
                 {
@@ -400,7 +400,7 @@ namespace SOTMDecks
 
             Player.DealDamage(damage);
 
-            foreach (Card card in Player.GetLocation(Location.PlayArea).GetCards())
+            foreach (HeroCard card in Player.GetLocation(Location.PlayArea).GetCards())
             {
                 if (card.MaxHP == 0)
                 {
@@ -418,7 +418,7 @@ namespace SOTMDecks
 
         private void HealCard()
         {
-            Option<Card> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
+            Option<HeroCard> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
             if (!cardOpt.HasValue) return;
 
             Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
@@ -429,13 +429,13 @@ namespace SOTMDecks
 
         private void HealCards()
         {
-            Option<List<Card>> cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
+            Option<List<HeroCard>> cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
             if (!cards.HasValue) return;
 
             Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
             if (!healthOpt.HasValue) return;
 
-            foreach (Card card in cards.ValueOr(new List<Card>()))
+            foreach (HeroCard card in cards.ValueOr(new List<HeroCard>()))
             {
                 if (card.MaxHP == 0)
                 {
@@ -456,7 +456,7 @@ namespace SOTMDecks
 
             Player.Heal(health);
 
-            foreach (Card card in Player.GetLocation(Location.PlayArea).GetCards())
+            foreach (HeroCard card in Player.GetLocation(Location.PlayArea).GetCards())
             {
                 if (card.MaxHP == 0)
                 {

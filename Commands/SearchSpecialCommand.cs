@@ -8,13 +8,13 @@ namespace SOTMDecks.Commands
 {
     internal class SearchSpecialCommand : Command
     {
-        Card? card_;
+        HeroCard? card_;
 
         public SearchSpecialCommand(Player player) : base(player) { }
 
         public override bool Execute()
         {
-            Card? card = player_.PlayerDeck.GetSpecialType();
+            HeroCard? card = player_.PlayerDeck.GetSpecialType();
             if (card is null)
             {
                 return false;

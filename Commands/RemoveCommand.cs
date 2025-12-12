@@ -10,15 +10,15 @@ namespace SOTMDecks.Commands
     internal class RemoveCommand : Command
     {
         private Option<CardCollection> src_;
-        private Option<Card> card_;
-        private Card Card_ => card_.ValueOrThrow();
+        private Option<HeroCard> card_;
+        private HeroCard Card_ => card_.ValueOrThrow();
         private CardCollection ko_;
 
         public RemoveCommand(CardCollection KO, Player player) : base(player)
         {
             ko_ = KO;
             src_ = Option.None<CardCollection>();
-            card_ = Option.None<Card>();
+            card_ = Option.None<HeroCard>();
         }
 
         public override bool Execute()

@@ -23,7 +23,7 @@ namespace SOTMDecks
     internal class Player
     {
 
-        public Player(Deck deck) 
+        public Player(HeroDeck deck) 
         {
             PlayerDeck = deck;
             Name = deck.Name;
@@ -40,7 +40,7 @@ namespace SOTMDecks
             };
         }
 
-        public Deck PlayerDeck { get; }
+        public HeroDeck PlayerDeck { get; }
         public string Name { get; }
         private int HP;
         private int MaxHP;
@@ -132,7 +132,7 @@ namespace SOTMDecks
             if (HP > MaxHP) HP = MaxHP;
         }
 
-        public bool Discard(Card card) 
+        public bool Discard(HeroCard card) 
         {
             if (CardGroups[Location.Hand].Contains(card))
             {
@@ -165,7 +165,7 @@ namespace SOTMDecks
 
             for (int i = 0; i < num; ++i)
             {
-                Option<Card> card = PlayerDeck.Draw();
+                Option<HeroCard> card = PlayerDeck.Draw();
                 if (!card.HasValue) return false;
 
                 CardGroups[Location.DiscardPile].Add(card.ValueOrThrow());
@@ -176,7 +176,7 @@ namespace SOTMDecks
             return true;
         }
 
-        public bool MoveCard(Card card, Location src, Location dest)
+        public bool MoveCard(HeroCard card, Location src, Location dest)
         {
             if (src == dest)
             {
@@ -225,7 +225,7 @@ namespace SOTMDecks
             return true;
         }
 
-        public bool PlayCard(Card card)
+        public bool PlayCard(HeroCard card)
         {
             Location dest = card.IsOneshot() ? Location.DiscardPile : Location.PlayArea;
             if (card.IsOneshot()) { Console.WriteLine($"{card.Text}");  }
@@ -233,7 +233,7 @@ namespace SOTMDecks
             return MoveCard(card, Location.Hand, dest);
         }
 
-        public void OnCardPlayed(Card card)
+        public void OnCardPlayed(HeroCard card)
         {
             Console.WriteLine($"{card.OnEntry}");
 
@@ -243,7 +243,7 @@ namespace SOTMDecks
             }
         }
 
-        public bool DestroyCard(Card card)
+        public bool DestroyCard(HeroCard card)
         {
             bool result = MoveCard(card, Location.PlayArea, Location.DiscardPile);
 
@@ -253,11 +253,11 @@ namespace SOTMDecks
             return result;
         }
 
-        public bool DestroyCards(List<Card> cards)
+        public bool DestroyCards(List<HeroCard> cards)
         {
             bool result = true; 
             
-            foreach (Card card in cards)
+            foreach (HeroCard card in cards)
             {
                 if (!DestroyCard(card))
                 {
@@ -269,7 +269,7 @@ namespace SOTMDecks
             return result;
         }
 
-        public void OnCardDestroyed(Card card)
+        public void OnCardDestroyed(HeroCard card)
         {
             if (card.Modifiers.Count > 0)
             {
@@ -300,22 +300,22 @@ namespace SOTMDecks
             return true;
         }
 
-        public void AddCardToSantasBag(Card card)
+        public void AddCardToSantasBag(HeroCard card)
         {
             CardGroups[Location.SantasBag].Add(card);
         }
 
-        public bool RemoveCardFromSantasBag(Card card)
+        public bool RemoveCardFromSantasBag(HeroCard card)
         {
             return CardGroups[Location.SantasBag].Remove(card);
         }
 
-        public Option<Card> Draw(bool verbose = true, bool fromBottom = false)
+        public Option<HeroCard> Draw(bool verbose = true, bool fromBottom = false)
         {
-            Option<Card> newCardOpt = PlayerDeck.Draw(fromBottom);
-            if (!newCardOpt.HasValue) return Option.None<Card>();
+            Option<HeroCard> newCardOpt = PlayerDeck.Draw(fromBottom);
+            if (!newCardOpt.HasValue) return Option.None<HeroCard>();
 
-            Card newCard = newCardOpt.ValueOrThrow();
+            HeroCard newCard = newCardOpt.ValueOrThrow();
 
             CardGroups[Location.Hand].Add(newCard);
             if (verbose)
@@ -323,7 +323,7 @@ namespace SOTMDecks
             return newCardOpt;
         }
 
-        public void UndoDraw(Card card, bool fromBottom)
+        public void UndoDraw(HeroCard card, bool fromBottom)
         {
             if (!CardGroups[Location.Hand].Remove(card))
             {
@@ -341,7 +341,7 @@ namespace SOTMDecks
             }
         }
 
-        public void MoveCardFromDeckToHand(Card card)
+        public void MoveCardFromDeckToHand(HeroCard card)
         {
             if (!PlayerDeck.Remove(card))
             {
@@ -353,7 +353,7 @@ namespace SOTMDecks
 
         public void MoveCardsFromDeckToHand(CardCollection cards)
         {
-            foreach (Card card in cards.GetCards())
+            foreach (HeroCard card in cards.GetCards())
             {
                 MoveCardFromDeckToHand(card);
             }

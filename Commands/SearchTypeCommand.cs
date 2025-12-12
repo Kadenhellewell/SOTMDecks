@@ -10,12 +10,12 @@ namespace SOTMDecks.Commands
 {
     internal class SearchTypeCommand : Command
     {
-        private Option<Card> card_;
-        private Card Card_ => card_.ValueOrThrow();
+        private Option<HeroCard> card_;
+        private HeroCard Card_ => card_.ValueOrThrow();
 
         public SearchTypeCommand(Player player) : base(player) 
         {
-            card_ = Option.None<Card>();
+            card_ = Option.None<HeroCard>();
         }
 
         public override bool Execute()

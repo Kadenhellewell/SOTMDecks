@@ -11,13 +11,13 @@ namespace SOTMDecks.Commands
     {
         private int num_;
         private bool fromDeck_;
-        private List<Card> cards_;
+        private List<HeroCard> cards_;
 
         public DiscardCommand(bool fromDeck, Player player) : base(player)
         {
             fromDeck_ = fromDeck;
             num_ = 0;
-            cards_ = new List<Card>();
+            cards_ = new List<HeroCard>();
         }
 
         public override bool Execute()
@@ -28,21 +28,21 @@ namespace SOTMDecks.Commands
                 if (!num.HasValue) return false;
 
                 num_ = num.ValueOr(0);
-                Option<List<Card>> cards = player_.PlayerDeck.GetTopCards(num_);
-                if (!cards.HasValue || cards.ValueOr(new List<Card>()).Count == 0) return false;
+                Option<List<HeroCard>> cards = player_.PlayerDeck.GetTopCards(num_);
+                if (!cards.HasValue || cards.ValueOr(new List<HeroCard>()).Count == 0) return false;
 
-                cards_ = cards.ValueOr(new List<Card>()).ToList();
+                cards_ = cards.ValueOr(new List<HeroCard>()).ToList();
                 return player_.DiscardFromDeck(num_);
             }
             else
             {
-                Option<List<Card>> cards = MiscHelpers.GetCardsFromInput(player_.Hand());
+                Option<List<HeroCard>> cards = MiscHelpers.GetCardsFromInput(player_.Hand());
                 if (!cards.HasValue) return false;
 
-                num_ = cards.ValueOr(new List<Card>()).Count;
-                cards_ = cards.ValueOr(new List<Card>()).ToList();
+                num_ = cards.ValueOr(new List<HeroCard>()).Count;
+                cards_ = cards.ValueOr(new List<HeroCard>()).ToList();
                 bool result = true;
-                foreach (Card card in cards_)
+                foreach (HeroCard card in cards_)
                 {
                     bool thisResult = player_.Discard(card);
                     if (!thisResult) Console.WriteLine($"Failure discarding {card.Name}");
@@ -55,7 +55,7 @@ namespace SOTMDecks.Commands
         public override void Undo()
         {
             Location dest = fromDeck_ ? Location.TopOfDeck : Location.Hand;
-            foreach (Card card in cards_)
+            foreach (HeroCard card in cards_)
             {
                 if (!player_.MoveCard(card, Location.DiscardPile, dest))
                 {

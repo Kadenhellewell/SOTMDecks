@@ -9,8 +9,8 @@ namespace SOTMDecks.Commands
 {
     internal class DrawCommand : Command
     {
-        private Option<Card> card_;
-        private Card Card_ => card_.ValueOrThrow();
+        private Option<HeroCard> card_;
+        private HeroCard Card_ => card_.ValueOrThrow();
         private bool bottom_;
         public DrawCommand(Player player, bool fromBottom) : base(player)
         {

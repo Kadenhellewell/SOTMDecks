@@ -9,13 +9,13 @@ namespace SOTMDecks.Commands
 {
     internal class DestroyCommand : Command
     {
-        private Option<List<Card>> cards_;
+        private Option<List<HeroCard>> cards_;
 
-        private List<Card> Cards_ => cards_.ValueOrThrow();
+        private List<HeroCard> Cards_ => cards_.ValueOrThrow();
 
         public DestroyCommand(Player player) : base(player)
         {
-            cards_ = Option.None<List<Card>>();
+            cards_ = Option.None<List<HeroCard>>();
         }
 
         public override bool Execute()
@@ -28,7 +28,7 @@ namespace SOTMDecks.Commands
 
         public override void Undo()
         {
-            foreach (Card card in Cards_)
+            foreach (HeroCard card in Cards_)
                 player_.MoveCard(card, Location.DiscardPile, Location.PlayArea);
         }
     }

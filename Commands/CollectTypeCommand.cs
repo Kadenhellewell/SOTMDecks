@@ -36,7 +36,7 @@ namespace SOTMDecks.Commands
 
             player_.MoveCardsFromDeckToHand(cards_.ValueOrThrow());
 
-            foreach (Card card in cards_.ValueOrThrow().GetCards()) 
+            foreach (HeroCard card in cards_.ValueOrThrow().GetCards()) 
             {
                 Console.WriteLine($"Collected {card.Name}");
             }

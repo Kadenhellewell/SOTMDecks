@@ -25,7 +25,7 @@ namespace SOTMDecks.Commands
             }
 
             bool success = true;
-            foreach(Card card in bag_.GetCards())
+            foreach(HeroCard card in bag_.GetCards())
             {
                 Console.Write("Playing ");
                 MiscHelpers.ColorPrint(ConsoleColor.Green, card.Name, newLine: false);
@@ -45,7 +45,7 @@ namespace SOTMDecks.Commands
 
         public override void Undo()
         {
-            foreach (Card card in bag_.GetCards())
+            foreach (HeroCard card in bag_.GetCards())
             {
                 if (card.Type.Contains("Oneshot"))
                 {

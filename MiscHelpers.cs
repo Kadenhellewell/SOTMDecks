@@ -112,41 +112,41 @@ namespace SOTMDecks
         }
 
 
-        public static Option<Card> GetCardFromIndex(CardCollection col, bool verbose = false)
+        public static Option<HeroCard> GetCardFromIndex(CardCollection col, bool verbose = false)
         {
             Console.WriteLine("Card?");
             col.ListPrint(verbose);
 
             Option<int> indexOpt = GetIntFromPlayer("");
-            if (!indexOpt.HasValue) return Option.None<Card>();
+            if (!indexOpt.HasValue) return Option.None<HeroCard>();
 
             int index = indexOpt.ValueOr(-1);
 
             if (index >= col.GetCount() || index < 0)
             {
                 Console.WriteLine("Index out of range");
-                return Option.None<Card>();
+                return Option.None<HeroCard>();
             }
 
             return Option.Some(col.GetCards()[index]);
         }
 
-        public static Option<List<Card>> GetCardsFromInput(CardCollection col, bool verbose = false)
+        public static Option<List<HeroCard>> GetCardsFromInput(CardCollection col, bool verbose = false)
         {
 
             Console.WriteLine("Select cards space-separated numbers");
             col.ListPrint(verbose);
 
             Option<List<int>> intList = GetIntsFromPlayer("");
-            if (!intList.HasValue) return Option.None<List<Card>>();
+            if (!intList.HasValue) return Option.None<List<HeroCard>>();
 
-            List<Card> cards = new List<Card>();
+            List<HeroCard> cards = new List<HeroCard>();
             foreach (var i in intList.ValueOrThrow()) 
             {
                 if (i >= col.GetCount())
                 {
                     Console.WriteLine($"Index {i} out of range");
-                    return Option.None<List<Card>>();
+                    return Option.None<List<HeroCard>>();
                 }
 
                 cards.Add(col.GetCards()[i]);
@@ -155,7 +155,7 @@ namespace SOTMDecks
             if (cards.Count == 0)
             {
                 Console.WriteLine("Not cards were selected");
-                return Option.None<List<Card>>();
+                return Option.None<List<HeroCard>>();
             }
             return Option.Some(cards);
         }
