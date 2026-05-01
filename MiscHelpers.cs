@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -112,7 +111,7 @@ namespace SOTMDecks
         }
 
 
-        public static Option<HeroCard> GetCardFromIndex(CardCollection col, bool verbose = false)
+        public static Option<HeroCard> GetCardFromIndex(CardCollection<HeroCard> col, bool verbose = false)
         {
             Console.WriteLine("Card?");
             col.ListPrint(verbose);
@@ -131,7 +130,7 @@ namespace SOTMDecks
             return Option.Some(col.GetCards()[index]);
         }
 
-        public static Option<List<HeroCard>> GetCardsFromInput(CardCollection col, bool verbose = false)
+        public static Option<List<HeroCard>> GetCardsFromInput(CardCollection<HeroCard> col, bool verbose = false)
         {
 
             Console.WriteLine("Select cards space-separated numbers");

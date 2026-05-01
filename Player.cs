@@ -30,12 +30,12 @@ namespace SOTMDecks
             HP = deck.StartingHP;
             MaxHP = deck.StartingHP;
 
-            CardGroups = new Dictionary<Location, CardCollection>
+            CardGroups = new Dictionary<Location, CardCollection<HeroCard>>
             {
-                { Location.Hand, new CardCollection("Hand") },
-                { Location.PlayArea, new CardCollection("Play Area") },
-                { Location.DiscardPile, new CardCollection("Discard Pile") },
-                { Location.SantasBag, new CardCollection("SantasBag") },
+                { Location.Hand, new CardCollection<HeroCard>("Hand") },
+                { Location.PlayArea, new CardCollection<HeroCard>("Play Area") },
+                { Location.DiscardPile, new CardCollection<HeroCard>("Discard Pile") },
+                { Location.SantasBag, new CardCollection<HeroCard>("SantasBag") },
                 {Location.Deck, deck }
             };
         }
@@ -46,29 +46,29 @@ namespace SOTMDecks
         private int MaxHP;
         public List<Modifier> Modifiers { get; } = new List<Modifier>();
 
-        Dictionary<Location, CardCollection> CardGroups;
+        Dictionary<Location, CardCollection<HeroCard>> CardGroups;
 
-        public CardCollection Hand()
+        public CardCollection<HeroCard> Hand()
         {
             return CardGroups[Location.Hand];
         }
 
-        public CardCollection PlayArea()
+        public CardCollection<HeroCard> PlayArea()
         {
             return CardGroups[Location.PlayArea];
         }
 
-        public CardCollection DiscardPile()
+        public CardCollection<HeroCard> DiscardPile()
         {
             return CardGroups[Location.DiscardPile];
         }
 
-        public CardCollection SantasBag()
+        public CardCollection<HeroCard> SantasBag()
         {
             return CardGroups[Location.SantasBag];
         }
 
-        public CardCollection GetLocation(Location loc)
+        public CardCollection<HeroCard> GetLocation(Location loc)
         {
             return CardGroups[loc];
         }
@@ -351,7 +351,7 @@ namespace SOTMDecks
             CardGroups[Location.Hand].Add(card);
         }
 
-        public void MoveCardsFromDeckToHand(CardCollection cards)
+        public void MoveCardsFromDeckToHand(CardCollection<HeroCard> cards)
         {
             foreach (HeroCard card in cards.GetCards())
             {
@@ -382,7 +382,7 @@ namespace SOTMDecks
             PlayerDeck.Shuffle();
         }
 
-        public void PrintLocation(Location loc, CardCollection.Filter filter = CardCollection.Filter.NONE, bool brief = false)
+        public void PrintLocation(Location loc, CardCollection<HeroCard>.Filter filter = CardCollection<HeroCard>.Filter.NONE, bool brief = false)
         {
             CardGroups[loc].PrettyPrint(filter, brief);
             if (loc == Location.PlayArea && CardGroups[Location.SantasBag].GetCount() > 0)
@@ -397,7 +397,7 @@ namespace SOTMDecks
             Console.WriteLine();
             PlayerDeck.PrintInnatePower();
             Console.WriteLine();
-            PrintLocation(Location.PlayArea, CardCollection.Filter.POWER, brief);
+            PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.POWER, brief);
         }
     }
 }

@@ -74,7 +74,7 @@ namespace SOTMDecks
         {
             get { return hp_; }
 
-            protected set
+            set
             {
                 if (value >= MaxHP)
                 {

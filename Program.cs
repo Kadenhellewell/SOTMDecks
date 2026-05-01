@@ -4,23 +4,27 @@ class Program
 {
     static void Main(string[] args)
     {
-        string basePath = "C:\\Users\\kdex9\\OneDrive\\Documents\\Personal_Projects\\SOTM\\SOTMDecks\\character_files";
+        string? filename = args.Length > 0 ? args[0] : null;
+        string basePath = args.Length > 1
+            ? args[1]
+            : Path.Combine(AppContext.BaseDirectory, "character_files");
 
         string filePath = "";
-
-        string? filename = null;
         bool fileExists = false;
         while (filename is null || !fileExists)
         {
-            Console.WriteLine("File name (don't include extension)?");
-            filename = Console.ReadLine();
+            if (filename is null)
+            {
+                Console.WriteLine("File name (don't include extension)?");
+                filename = Console.ReadLine();
+            }
             if (filename == "q") Environment.Exit(0);
-            filePath = $"{basePath}/{filename}.json";
+            filePath = Path.Combine(basePath, $"{filename}.json");
             fileExists = File.Exists(filePath);
             if (!fileExists)
             {
-                fileExists = false;
-                Console.WriteLine("File doesn't exist");
+                Console.WriteLine($"File doesn't exist: {filePath}");
+                filename = null;
             }
         }
         

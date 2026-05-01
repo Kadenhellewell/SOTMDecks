@@ -9,7 +9,7 @@ namespace SOTMDecks.Commands
 {
     internal class CollectTypeCommand : Command
     {
-        private Option<CardCollection> cards_;
+        private Option<CardCollection<HeroCard>> cards_;
         public CollectTypeCommand(Player player) : base(player)
         {
 

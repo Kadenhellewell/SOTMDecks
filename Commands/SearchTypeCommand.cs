@@ -25,7 +25,7 @@ namespace SOTMDecks.Commands
 
             string types = typesOpt.ValueOr("");
 
-            CardCollection col = new CardCollection($"Types: {types}");
+            CardCollection<HeroCard> col = new CardCollection<HeroCard>($"Types: {types}");
             foreach (string type in types.Split(" "))
             {
                 col.AddCollection(player_.PlayerDeck.SearchByType(type));

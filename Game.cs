@@ -18,7 +18,7 @@ namespace SOTMDecks
 
         public Player Player { get; }
         
-        private CardCollection KO = new CardCollection("Cards removed from the game");
+        private CardCollection<HeroCard> KO = new CardCollection<HeroCard>("Cards removed from the game");
         private Stack<Command> commands = new Stack<Command>();
 
         private void Init()
@@ -162,7 +162,7 @@ namespace SOTMDecks
                     Player.PrintLocation(Location.Hand, brief: brief);
                     break;
                 case "hand powers":
-                    Player.PrintLocation(Location.Hand, CardCollection.Filter.POWER);
+                    Player.PrintLocation(Location.Hand, CardCollection<HeroCard>.Filter.POWER);
                     break;
                 case "play area":
                 case "pa":
@@ -176,13 +176,13 @@ namespace SOTMDecks
                     Player.PrintPowers(brief);
                     break;
                 case "start":
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.START, brief);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.START, brief);
                     break;
                 case "end":
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.END, brief);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.END, brief);
                     break;
                 case "targets":
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief);
                     break;
                 case "reveal":
                     RevealCards();
@@ -204,16 +204,16 @@ namespace SOTMDecks
                     break;
                 case "damage card":
                     DamageCard();
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "damage cards":
                     DamageCards();
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "damage all":
                     DamageAll();
                     PrintSetup();
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "heal":
                     Heal();
@@ -221,16 +221,16 @@ namespace SOTMDecks
                     break;
                 case "heal card":
                     HealCard();
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "heal cards":
                     HealCards();
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "heal all":
                     HealAll();
                     PrintSetup();
-                    Player.PrintLocation(Location.PlayArea, CardCollection.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "add modifier":
                 case "add mod":

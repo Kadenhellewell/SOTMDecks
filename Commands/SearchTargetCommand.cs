@@ -19,7 +19,7 @@ namespace SOTMDecks.Commands
 
         public override bool Execute()
         {
-            CardCollection col = player_.PlayerDeck.SearchForTargets();
+            CardCollection<HeroCard> col = player_.PlayerDeck.SearchForTargets();
 
             if (col.GetCount() == 0)
             {

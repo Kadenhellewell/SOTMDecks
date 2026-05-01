@@ -10,7 +10,7 @@ using Optional;
 
 namespace SOTMDecks
 {
-    internal class HeroDeck : CardCollection<HeroCard>
+    internal class HeroDeck : Deck<HeroCard>
     {
         /**
          Layout of json. One deck:
@@ -91,7 +91,7 @@ namespace SOTMDecks
         public int StartingHP { get; }
         public string[] IncapacitatedAbilities { get; }
 
-        private static List<HeroCard> ParseDeck(JObject json)
+        protected override List<HeroCard> ParseDeck(JObject json)
         {
             List<HeroCard> cards = new List<HeroCard>();
             foreach (var card in json)
@@ -114,58 +114,6 @@ namespace SOTMDecks
             {
                 MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
                 Console.WriteLine(InnatePower2);
-            }
-        }
-
-        public void Shuffle()
-        {
-            cards_ = cards_.OrderBy(a => Guid.NewGuid()).ToList();
-        }
-
-        public Option<HeroCard> Draw(bool fromBottom = false)
-        {
-            if (cards_.Count == 0)
-            {
-                Console.WriteLine("No cards to draw");
-                return Option.None<HeroCard>();
-            }
-            HeroCard drawn;
-            if (fromBottom)
-            {
-                drawn = cards_[cards_.Count - 1];
-                cards_.RemoveAt(cards_.Count - 1);
-            }
-            else
-            {
-                drawn = cards_.First();
-                cards_.RemoveAt(0);
-            }
-            return Option.Some(drawn);
-        }
-
-        public Option<List<HeroCard>> GetTopCards(int n)
-        {
-            if (cards_.Count < n)
-            {
-                Console.WriteLine($"Fewer than {n} cards");
-                return Option.None<List<HeroCard>>();
-            }
-
-            return Option.Some(cards_.Take(n).ToList());
-        }
-
-        public void RevealCards(int num)
-        {
-            for (int i = 0; i < num; i++)
-            {
-                if (i >= cards_.Count)
-                {
-                    Console.WriteLine("No more cards in deck");
-                    return;
-                }
-                cards_[i].PrettyPrint();
-                Console.WriteLine();
-                Console.WriteLine("------");
             }
         }
     }

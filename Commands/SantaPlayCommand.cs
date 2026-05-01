@@ -8,11 +8,11 @@ namespace SOTMDecks.Commands
 {
     internal class SantaPlayCommand : Command
     {
-        private CardCollection bag_;
+        private CardCollection<HeroCard> bag_;
 
         public SantaPlayCommand(Player player) : base(player)
         {
-            bag_ = new CardCollection("Temp Santa's bag");
+            bag_ = new CardCollection<HeroCard>("Temp Santa's bag");
         }
 
         public override bool Execute()
