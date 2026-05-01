@@ -26,18 +26,30 @@ A successful build prints `Build succeeded.` with `0 Error(s)`. Existing nullabl
 
 ```bash
 dotnet run -c Release --no-build
-dotnet run -c Release --no-build -- Haka
-dotnet run -c Release --no-build -- Haka /custom/path/to/character_files
+dotnet run -c Release --no-build -- hero Haka
+dotnet run -c Release --no-build -- env Megalopolis
+dotnet run -c Release --no-build -- hero Haka /custom/path/to/character_files
 ```
 
 ### CLI arguments
 
 | Position | Meaning | Default |
 |---|---|---|
-| 1 | Hero filename without `.json` extension (e.g. `Haka`) | prompts interactively |
-| 2 | Directory containing `*.json` hero files | `<exe directory>/character_files` |
+| 1 | Mode: `hero`/`h` or `environment`/`env`/`e` | prompts interactively |
+| 2 | Filename without `.json` (e.g. `Haka`, `Megalopolis`) | prompts interactively |
+| 3 | Directory containing `*.json` files | `<exe directory>/character_files` (hero) or `<exe directory>/environment_files` (env) |
 
-Type `q` at the filename prompt to quit.
+Type `q` at any prompt to quit.
+
+### Modes
+
+- **Hero mode** — loads a deck from `character_files/`, runs the full hero game (HP, hand, play area, modifiers, all hero commands).
+- **Environment mode** — loads a deck from `environment_files/`, runs a slimmer environment loop:
+  - `reveal` — turn the top card of the deck into the play area
+  - `pa` / `play area`, `dp` / `discard pile`, `targets`, `deck count`
+  - `damage card` / `damage cards` / `damage all`, `heal card` / `heal cards` / `heal all`
+  - `discard` (move from PA to DP), `destroy` (PA → DP and trigger on-destroy text), `remove card` (PA → KO)
+  - `shuffle`, `dp to deck`, `key words`, `q` / `exit`
 
 ## Publish (standalone-ish binaries)
 
@@ -47,28 +59,31 @@ The project copies every `character_files/**/*.json` next to the executable on b
 
 ```bash
 dotnet publish -c Release -r linux-x64 --self-contained false -o ./out/linux
-./out/linux/SOTMDecks Haka
+./out/linux/SOTMDecks hero Haka
+./out/linux/SOTMDecks env Megalopolis
 ```
 
 ### Windows
 
 ```powershell
 dotnet publish -c Release -r win-x64 --self-contained false -o .\out\win
-.\out\win\SOTMDecks.exe Haka
+.\out\win\SOTMDecks.exe hero Haka
 ```
 
 ### macOS
 
 ```bash
 dotnet publish -c Release -r osx-x64 --self-contained false -o ./out/mac
-./out/mac/SOTMDecks Haka
+./out/mac/SOTMDecks hero Haka
 ```
 
 For a fully self-contained build (no runtime needed on target), pass `--self-contained true` and add `-p:PublishSingleFile=true` if you want a single binary. Output size grows by ~70 MB.
 
-## Hero data files
+## Hero and environment data files
 
-`character_files/*.json` is the canonical source of hero decks. Both `dotnet build` and `dotnet publish` copy the entire directory tree into the output folder via the `Content Include` rule in `SOTMDecks.csproj`, so released builds always ship with the latest deck JSON.
+`character_files/*.json` (hero decks) and `environment_files/*.json` (environment decks) are the canonical sources. Both directories are copied into the output folder on `dotnet build` and `dotnet publish` via `Content Include` rules in `SOTMDecks.csproj`, so released builds always ship with the latest deck JSON.
+
+Three stub environment decks are included for testing: `Megalopolis`, `InsulaPrimalis`, `WagnerMarsBase`.
 
 ## Troubleshooting
 

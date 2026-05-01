@@ -1,0 +1,38 @@
+{
+  "Name": "Megalopolis",
+  "Deck": {
+    "Police Backup": {
+      "type": "One-Shot",
+      "text": "Each Hero Target regains 2 HP.",
+      "frequency": 3
+    },
+    "Traffic Pileup": {
+      "type": "One-Shot",
+      "text": "Each non-Hero Target takes 2 Melee Damage.",
+      "frequency": 3
+    },
+    "Civilian Casualties": {
+      "type": "Ongoing",
+      "text": "At the start of the environment turn, the environment deals each Hero Target 1 Projectile Damage.",
+      "start of turn": "The environment deals each Hero Target 1 Projectile Damage.",
+      "frequency": 2
+    },
+    "Hostage Situation": {
+      "type": "Target",
+      "text": "When this card is destroyed, the environment deals the active Hero 3 Projectile Damage.",
+      "on destroy": "The environment deals the active Hero 3 Projectile Damage.",
+      "HP": 4,
+      "frequency": 2
+    },
+    "Construction Site": {
+      "type": "Ongoing",
+      "text": "Increase Damage dealt to non-Hero Targets by 1.",
+      "frequency": 2
+    },
+    "Crane Collapse": {
+      "type": "One-Shot",
+      "text": "Destroy 1 Ongoing card. The environment deals 1 Target 4 Melee Damage.",
+      "frequency": 3
+    }
+  }
+}

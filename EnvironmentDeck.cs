@@ -10,10 +10,17 @@ namespace SOTMDecks
 {
     internal class EnvironmentDeck : Deck<EnvironmentCard>
     {
+        public string Name { get; private set; } = "Environment Deck";
+
         public EnvironmentDeck(string fileName) : base("Environment Deck")
         {
             string file = File.ReadAllText(fileName);
             JObject json = JObject.Parse(file);
+
+            if (json.TryGetValue("Name", out JToken? nameToken))
+            {
+                Name = nameToken.ToString();
+            }
 
             if (json.TryGetValue("Deck", out JToken? deckToken) && deckToken is JObject deckObject)
             {

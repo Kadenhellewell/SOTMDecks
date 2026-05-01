@@ -1,0 +1,34 @@
+{
+  "Name": "Wagner Mars Base",
+  "Deck": {
+    "Hostile Atmosphere": {
+      "type": "Ongoing",
+      "text": "At the start of the environment turn, the environment deals each Hero Target 1 Toxic Damage.",
+      "start of turn": "Deal each Hero Target 1 Toxic Damage.",
+      "frequency": 2
+    },
+    "Cosmic Inversion Eradicator": {
+      "type": "Target",
+      "text": "At the end of the environment turn, this card deals each Hero 2 Energy Damage.",
+      "end of turn": "Deal each Hero 2 Energy Damage.",
+      "on destroy": "Each Hero may draw a card.",
+      "HP": 6,
+      "frequency": 2
+    },
+    "Decompression": {
+      "type": "One-Shot",
+      "text": "The environment deals 1 Hero Target 4 Cold Damage.",
+      "frequency": 3
+    },
+    "Failing Life Support": {
+      "type": "Ongoing",
+      "text": "Reduce HP regained by Hero Targets by 1.",
+      "frequency": 3
+    },
+    "Asteroid Strike": {
+      "type": "One-Shot",
+      "text": "Destroy 1 Ongoing or Equipment card. The environment deals each Target 1 Sonic Damage.",
+      "frequency": 2
+    }
+  }
+}
