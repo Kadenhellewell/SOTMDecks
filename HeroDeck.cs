@@ -34,6 +34,8 @@ namespace SOTMDecks
             // This assures that it doesn't get into a weird state
             InnatePower2 = "";
 
+            Name = json["Name"]?.ToString() ?? Name;
+
             // If the JSON has a property named "Identities" and that property is a JSON array,
             // then proceed inside the block, with the variable identitiesArray ready to use.
             if (json.TryGetValue("Identities", out JToken? identitiesToken) && identitiesToken is JArray identitiesArray)
@@ -85,7 +87,7 @@ namespace SOTMDecks
         }
 
         
-        public string Name { get; }
+        public string Name { get; private set; } = "Hero Deck";
         public string InnatePower { get; }
         public string InnatePower2 { get; }
         public int StartingHP { get; }
