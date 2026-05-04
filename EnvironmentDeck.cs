@@ -37,10 +37,15 @@ namespace SOTMDecks
             List<EnvironmentCard> cards = new List<EnvironmentCard>();
             foreach (var card in json)
             {
-                for (int i = 0; i < int.Parse(card.Value["frequency"].ToString()); i++)
+                for (int i = 0; i < int.Parse(card.Value!["frequency"]!.ToString()); i++)
                 {
                     cards.Add(new EnvironmentCard(card));
                 }
+            }
+
+            if (cards.Count != 15)
+            {
+                throw new Exception($"Environment deck must contain exactly 15 cards, found {cards.Count}");
             }
 
             return cards;

@@ -29,6 +29,21 @@
       "type": "One-Shot",
       "text": "Destroy 1 Ongoing or Equipment card. The environment deals each Target 1 Sonic Damage.",
       "frequency": 2
+    },
+    "Martian Dust Storm": {
+      "type": "Ongoing",
+      "text": "At the start of the environment turn, each Hero Target regains 1 fewer HP.",
+      "frequency": 1
+    },
+    "Radiation Leak": {
+      "type": "Target",
+      "text": "The environment deals 1 Hero Target 2 Toxic Damage.",
+      "frequency": 1
+    },
+    "Sealed Airlock": {
+      "type": "One-Shot",
+      "text": "Each Hero may play a card. Then destroy 1 Ongoing card.",
+      "frequency": 1
     }
   }
 }
