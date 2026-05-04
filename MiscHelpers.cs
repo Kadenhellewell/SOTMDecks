@@ -153,7 +153,7 @@ namespace SOTMDecks
 
             if (cards.Count == 0)
             {
-                Console.WriteLine("Not cards were selected");
+            Console.WriteLine("No cards were selected");
                 return Option.None<List<T>>();
             }
             return Option.Some(cards);

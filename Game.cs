@@ -287,7 +287,7 @@ namespace SOTMDecks
                 }
                 catch (Exception ex )
                 {
-                    Console.WriteLine($"Excpetion executing command: {ex}");
+                    Console.WriteLine($"Exception executing command: {ex}");
                 }
             }
             return true;
