@@ -1,0 +1,40 @@
+{
+  "Name": "Insula Primalis",
+  "Deck": {
+    "Pterodactyl": {
+      "type": "Target",
+      "text": "At the start of the environment turn, this card deals the Hero with the highest HP 2 Melee Damage.",
+      "start of turn": "Deal the Hero with the highest HP 2 Melee Damage.",
+      "HP": 5,
+      "frequency": 3
+    },
+    "Tyrannosaurus Rex": {
+      "type": "Target",
+      "text": "At the end of the environment turn, this card deals the Hero with the lowest HP 4 Melee Damage.",
+      "end of turn": "Deal the Hero with the lowest HP 4 Melee Damage.",
+      "HP": 9,
+      "frequency": 2
+    },
+    "Volcanic Eruption": {
+      "type": "One-Shot",
+      "text": "The environment deals each Target 2 Fire Damage.",
+      "frequency": 3
+    },
+    "Enraged T-Rex": {
+      "type": "One-Shot",
+      "text": "If a Tyrannosaurus Rex is in play, increase its damage by 2 until the start of the next environment turn.",
+      "frequency": 2
+    },
+    "Lush Growth": {
+      "type": "Ongoing",
+      "text": "Reduce Damage dealt to environment Targets by 1.",
+      "frequency": 2
+    },
+    "Primordial Plant": {
+      "type": "Target",
+      "text": "Reduce Damage dealt to environment Targets by 1.",
+      "HP": 3,
+      "frequency": 3
+    }
+  }
+}
