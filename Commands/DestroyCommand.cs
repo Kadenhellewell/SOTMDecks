@@ -8,7 +8,7 @@ namespace SOTMDecks.Commands
 {
     internal class DestroyCommand : Command
     {
-        private List<HeroCard>? cards_;
+        private List<(HeroCard card, int oldHP)>? snapshots_;
 
         public DestroyCommand(Player player) : base(player)
         {
@@ -16,18 +16,24 @@ namespace SOTMDecks.Commands
 
         public override bool Execute()
         {
-            cards_ = MiscHelpers.GetCardsFromInput(player_.PlayArea());
-            if (cards_ is null) return false;
+            List<HeroCard>? cards = MiscHelpers.GetCardsFromInput(player_.PlayArea());
+            if (cards is null) return false;
 
-            return player_.DestroyCards(cards_);
+            // Capture HP before destroying: OnDestroyed resets each card to full HP,
+            // so undo must restore the pre-destroy values rather than leave them maxed.
+            snapshots_ = cards.Select(c => (c, c.HP)).ToList();
+            return player_.DestroyCards(cards);
         }
 
         public override void Undo()
         {
-            if (cards_ is not { } cards) return;
+            if (snapshots_ is null) return;
 
-            foreach (HeroCard card in cards)
+            foreach (var (card, oldHP) in snapshots_)
+            {
                 player_.MoveCard(card, Location.DiscardPile, Location.PlayArea);
+                card.HP = oldHP;
+            }
         }
     }
 }
