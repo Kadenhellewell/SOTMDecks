@@ -227,12 +227,12 @@ namespace SOTMDecks
                     break;
                 case "add modifier":
                 case "add mod":
-                    AddMod();
+                    RunCommand(new AddModCommand(Player));
                     PrintSetup();
                     break;
                 case "remove modifier":
                 case "remove mod":
-                    RemoveMod();
+                    RunCommand(new RemoveModCommand(Player));
                     PrintSetup();
                     break;
                 case "key words":
@@ -346,35 +346,5 @@ namespace SOTMDecks
             cardOpt.ValueOrThrow().Count = countOpt.ValueOr(0);
         }
 
-        private void AddMod()
-        {
-            Option<string> modStr = MiscHelpers.GetStringFromPlayer("Description");
-            if (!modStr.HasValue) return;
-
-            Modifier modToAdd = new Modifier(modStr.ValueOr(""), ConsoleColor.Cyan);
-            Player.Modifiers.Add(modToAdd);
-        }
-
-        public void RemoveMod()
-        {
-            Console.WriteLine("Which one?");
-            for (int i = 0; i < Player.Modifiers.Count; i++)
-            {
-                Console.WriteLine($"\t{i}: {Player.Modifiers[i]}");
-            }
-
-            Option<int> modIndexOpt = MiscHelpers.GetIntFromPlayer("");
-
-            if (!modIndexOpt.HasValue) return;
-
-            int modIndex = modIndexOpt.ValueOr(-1);
-
-            if (modIndex >= Player.Modifiers.Count || modIndex < 0)
-            {
-                Console.WriteLine("Index out of range");
-                return;
-            }
-            Player.RemoveMod(modIndex);
-        }
     }
 }

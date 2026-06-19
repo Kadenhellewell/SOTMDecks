@@ -107,6 +107,11 @@ namespace SOTMDecks
             Modifiers.RemoveAt(index);
         }
 
+        public void InsertMod(int index, Modifier mod)
+        {
+            Modifiers.Insert(index, mod);
+        }
+
         public void RemoveMods(List<Modifier> mods)
         {
             foreach (Modifier mod in mods)
