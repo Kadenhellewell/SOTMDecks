@@ -1,15 +1,17 @@
 # Building SOTMDecks
 
-A cross-platform .NET 6 console app for simulating Sentinels of the Multiverse hero decks.
+A cross-platform .NET 10 console app for simulating Sentinels of the Multiverse hero decks.
 
 ## Prerequisites
 
-- **.NET 6 SDK** (any platform). Verify with `dotnet --version` (should report `6.0.x`).
-  - Linux: `curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 6.0` (installs to `~/.dotnet`; add it to `PATH` and set `DOTNET_ROOT=$HOME/.dotnet`).
-  - Windows: install via the official .NET 6 SDK installer or `winget install Microsoft.DotNet.SDK.6`.
+- **.NET 10 SDK** (any platform). Verify with `dotnet --version` (should report `10.0.x`).
+  - Linux: `curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0` (installs to `~/.dotnet`; add it to `PATH` and set `DOTNET_ROOT=$HOME/.dotnet`).
+  - Windows: install via Visual Studio 2026 (includes the .NET 10 SDK), the official .NET 10 SDK installer, or `winget install Microsoft.DotNet.SDK.10`.
   - macOS: `brew install --cask dotnet-sdk` or use the official installer.
 
 No additional system packages are required — the project depends only on `Newtonsoft.Json` and `Optional`, which `dotnet restore` pulls from NuGet.
+
+> The publish examples below use `-r linux-x64` / `win-x64` / `osx-x64`. On Windows with Visual Studio 2026 you can also just build and run from the IDE.
 
 ## Build
 
@@ -55,7 +57,7 @@ Type `q` at any prompt to quit.
 
 The project copies every `character_files/**/*.json` next to the executable on build and publish, so the published folder is fully self-contained for runtime data.
 
-### Linux (framework-dependent — needs .NET 6 runtime on target)
+### Linux (framework-dependent — needs .NET 10 runtime on target)
 
 ```bash
 dotnet publish -c Release -r linux-x64 --self-contained false -o ./out/linux
