@@ -1,4 +1,5 @@
 ﻿using SOTMDecks.Commands;
+using SOTMDecks.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,69 @@ namespace SOTMDecks
 {
     internal class Game
     {
-        public Game(Player player) 
+        public Game(Player player)
         {
             Player = player;
+            context_ = new GameContext(Player, RunCommand, UndoLast, PrintSetup);
+            registry_ = BuildRegistry();
         }
 
         public Player Player { get; }
-        
+
         private CardCollection<HeroCard> KO = new CardCollection<HeroCard>("Cards removed from the game");
         private Stack<Command> commands = new Stack<Command>();
+
+        // Prototype: a slice of commands now live in the registry; the rest are
+        // still handled by the switch in GetCommand. The registry is consulted first.
+        private readonly CommandRegistry registry_;
+        private readonly GameContext context_;
+
+        private CommandRegistry BuildRegistry()
+        {
+            var registry = new CommandRegistry();
+
+            // Views — read-only, never undoable.
+            registry.Register(new ViewCommand(new[] { "hand" }, "Show your hand",
+                ctx => ctx.Player.PrintLocation(Location.Hand, brief: ctx.Brief)));
+            registry.Register(new ViewCommand(new[] { "play area", "pa" }, "Show the play area",
+                ctx => ctx.Player.PrintLocation(Location.PlayArea, brief: ctx.Brief)));
+            registry.Register(new ViewCommand(new[] { "discard pile", "dp" }, "Show the discard pile",
+                ctx => ctx.Player.PrintLocation(Location.DiscardPile, brief: ctx.Brief)));
+            registry.Register(new ViewCommand(new[] { "targets" }, "Show targets in play",
+                ctx => ctx.Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, ctx.Brief)));
+
+            // Undoable actions — bridge to the Command layer + undo stack.
+            registry.Register(new ActionCommand(new[] { "draw" }, "Draw a card from the top of the deck",
+                ctx => new DrawCommand(ctx.Player, fromBottom: false)));
+            registry.Register(new ActionCommand(new[] { "damage all" }, "Damage the player and every target",
+                ctx => new HPCommand(ctx.Player, HPCommand.Scope.All, isDamage: true),
+                postPrint: ctx =>
+                {
+                    ctx.PrintSetup();
+                    ctx.Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
+                }));
+
+            // Non-undoable mutation, and control commands — same interface.
+            registry.Register(new SimpleCommand(new[] { "shuffle" }, "Shuffle the deck",
+                ctx => ctx.Player.Shuffle()));
+            registry.Register(new SimpleCommand(new[] { "undo" }, "Undo the last action",
+                ctx => ctx.Undo()));
+            registry.Register(new SimpleCommand(new[] { "q", "exit" }, "Quit",
+                _ => { }, keepGoing: false));
+            registry.Register(new SimpleCommand(new[] { "help", "commands" }, "List the commands handled by the registry",
+                _ => PrintHelp()));
+
+            return registry;
+        }
+
+        private void PrintHelp()
+        {
+            MiscHelpers.ColorPrint(ConsoleColor.Cyan, "Registry commands:", newLine: true);
+            foreach (IInputCommand command in registry_.All)
+            {
+                Console.WriteLine($"\t{string.Join(", ", command.Triggers)} — {command.Help}");
+            }
+        }
 
         private void Init()
         {
@@ -98,14 +153,19 @@ namespace SOTMDecks
 
             commandStr = MiscHelpers.ExtractBrief(commandStr, out bool brief);
 
+            // Registry is consulted first; anything it doesn't know falls through
+            // to the switch below (still being migrated).
+            if (registry_.TryGet(commandStr, out IInputCommand inputCommand))
+            {
+                context_.Brief = brief;
+                return inputCommand.Run(context_);
+            }
+
             Command? command = null;
-            
+
             switch (commandStr)
             {
                 // TODO: Implement a "search for the first x of a type" command
-                case "draw":
-                    command = new DrawCommand(Player, fromBottom: false);
-                    break;
                 case "draw bottom":
                     command = new DrawCommand(Player, fromBottom: true);
                     break;
@@ -151,19 +211,8 @@ namespace SOTMDecks
                 case "santa play":
                     command = new SantaPlayCommand(Player);
                     break;
-                case "hand":
-                    Player.PrintLocation(Location.Hand, brief: brief);
-                    break;
                 case "hand powers":
                     Player.PrintLocation(Location.Hand, CardCollection<HeroCard>.Filter.POWER);
-                    break;
-                case "play area":
-                case "pa":
-                    Player.PrintLocation(Location.PlayArea, brief: brief);
-                    break;
-                case "discard pile":
-                case "dp":
-                    Player.PrintLocation(Location.DiscardPile, brief: brief);
                     break;
                 case "powers":
                     Player.PrintPowers(brief);
@@ -174,18 +223,12 @@ namespace SOTMDecks
                 case "end":
                     Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.END, brief);
                     break;
-                case "targets":
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief);
-                    break;
                 case "reveal":
                     RevealCards();
                     break;
                 case "discard pile to deck":
                 case "dp to deck":
                     Player.ShuffleDiscardIntoDeck();
-                    break;
-                case "shuffle":
-                    Player.Shuffle();
                     break;
                 case "damage":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.Player, isDamage: true));
@@ -197,11 +240,6 @@ namespace SOTMDecks
                     break;
                 case "damage cards":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.Cards, isDamage: true));
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
-                    break;
-                case "damage all":
-                    RunCommand(new HPCommand(Player, HPCommand.Scope.All, isDamage: true));
-                    PrintSetup();
                     Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "heal":
@@ -234,25 +272,6 @@ namespace SOTMDecks
                 case "key words":
                     PrintKeyWords();
                     break;
-                case "undo":
-                    if (commands.Count > 0)
-                    {
-                        try
-                        {
-                            commands.Pop().Undo();
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Exception undoing command: {ex}");
-                        }
-                    }
-                        
-                    else
-                        Console.WriteLine("No commands to undo");
-                    break;
-                case "q":
-                case "exit":
-                    return false;
                 case "":
                     PrintSetup();
                     break;
@@ -285,6 +304,25 @@ namespace SOTMDecks
             catch (Exception ex)
             {
                 Console.WriteLine($"Exception executing command: {ex}");
+            }
+        }
+
+        /// <summary>Undoes the most recent command, if any.</summary>
+        private void UndoLast()
+        {
+            if (commands.Count == 0)
+            {
+                Console.WriteLine("No commands to undo");
+                return;
+            }
+
+            try
+            {
+                commands.Pop().Undo();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception undoing command: {ex}");
             }
         }
 
