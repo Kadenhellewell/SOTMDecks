@@ -215,7 +215,7 @@ namespace SOTMDecks
             }
             else if (dest == Location.BottomOfDeck)
             {
-                PlayerDeck.Insert(PlayerDeck.GetCount() - 1, card);
+                PlayerDeck.Add(card);
             }
             else
             {

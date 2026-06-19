@@ -19,9 +19,23 @@ namespace SOTMDecks
             NONE
         }
 
-        public static void ColorPrint(ConsoleColor coler, string message, bool newLine = false)
+        /// <summary>
+        /// Strips a trailing " b" brief flag off a command string, setting <paramref name="brief"/> accordingly.
+        /// </summary>
+        public static string ExtractBrief(string commandStr, out bool brief)
         {
-            Console.ForegroundColor = coler;
+            brief = false;
+            if (commandStr.EndsWith(" b"))
+            {
+                brief = true;
+                commandStr = commandStr.Substring(0, commandStr.Length - 2).Trim();
+            }
+            return commandStr;
+        }
+
+        public static void ColorPrint(ConsoleColor color, string message, bool newLine = false)
+        {
+            Console.ForegroundColor = color;
             Console.Write(message);
             Console.ResetColor();
             if (newLine) Console.WriteLine();

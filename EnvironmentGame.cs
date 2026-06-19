@@ -44,12 +44,7 @@ namespace SOTMDecks
             string? commandStr = Console.ReadLine()?.ToLower().Trim();
             if (commandStr is null) return true;
 
-            bool brief = false;
-            if (commandStr.EndsWith(" b"))
-            {
-                brief = true;
-                commandStr = commandStr.Trim('b').Trim();
-            }
+            commandStr = MiscHelpers.ExtractBrief(commandStr, out bool brief);
 
             switch (commandStr)
             {

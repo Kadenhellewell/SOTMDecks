@@ -68,6 +68,7 @@ namespace SOTMDecks
         public string Text { get; protected init; }
         public List<CustomMechanic> CustomMechanics { get; protected init; } = new();
         public bool IsTarget { get; protected init; }
+        public List<Modifier> Modifiers { get; } = new List<Modifier>();
 
         protected int hp_;
         public int HP

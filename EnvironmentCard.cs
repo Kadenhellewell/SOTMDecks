@@ -42,17 +42,13 @@ namespace SOTMDecks
                 foreach (JObject mod in (JArray)json.Value["modifiers"])
                 {
                     string text = mod.GetValue("text").ToString();
-                    try
+                    string colorStr = mod.GetValue("color")?.ToString() ?? "Cyan";
+                    if (!Enum.TryParse(colorStr, out ConsoleColor color))
                     {
-                        Enum.TryParse(mod.GetValue("color").ToString(), out ConsoleColor color);
-                        Modifiers.Add(new Modifier(text, color));
+                        Console.WriteLine($"'{colorStr}' is not a valid color for a modifier on '{Name}'. Defaulting to Cyan.");
+                        color = ConsoleColor.Cyan;
                     }
-                    catch (ArgumentException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine($"'{mod.GetValue("color")}' is not a valid color");
-                        Environment.Exit(1);
-                    }
+                    Modifiers.Add(new Modifier(text, color));
                 }
             }
         }
@@ -132,7 +128,5 @@ namespace SOTMDecks
             PrintMechanics(MiscHelpers.Timing.DESTROY, newline: true);
             Console.WriteLine();
         }
-
-        public List<Modifier> Modifiers { get; } = new List<Modifier>();
     }
 }
