@@ -1,17 +1,14 @@
-using Optional;
 using System;
 
 namespace SOTMDecks.Commands
 {
     internal class RemoveModCommand : Command
     {
-        private Option<Modifier> mod_;
-        private int index_;
+        private Modifier? mod_;
+        private int index_ = -1;
 
         public RemoveModCommand(Player player) : base(player)
         {
-            mod_ = Option.None<Modifier>();
-            index_ = -1;
         }
 
         public override bool Execute()
@@ -28,10 +25,8 @@ namespace SOTMDecks.Commands
                 Console.WriteLine($"\t{i}: {player_.Modifiers[i]}");
             }
 
-            Option<int> indexOpt = MiscHelpers.GetIntFromPlayer("");
-            if (!indexOpt.HasValue) return false;
+            if (MiscHelpers.GetIntFromPlayer("") is not int index) return false;
 
-            int index = indexOpt.ValueOrThrow();
             if (index < 0 || index >= player_.Modifiers.Count)
             {
                 Console.WriteLine("Index out of range");
@@ -39,7 +34,7 @@ namespace SOTMDecks.Commands
             }
 
             index_ = index;
-            mod_ = Option.Some(player_.Modifiers[index]);
+            mod_ = player_.Modifiers[index];
             player_.RemoveMod(index);
             return true;
         }
@@ -47,7 +42,9 @@ namespace SOTMDecks.Commands
         public override void Undo()
         {
             // Restore the modifier at its original position.
-            if (mod_.HasValue) player_.InsertMod(index_, mod_.ValueOrThrow());
+            if (mod_ is not { } mod) return;
+
+            player_.InsertMod(index_, mod);
         }
     }
 }

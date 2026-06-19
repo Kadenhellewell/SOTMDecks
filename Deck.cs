@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using Optional;
 
 namespace SOTMDecks
 {
@@ -19,12 +18,12 @@ namespace SOTMDecks
             cards_ = cards_.OrderBy(_ => Guid.NewGuid()).ToList();
         }
 
-        public Option<T> Draw(bool fromBottom = false)
+        public T? Draw(bool fromBottom = false)
         {
             if (cards_.Count == 0)
             {
                 Console.WriteLine("No cards to draw");
-                return Option.None<T>();
+                return null;
             }
 
             T drawn;
@@ -38,18 +37,18 @@ namespace SOTMDecks
                 drawn = cards_.First();
                 cards_.RemoveAt(0);
             }
-            return Option.Some(drawn);
+            return drawn;
         }
 
-        public Option<List<T>> GetTopCards(int n)
+        public List<T>? GetTopCards(int n)
         {
             if (cards_.Count < n)
             {
                 Console.WriteLine($"Fewer than {n} cards");
-                return Option.None<List<T>>();
+                return null;
             }
 
-            return Option.Some(cards_.Take(n).ToList());
+            return cards_.Take(n).ToList();
         }
 
         public void RevealCards(int num)

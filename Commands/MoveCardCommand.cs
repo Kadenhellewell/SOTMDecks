@@ -1,4 +1,3 @@
-﻿using Optional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +10,16 @@ namespace SOTMDecks.Commands
     {
         private Location src_;
         private Location dest_;
-        private Option<HeroCard> card_;
-        private HeroCard Card_ => card_.ValueOrThrow();
+        private HeroCard? card_;
 
         public MoveCardCommand(Player player) : base(player)
         {
-            card_ = Option.None<HeroCard>();
         }
 
         public override bool Execute()
         {
-            Option<Location> srcOpt = MiscHelpers.GetLocationFromPlayer("Select the source location:");
-            if (!srcOpt.HasValue) return false;
-            src_ = srcOpt.ValueOrThrow();
+            if (MiscHelpers.GetLocationFromPlayer("Select the source location:") is not Location src) return false;
+            src_ = src;
 
             if (src_ == Location.TopOfDeck)
             {
@@ -37,19 +33,21 @@ namespace SOTMDecks.Commands
                 return false;
             }
 
-            card_ = MiscHelpers.GetCardFromIndex(player_.GetLocation(src_));
-            if (!card_.HasValue) return false;
+            HeroCard? card = MiscHelpers.GetCardFromIndex(player_.GetLocation(src_));
+            if (card is null) return false;
 
-            Option<Location> destOpt = MiscHelpers.GetLocationFromPlayer("Select the destination location:");
-            if (!destOpt.HasValue) return false;
-            dest_ = destOpt.ValueOrThrow();
+            if (MiscHelpers.GetLocationFromPlayer("Select the destination location:") is not Location dest) return false;
+            dest_ = dest;
 
-            return player_.MoveCard(Card_, src_, dest_);
+            card_ = card;
+            return player_.MoveCard(card, src_, dest_);
         }
 
         public override void Undo()
         {
-            player_.MoveCard(Card_, dest_, src_);
+            if (card_ is not { } card) return;
+
+            player_.MoveCard(card, dest_, src_);
         }
     }
 }

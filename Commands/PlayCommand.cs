@@ -1,39 +1,39 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Optional;
 
 namespace SOTMDecks.Commands
 {
     internal class PlayCommand : Command
     {
-        private Option<HeroCard> card_;
-        private HeroCard Card_ => card_.ValueOrThrow();
+        private HeroCard? card_;
 
         public PlayCommand(Player player) : base(player)
         {
-            card_ = Option.None<HeroCard>();
         }
 
         public override bool Execute()
         {
-            card_ = MiscHelpers.GetCardFromIndex(player_.Hand());
-            if (!card_.HasValue) return false;
+            HeroCard? card = MiscHelpers.GetCardFromIndex(player_.Hand());
+            if (card is null) return false;
 
-            return player_.PlayCard(Card_);
+            card_ = card;
+            return player_.PlayCard(card);
         }
 
         public override void Undo()
         {
-            if (Card_.IsOneshot())
+            if (card_ is not { } card) return;
+
+            if (card.IsOneshot())
             {
-                player_.MoveCard(Card_, Location.DiscardPile, Location.Hand);
+                player_.MoveCard(card, Location.DiscardPile, Location.Hand);
             }
             else
             {
-                player_.MoveCard(Card_, Location.PlayArea, Location.Hand);
+                player_.MoveCard(card, Location.PlayArea, Location.Hand);
             }
         }
     }

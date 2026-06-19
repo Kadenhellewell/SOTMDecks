@@ -28,8 +28,10 @@ namespace SOTMDecks.Commands
 
         public override void Undo()
         {
-            player_.Hand().Remove(card_);
-            player_.PlayerDeck.Add(card_);
+            if (card_ is not { } card) return;
+
+            player_.Hand().Remove(card);
+            player_.PlayerDeck.Add(card);
             player_.Shuffle();
         }
     }

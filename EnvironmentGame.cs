@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Optional;
 
 namespace SOTMDecks
 {
@@ -135,14 +134,13 @@ namespace SOTMDecks
                 ShuffleDiscardIntoDeck();
             }
 
-            Option<EnvironmentCard> drawn = EnvDeck.Draw();
-            if (!drawn.HasValue)
+            EnvironmentCard? card = EnvDeck.Draw();
+            if (card is null)
             {
                 Console.WriteLine("Could not draw a card");
                 return;
             }
 
-            EnvironmentCard card = drawn.ValueOrThrow();
             PlayArea.Add(card);
             Console.WriteLine("Revealed:");
             card.PrettyPrint();
@@ -150,10 +148,9 @@ namespace SOTMDecks
 
         private void DiscardFromPlayArea()
         {
-            Option<EnvironmentCard> cardOpt = MiscHelpers.GetCardFromIndex(PlayArea);
-            if (!cardOpt.HasValue) return;
+            EnvironmentCard? card = MiscHelpers.GetCardFromIndex(PlayArea);
+            if (card is null) return;
 
-            EnvironmentCard card = cardOpt.ValueOrThrow();
             PlayArea.Remove(card);
             DiscardPile.Add(card);
             Console.WriteLine($"Discarded {card.Name}");
@@ -161,10 +158,9 @@ namespace SOTMDecks
 
         private void Destroy()
         {
-            Option<EnvironmentCard> cardOpt = MiscHelpers.GetCardFromIndex(PlayArea);
-            if (!cardOpt.HasValue) return;
+            EnvironmentCard? card = MiscHelpers.GetCardFromIndex(PlayArea);
+            if (card is null) return;
 
-            EnvironmentCard card = cardOpt.ValueOrThrow();
             PlayArea.Remove(card);
             DiscardPile.Add(card);
             Console.WriteLine($"Destroyed {card.Name}");
@@ -176,10 +172,9 @@ namespace SOTMDecks
 
         private void RemoveCard()
         {
-            Option<EnvironmentCard> cardOpt = MiscHelpers.GetCardFromIndex(PlayArea);
-            if (!cardOpt.HasValue) return;
+            EnvironmentCard? card = MiscHelpers.GetCardFromIndex(PlayArea);
+            if (card is null) return;
 
-            EnvironmentCard card = cardOpt.ValueOrThrow();
             PlayArea.Remove(card);
             KO.Add(card);
             Console.WriteLine($"Removed {card.Name} from the game");
@@ -187,20 +182,18 @@ namespace SOTMDecks
 
         private void DamageCard()
         {
-            Option<EnvironmentCard> cardOpt = MiscHelpers.GetCardFromIndex(PlayArea);
-            if (!cardOpt.HasValue) return;
+            EnvironmentCard? card = MiscHelpers.GetCardFromIndex(PlayArea);
+            if (card is null) return;
 
-            Option<int> dmgOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!dmgOpt.HasValue) return;
+            if (MiscHelpers.GetIntFromPlayer("How much?") is not int dmg) return;
 
-            EnvironmentCard card = cardOpt.ValueOrThrow();
             if (card.MaxHP == 0)
             {
                 Console.WriteLine("That card is not a target");
                 return;
             }
 
-            card.HP -= dmgOpt.ValueOr(0);
+            card.HP -= dmg;
             if (card.HP <= 0)
             {
                 Console.WriteLine($"{card.Name} has died. If applicable, destroy it.");
@@ -210,14 +203,12 @@ namespace SOTMDecks
 
         private void DamageCards()
         {
-            Option<List<EnvironmentCard>> cardsOpt = MiscHelpers.GetCardsFromInput(PlayArea);
-            if (!cardsOpt.HasValue) return;
+            List<EnvironmentCard>? cards = MiscHelpers.GetCardsFromInput(PlayArea);
+            if (cards is null) return;
 
-            Option<int> dmgOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!dmgOpt.HasValue) return;
+            if (MiscHelpers.GetIntFromPlayer("How much?") is not int dmg) return;
 
-            int dmg = dmgOpt.ValueOr(0);
-            foreach (EnvironmentCard card in cardsOpt.ValueOrThrow())
+            foreach (EnvironmentCard card in cards)
             {
                 if (card.MaxHP == 0)
                 {
@@ -235,10 +226,8 @@ namespace SOTMDecks
 
         private void DamageAll()
         {
-            Option<int> dmgOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!dmgOpt.HasValue) return;
+            if (MiscHelpers.GetIntFromPlayer("How much?") is not int dmg) return;
 
-            int dmg = dmgOpt.ValueOr(0);
             foreach (EnvironmentCard card in PlayArea.GetCards())
             {
                 if (card.MaxHP == 0) continue;
@@ -254,33 +243,29 @@ namespace SOTMDecks
 
         private void HealCard()
         {
-            Option<EnvironmentCard> cardOpt = MiscHelpers.GetCardFromIndex(PlayArea);
-            if (!cardOpt.HasValue) return;
+            EnvironmentCard? card = MiscHelpers.GetCardFromIndex(PlayArea);
+            if (card is null) return;
 
-            Option<int> healOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!healOpt.HasValue) return;
+            if (MiscHelpers.GetIntFromPlayer("How much?") is not int heal) return;
 
-            EnvironmentCard card = cardOpt.ValueOrThrow();
             if (card.MaxHP == 0)
             {
                 Console.WriteLine("That card is not a target");
                 return;
             }
 
-            card.HP += healOpt.ValueOr(0);
+            card.HP += heal;
             if (card.HP > card.MaxHP) card.HP = card.MaxHP;
         }
 
         private void HealCards()
         {
-            Option<List<EnvironmentCard>> cardsOpt = MiscHelpers.GetCardsFromInput(PlayArea);
-            if (!cardsOpt.HasValue) return;
+            List<EnvironmentCard>? cards = MiscHelpers.GetCardsFromInput(PlayArea);
+            if (cards is null) return;
 
-            Option<int> healOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!healOpt.HasValue) return;
+            if (MiscHelpers.GetIntFromPlayer("How much?") is not int heal) return;
 
-            int heal = healOpt.ValueOr(0);
-            foreach (EnvironmentCard card in cardsOpt.ValueOrThrow())
+            foreach (EnvironmentCard card in cards)
             {
                 if (card.MaxHP == 0)
                 {
@@ -294,10 +279,8 @@ namespace SOTMDecks
 
         private void HealAll()
         {
-            Option<int> healOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!healOpt.HasValue) return;
+            if (MiscHelpers.GetIntFromPlayer("How much?") is not int heal) return;
 
-            int heal = healOpt.ValueOr(0);
             foreach (EnvironmentCard card in PlayArea.GetCards())
             {
                 if (card.MaxHP == 0) continue;

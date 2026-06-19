@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using Optional;
 
 namespace SOTMDecks
 {
@@ -176,12 +175,12 @@ namespace SOTMDecks
 
             for (int i = 0; i < num; ++i)
             {
-                Option<HeroCard> card = PlayerDeck.Draw();
-                if (!card.HasValue) return false;
+                HeroCard? card = PlayerDeck.Draw();
+                if (card is null) return false;
 
-                CardGroups[Location.DiscardPile].Add(card.ValueOrThrow());
+                CardGroups[Location.DiscardPile].Add(card);
                 Console.Write("Discarded ");
-                MiscHelpers.ColorPrint(ConsoleColor.Green, card.ValueOrThrow().Name, newLine: true);
+                MiscHelpers.ColorPrint(ConsoleColor.Green, card.Name, newLine: true);
             }
 
             return true;
@@ -321,17 +320,15 @@ namespace SOTMDecks
             return CardGroups[Location.SantasBag].Remove(card);
         }
 
-        public Option<HeroCard> Draw(bool verbose = true, bool fromBottom = false)
+        public HeroCard? Draw(bool verbose = true, bool fromBottom = false)
         {
-            Option<HeroCard> newCardOpt = PlayerDeck.Draw(fromBottom);
-            if (!newCardOpt.HasValue) return Option.None<HeroCard>();
-
-            HeroCard newCard = newCardOpt.ValueOrThrow();
+            HeroCard? newCard = PlayerDeck.Draw(fromBottom);
+            if (newCard is null) return null;
 
             CardGroups[Location.Hand].Add(newCard);
             if (verbose)
                 Console.WriteLine($"Drew {newCard.Name} [{newCard.TypeAsString()}]");
-            return newCardOpt;
+            return newCard;
         }
 
         public void UndoDraw(HeroCard card, bool fromBottom)

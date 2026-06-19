@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Optional;
 
 namespace SOTMDecks
 {
@@ -351,10 +350,7 @@ namespace SOTMDecks
 
         public void RevealCards()
         {
-            Option<int> numOpt = MiscHelpers.GetIntFromPlayer("How many?");
-            if (!numOpt.HasValue) return;
-
-            int num = numOpt.ValueOr(0);
+            if (MiscHelpers.GetIntFromPlayer("How many?") is not int num) return;
 
             if (num <= 0)
             {

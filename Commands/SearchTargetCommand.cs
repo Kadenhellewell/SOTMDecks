@@ -1,4 +1,3 @@
-﻿using Optional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +8,10 @@ namespace SOTMDecks.Commands
 {
     internal class SearchTargetCommand : Command
     {
-        private Option<HeroCard> card_;
-        private HeroCard Card_ => card_.ValueOrThrow();
+        private HeroCard? card_;
 
         public SearchTargetCommand(Player player) : base(player)
         {
-            card_ = Option.None<HeroCard>();
         }
 
         public override bool Execute()
@@ -27,18 +24,21 @@ namespace SOTMDecks.Commands
                 return false;
             }
 
-            card_ = MiscHelpers.GetCardFromIndex(col, verbose: true);
-            if (!card_.HasValue) return false;
+            HeroCard? card = MiscHelpers.GetCardFromIndex(col, verbose: true);
+            if (card is null) return false;
 
-            player_.MoveCardFromDeckToHand(Card_);
+            card_ = card;
+            player_.MoveCardFromDeckToHand(card);
 
             return true;
         }
 
         public override void Undo()
         {
-            player_.Hand().Remove(Card_);
-            player_.PlayerDeck.Add(Card_);
+            if (card_ is not { } card) return;
+
+            player_.Hand().Remove(card);
+            player_.PlayerDeck.Add(card);
             player_.Shuffle();
         }
     }

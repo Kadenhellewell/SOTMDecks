@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Optional;
 
 namespace SOTMDecks.Commands
 {
@@ -24,23 +23,22 @@ namespace SOTMDecks.Commands
         {
             if (fromDeck_)
             {
-                Option<int> num = MiscHelpers.GetIntFromPlayer("How many?");
-                if (!num.HasValue) return false;
+                if (MiscHelpers.GetIntFromPlayer("How many?") is not int num) return false;
 
-                num_ = num.ValueOr(0);
-                Option<List<HeroCard>> cards = player_.PlayerDeck.GetTopCards(num_);
-                if (!cards.HasValue || cards.ValueOr(new List<HeroCard>()).Count == 0) return false;
+                num_ = num;
+                List<HeroCard>? cards = player_.PlayerDeck.GetTopCards(num_);
+                if (cards is null || cards.Count == 0) return false;
 
-                cards_ = cards.ValueOr(new List<HeroCard>()).ToList();
+                cards_ = cards.ToList();
                 return player_.DiscardFromDeck(num_);
             }
             else
             {
-                Option<List<HeroCard>> cards = MiscHelpers.GetCardsFromInput(player_.Hand());
-                if (!cards.HasValue) return false;
+                List<HeroCard>? cards = MiscHelpers.GetCardsFromInput(player_.Hand());
+                if (cards is null) return false;
 
-                num_ = cards.ValueOr(new List<HeroCard>()).Count;
-                cards_ = cards.ValueOr(new List<HeroCard>()).ToList();
+                num_ = cards.Count;
+                cards_ = cards.ToList();
                 bool result = true;
                 foreach (HeroCard card in cards_)
                 {

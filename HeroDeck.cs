@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using Optional;
 
 namespace SOTMDecks
 {
@@ -56,13 +54,13 @@ namespace SOTMDecks
                         Console.WriteLine($"{i}: {title} - Power: {innatePower}");
                     }
 
-                    Option<int> inputChoice;
+                    int? inputChoice;
                     do
                     {
                         inputChoice = MiscHelpers.GetIntFromPlayer("Select Identity by number:");
-                    } while (!inputChoice.HasValue || inputChoice.ValueOr(-1) < 0 || inputChoice.ValueOr(0) >= identitiesArray.Count);
+                    } while (inputChoice is not int pick || pick < 0 || pick >= identitiesArray.Count);
 
-                    choice = inputChoice.ValueOr(0);
+                    choice = inputChoice.Value;
                 }
 
                 var chosen = identitiesArray[(int)choice];

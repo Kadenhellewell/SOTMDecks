@@ -1,4 +1,3 @@
-﻿using Optional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,32 +8,33 @@ namespace SOTMDecks.Commands
 {
     internal class SantaCommand : Command
     {
-        private Option<HeroCard> card_;
-        private HeroCard Card_ => card_.ValueOrThrow();
+        private HeroCard? card_;
 
         public SantaCommand(Player player) : base(player)
         {
-            card_ = Option.None<HeroCard>();
         }
 
         public override bool Execute()
         {
-            card_ = player_.PlayerDeck.Draw();
-            if (!card_.HasValue) return false;
+            HeroCard? card = player_.PlayerDeck.Draw();
+            if (card is null) return false;
 
-            player_.AddCardToSantasBag(Card_);
+            card_ = card;
+            player_.AddCardToSantasBag(card);
             return true;
         }
 
         public override void Undo()
         {
-            if (!player_.RemoveCardFromSantasBag(Card_))
+            if (card_ is not { } card) return;
+
+            if (!player_.RemoveCardFromSantasBag(card))
             {
                 Console.WriteLine("Unable to remove card from Santa's bag");
                 return;
             }
 
-            player_.PlayerDeck.Insert(0, Card_);
+            player_.PlayerDeck.Insert(0, card);
         }
     }
 }

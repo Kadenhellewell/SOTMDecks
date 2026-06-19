@@ -1,4 +1,3 @@
-using Optional;
 using System;
 using System.Collections.Generic;
 
@@ -48,60 +47,53 @@ namespace SOTMDecks.Commands
             }
         }
 
-        private Option<int> GetAmount()
+        private int? GetAmount()
         {
-            Option<int> amountOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!amountOpt.HasValue) return Option.None<int>();
+            if (MiscHelpers.GetIntFromPlayer("How much?") is not int amount) return null;
 
-            int amount = amountOpt.ValueOrThrow();
             if (amount <= 0)
             {
                 Console.WriteLine("Amount must be positive");
-                return Option.None<int>();
+                return null;
             }
 
-            return Option.Some(amount);
+            return amount;
         }
 
         private bool ExecutePlayer()
         {
-            Option<int> amountOpt = GetAmount();
-            if (!amountOpt.HasValue) return false;
+            if (GetAmount() is not int amount) return false;
 
             playerOldHP_ = player_.GetHP();
-            ApplyToPlayer(amountOpt.ValueOrThrow());
+            ApplyToPlayer(amount);
             return true;
         }
 
         private bool ExecuteCard()
         {
-            Option<HeroCard> cardOpt = MiscHelpers.GetCardFromIndex(player_.PlayArea());
-            if (!cardOpt.HasValue) return false;
+            HeroCard? card = MiscHelpers.GetCardFromIndex(player_.PlayArea());
+            if (card is null) return false;
 
-            HeroCard card = cardOpt.ValueOrThrow();
             if (card.MaxHP == 0)
             {
                 Console.WriteLine("That card is not a target");
                 return false;
             }
 
-            Option<int> amountOpt = GetAmount();
-            if (!amountOpt.HasValue) return false;
+            if (GetAmount() is not int amount) return false;
 
-            ApplyToCard(card, amountOpt.ValueOrThrow());
+            ApplyToCard(card, amount);
             return true;
         }
 
         private bool ExecuteCards()
         {
-            Option<List<HeroCard>> cardsOpt = MiscHelpers.GetCardsFromInput(player_.PlayArea());
-            if (!cardsOpt.HasValue) return false;
+            List<HeroCard>? cards = MiscHelpers.GetCardsFromInput(player_.PlayArea());
+            if (cards is null) return false;
 
-            Option<int> amountOpt = GetAmount();
-            if (!amountOpt.HasValue) return false;
+            if (GetAmount() is not int amount) return false;
 
-            int amount = amountOpt.ValueOrThrow();
-            foreach (HeroCard card in cardsOpt.ValueOrThrow())
+            foreach (HeroCard card in cards)
             {
                 if (card.MaxHP == 0)
                 {
@@ -118,10 +110,7 @@ namespace SOTMDecks.Commands
 
         private bool ExecuteAll()
         {
-            Option<int> amountOpt = GetAmount();
-            if (!amountOpt.HasValue) return false;
-
-            int amount = amountOpt.ValueOrThrow();
+            if (GetAmount() is not int amount) return false;
 
             playerOldHP_ = player_.GetHP();
             ApplyToPlayer(amount);
