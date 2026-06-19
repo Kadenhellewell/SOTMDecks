@@ -108,11 +108,6 @@ namespace SOTMDecks
             }
             PrintMechanics(MiscHelpers.Timing.DESTROY);
 
-            if (Count != 0)
-            {
-                MiscHelpers.ColorPrint(ConsoleColor.Magenta, " Count: ");
-                Console.Write($"{Count}");
-            }
             Console.WriteLine();
         }
 
@@ -169,18 +164,12 @@ namespace SOTMDecks
             }
             PrintMechanics(MiscHelpers.Timing.DESTROY, newline: true);
 
-            if (Count != 0)
-            {
-                MiscHelpers.ColorPrint(ConsoleColor.Magenta, "\tCount: ");
-                Console.WriteLine($"{Count}");
-            }
             Console.WriteLine();
         }
 
-       
+
         public string OnEntry { get; }
         public string Power { get; }
-        public int Count { get; set; }
 
         private int startingHP_;
     }

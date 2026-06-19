@@ -187,10 +187,6 @@ namespace SOTMDecks
                 case "shuffle":
                     Player.Shuffle();
                     break;
-                case "set count":
-                    SetCount();
-                    Player.PrintLocation(Location.PlayArea);
-                    break;
                 case "damage":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.Player, isDamage: true));
                     PrintSetup();
@@ -333,17 +329,6 @@ namespace SOTMDecks
                 Player.ShuffleDiscardIntoDeck();
             }
             Player.RevealCards(num);
-        }
-
-        private void SetCount()
-        {
-            Option<HeroCard> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
-            if (!cardOpt.HasValue) return;
-
-            Option<int> countOpt = MiscHelpers.GetIntFromPlayer("Set count to what?");
-            if (!countOpt.HasValue) return;
-
-            cardOpt.ValueOrThrow().Count = countOpt.ValueOr(0);
         }
 
     }
