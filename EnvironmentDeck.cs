@@ -36,7 +36,9 @@ namespace SOTMDecks
             List<EnvironmentCard> cards = new List<EnvironmentCard>();
             foreach (var card in json)
             {
-                for (int i = 0; i < int.Parse(card.Value!["frequency"]!.ToString()); i++)
+                int frequency = int.Parse(card.Value?["frequency"]?.ToString()
+                    ?? throw new Exception($"Card '{card.Key}' is missing 'frequency'"));
+                for (int i = 0; i < frequency; i++)
                 {
                     cards.Add(new EnvironmentCard(card));
                 }

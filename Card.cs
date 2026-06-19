@@ -60,12 +60,12 @@ namespace SOTMDecks
         public abstract void PrintText();
         public abstract void PrettyPrint(bool brief = false);
 
-        public string Name { get; protected init; }
-        public List<string> Type { get; protected init; }
-        public string OnDestroy { get; protected init; }
-        public string StartOfTurn { get; protected init; }
-        public string EndOfTurn { get; protected init; }
-        public string Text { get; protected init; }
+        public string Name { get; protected init; } = "";
+        public List<string> Type { get; protected init; } = new();
+        public string OnDestroy { get; protected init; } = "";
+        public string StartOfTurn { get; protected init; } = "";
+        public string EndOfTurn { get; protected init; } = "";
+        public string Text { get; protected init; } = "";
         public List<CustomMechanic> CustomMechanics { get; protected init; } = new();
         public bool IsTarget { get; protected init; }
         public List<Modifier> Modifiers { get; } = new List<Modifier>();

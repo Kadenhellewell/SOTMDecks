@@ -11,19 +11,21 @@ namespace SOTMDecks
     {
         public EnvironmentCard(KeyValuePair<string, JToken?> json) : base(json)
         {
+            JToken value = json.Value ?? throw new Exception($"Card '{json.Key}' has no definition");
+
             Name = json.Key;
-            var typeStr = json.Value["type"]?.ToString() ?? throw new Exception($"Card {Name} doesn't provide a type");
+            string typeStr = value["type"]?.ToString() ?? throw new Exception($"Card {Name} doesn't provide a type");
             Type = typeStr.Split(',')
                           .Select(t => t.Trim())
                           .Where(t => !string.IsNullOrEmpty(t))
                           .ToList();
 
-            Text = json.Value["text"] is null ? "" : json.Value["text"].ToString();
-            OnDestroy = json.Value["on destroy"] is null ? "" : json.Value["on destroy"].ToString();
-            StartOfTurn = json.Value["start of turn"] is null ? "" : json.Value["start of turn"].ToString();
-            EndOfTurn = json.Value["end of turn"] is null ? "" : json.Value["end of turn"].ToString();
+            Text = value["text"]?.ToString() ?? "";
+            OnDestroy = value["on destroy"]?.ToString() ?? "";
+            StartOfTurn = value["start of turn"]?.ToString() ?? "";
+            EndOfTurn = value["end of turn"]?.ToString() ?? "";
 
-            if (json.Value["custom"] is JArray customArray)
+            if (value["custom"] is JArray customArray)
             {
                 foreach (JObject cm in customArray)
                 {
@@ -31,17 +33,16 @@ namespace SOTMDecks
                 }
             }
 
-
-            MaxHP = json.Value["HP"] is null ? 0 : int.Parse(json.Value["HP"].ToString());
+            MaxHP = value["HP"] is { } hp ? int.Parse(hp.ToString()) : 0;
             hp_ = MaxHP;
 
             IsTarget = MaxHP > 0;
 
-            if (json.Value["modifiers"] is not null)
+            if (value["modifiers"] is JArray modifierArray)
             {
-                foreach (JObject mod in (JArray)json.Value["modifiers"])
+                foreach (JObject mod in modifierArray)
                 {
-                    string text = mod.GetValue("text").ToString();
+                    string text = mod.GetValue("text")?.ToString() ?? "";
                     string colorStr = mod.GetValue("color")?.ToString() ?? "Cyan";
                     if (!Enum.TryParse(colorStr, out ConsoleColor color))
                     {
