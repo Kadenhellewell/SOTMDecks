@@ -96,14 +96,7 @@ namespace SOTMDecks
             string? commandStr = Console.ReadLine()?.ToLower().Trim();
             if (commandStr is null) return true;
 
-            bool brief = false;
-            if (commandStr.EndsWith(" b"))
-            {
-                brief = true;
-                commandStr = commandStr.Trim('b');
-                commandStr = commandStr.Trim();
-
-            }
+            commandStr = MiscHelpers.ExtractBrief(commandStr, out bool brief);
 
             Command? command = null;
             
@@ -512,17 +505,6 @@ namespace SOTMDecks
                 return;
             }
             Player.RemoveMod(modIndex);
-        }
-
-        private Option<Modifier> ModifierPresent(string desc)
-        {
-            foreach (Modifier mod in Player.Modifiers)
-            {
-                if (mod.Description == desc)
-                    return Option.Some(mod);
-            }
-
-            return Option.None<Modifier>();
         }
     }
 }

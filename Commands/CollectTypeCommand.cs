@@ -46,9 +46,12 @@ namespace SOTMDecks.Commands
 
         public override void Undo()
         {
-            foreach (var card in cards_)
+            if (!cards_.HasValue) return;
+
+            foreach (HeroCard card in cards_.ValueOrThrow().GetCards())
             {
-                player_.MoveAllCards(Location.Hand, Location.Deck);
+                player_.Hand().Remove(card);
+                player_.PlayerDeck.Add(card);
             }
             player_.Shuffle();
         }

@@ -30,7 +30,7 @@ namespace SOTMDecks
             string timingStr = (json.GetValue("timing")?.ToString() ?? "none").ToUpper();
             if (!Enum.TryParse(timingStr, out MiscHelpers.Timing parsedTiming))
             {
-                Console.WriteLine($"'{timingStr}' is not a vlid Timing for custom mechanic '{Name}'. Defaulting to NONE.");
+                Console.WriteLine($"'{timingStr}' is not a valid Timing for custom mechanic '{Name}'. Defaulting to NONE.");
                 parsedTiming = MiscHelpers.Timing.NONE;
             }
             Timing = parsedTiming;
