@@ -192,36 +192,36 @@ namespace SOTMDecks
                     Player.PrintLocation(Location.PlayArea);
                     break;
                 case "damage":
-                    DealDamage();
+                    RunCommand(new HPCommand(Player, HPCommand.Scope.Player, isDamage: true));
                     PrintSetup();
                     break;
                 case "damage card":
-                    DamageCard();
+                    RunCommand(new HPCommand(Player, HPCommand.Scope.Card, isDamage: true));
                     Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "damage cards":
-                    DamageCards();
+                    RunCommand(new HPCommand(Player, HPCommand.Scope.Cards, isDamage: true));
                     Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "damage all":
-                    DamageAll();
+                    RunCommand(new HPCommand(Player, HPCommand.Scope.All, isDamage: true));
                     PrintSetup();
                     Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "heal":
-                    Heal();
+                    RunCommand(new HPCommand(Player, HPCommand.Scope.Player, isDamage: false));
                     PrintSetup();
                     break;
                 case "heal card":
-                    HealCard();
+                    RunCommand(new HPCommand(Player, HPCommand.Scope.Card, isDamage: false));
                     Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "heal cards":
-                    HealCards();
+                    RunCommand(new HPCommand(Player, HPCommand.Scope.Cards, isDamage: false));
                     Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
                 case "heal all":
-                    HealAll();
+                    RunCommand(new HPCommand(Player, HPCommand.Scope.All, isDamage: false));
                     PrintSetup();
                     Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
                     break;
@@ -265,25 +265,31 @@ namespace SOTMDecks
                     break;
             }
 
-            if (command is not null)
+            if (command is not null) RunCommand(command);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Executes a command and, if it succeeds, pushes it onto the undo stack.
+        /// </summary>
+        private void RunCommand(Command command)
+        {
+            try
             {
-                try
+                if (command.Execute())
                 {
-                    if (command.Execute())
-                    {
-                        commands.Push(command);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Command failed to execute");
-                    }
+                    commands.Push(command);
                 }
-                catch (Exception ex )
+                else
                 {
-                    Console.WriteLine($"Exception executing command: {ex}");
+                    Console.WriteLine("Command failed to execute");
                 }
             }
-            return true;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception executing command: {ex}");
+            }
         }
 
         void PrintKeyWords()
@@ -338,142 +344,6 @@ namespace SOTMDecks
             if (!countOpt.HasValue) return;
 
             cardOpt.ValueOrThrow().Count = countOpt.ValueOr(0);
-        }
-
-        private void DamageCard()
-        {
-            Option<HeroCard> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
-            if (!cardOpt.HasValue) return;
-
-            Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!damageOpt.HasValue) return;
-
-            var card = cardOpt.ValueOrThrow();
-
-            if (card.MaxHP == 0)
-            {
-                Console.WriteLine("You must choose a target");
-                return;
-            }
-
-            card.HP -= damageOpt.ValueOr(0);
-            if (card.HP <= 0)
-            {
-                Console.WriteLine($"{card.Name} has died. If applicable, destroy it.");
-                card.HP = 0;
-            }
-        }
-
-        private void DamageCards()
-        {
-            Option<List<HeroCard>> cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
-            if (!cards.HasValue) return;
-
-            Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!damageOpt.HasValue) return;
-
-            foreach (HeroCard card in cards.ValueOr(new List<HeroCard>()))
-            {
-                if (card.MaxHP == 0)
-                {
-                    Console.WriteLine($"{card.Name} is not a target (HP will still be removed from targets)");
-                    continue;
-                }
-
-                card.HP -= damageOpt.ValueOr(0);
-            }
-        }
-
-        private void DamageAll()
-        {
-            Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!damageOpt.HasValue) return;
-
-            int damage = damageOpt.ValueOr(0);
-
-            Player.DealDamage(damage);
-
-            foreach (HeroCard card in Player.GetLocation(Location.PlayArea).GetCards())
-            {
-                if (card.MaxHP == 0)
-                {
-                    continue;
-                }
-
-                card.HP -= damage;
-                if (card.HP <= 0)
-                {
-                    Console.WriteLine($"{card.Name} has died. If applicable, destroy it.");
-                    card.HP = 0;
-                }
-            }
-        }
-
-        private void HealCard()
-        {
-            Option<HeroCard> cardOpt = MiscHelpers.GetCardFromIndex(Player.PlayArea());
-            if (!cardOpt.HasValue) return;
-
-            Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!healthOpt.HasValue) return;
-
-            cardOpt.ValueOrThrow().HP += healthOpt.ValueOr(0);
-        }
-
-        private void HealCards()
-        {
-            Option<List<HeroCard>> cards = MiscHelpers.GetCardsFromInput(Player.PlayArea());
-            if (!cards.HasValue) return;
-
-            Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!healthOpt.HasValue) return;
-
-            foreach (HeroCard card in cards.ValueOr(new List<HeroCard>()))
-            {
-                if (card.MaxHP == 0)
-                {
-                    Console.WriteLine($"{card.Name} is not a target (HP will still be added to targets)");
-                    continue;
-                }
-
-                card.HP += healthOpt.ValueOr(0);
-            }
-        }
-
-        private void HealAll()
-        {
-            Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!healthOpt.HasValue) return;
-
-            int health = healthOpt.ValueOr(0);
-
-            Player.Heal(health);
-
-            foreach (HeroCard card in Player.GetLocation(Location.PlayArea).GetCards())
-            {
-                if (card.MaxHP == 0)
-                {
-                    continue;
-                }
-
-                card.HP += health;
-            }
-        }
-
-        private void DealDamage()
-        {
-            Option<int> damageOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!damageOpt.HasValue) return;
-
-            Player.DealDamage(damageOpt.ValueOr(0));
-        }
-
-        private void Heal()
-        {
-            Option<int> healthOpt = MiscHelpers.GetIntFromPlayer("How much?");
-            if (!healthOpt.HasValue) return;
-
-            Player.Heal(healthOpt.ValueOr(0));
         }
 
         private void AddMod()

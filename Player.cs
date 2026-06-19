@@ -77,6 +77,13 @@ namespace SOTMDecks
             return HP;
         }
 
+        // Sets HP to an exact value, bypassing the positive-value checks in
+        // DealDamage/Heal. Used to restore a captured HP value on undo.
+        public void SetHP(int hp)
+        {
+            HP = hp;
+        }
+
         public void AddMod(Modifier newMod)
         {
             Modifiers.Add(newMod);
