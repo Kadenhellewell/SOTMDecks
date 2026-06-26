@@ -11,16 +11,7 @@ namespace SOTMDecks
     {
         public Card(KeyValuePair<string, JToken?> _) 
         {
-        
-        }
-        public void PrintHP()
-        {
-            Console.Write(" (");
-            ConsoleColor hpColor = HP == MaxHP ? ConsoleColor.Green : ConsoleColor.Red;
-            MiscHelpers.ColorPrint(hpColor, $"{HP}");
-            Console.Write("/");
-            MiscHelpers.ColorPrint(ConsoleColor.Green, $"{MaxHP}");
-            Console.WriteLine(")");
+
         }
 
         public string TypeAsString()
@@ -48,17 +39,6 @@ namespace SOTMDecks
 
             return false;
         }
-
-        public void PrintMechanics(MiscHelpers.Timing timing, bool newline = false)
-        {
-            foreach (var mechanic in CustomMechanics)
-            {
-                mechanic.Print(timing, newline);
-            }
-        }
-
-        public abstract void PrintText();
-        public abstract void PrettyPrint(bool brief = false);
 
         public string Name { get; protected init; } = "";
         public List<string> Type { get; protected init; } = new();

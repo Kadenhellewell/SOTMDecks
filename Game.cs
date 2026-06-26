@@ -1,5 +1,6 @@
 ﻿using SOTMDecks.Commands;
 using SOTMDecks.Input;
+using SOTMDecks.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,9 +116,9 @@ namespace SOTMDecks
         private void PrintModifiers()
         {
             MiscHelpers.ColorPrint(ConsoleColor.DarkYellow, "Modifiers: ", newLine: true);
-            foreach (Modifier modifier in Player.Modifiers) 
+            foreach (Modifier modifier in Player.Modifiers)
             {
-                modifier.Print();
+                Display.Modifier(modifier);
             }
             Console.WriteLine();
         }

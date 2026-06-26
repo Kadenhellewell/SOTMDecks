@@ -15,16 +15,11 @@ namespace SOTMDecks
         }
 
         public string Description { get; }
-        ConsoleColor Color;
+        public ConsoleColor Color { get; }
 
         public override string ToString()
         {
             return $"\t{Description}";
-        }
-
-        public void Print()
-        {
-            MiscHelpers.ColorPrint(Color, ToString(), newLine: true);
         }
     }
 }

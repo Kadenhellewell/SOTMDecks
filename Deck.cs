@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using SOTMDecks.View;
 
 namespace SOTMDecks
 {
@@ -69,7 +70,7 @@ namespace SOTMDecks
                     Console.WriteLine("No more cards in deck");
                     return;
                 }
-                cards_[i].PrettyPrint();
+                Display.Card(cards_[i]);
                 Console.WriteLine();
                 Console.WriteLine("------");
             }

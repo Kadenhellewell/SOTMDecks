@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SOTMDecks.View;
 
 namespace SOTMDecks
 {
@@ -184,7 +185,7 @@ namespace SOTMDecks
                 Console.Write($" ({cards_[i].TypeAsString()})");
                 if (verbose)
                 {
-                    cards_[i].PrintText();
+                    Display.CardText(cards_[i]);
                 }
                 Console.WriteLine();
             }
@@ -220,13 +221,13 @@ namespace SOTMDecks
 
                     if (first)
                     {
-                        card.PrettyPrint(brief);
+                        Display.Card(card, brief);
                         first = false;
                     }
                     else
                     {
                         if (!brief) Console.WriteLine("----");
-                        card.PrettyPrint(brief);
+                        Display.Card(card, brief);
                     }
                 }
             }

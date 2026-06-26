@@ -35,14 +35,5 @@ namespace SOTMDecks
             }
             Timing = parsedTiming;
         }
-
-        public void Print(MiscHelpers.Timing timing, bool newline = false)
-        {
-            if (timing != Timing) return; // Only print at the right time
-
-            MiscHelpers.ColorPrint(Color, $"\t{Name}: ");
-            if (newline) Console.WriteLine($"{Text} ");
-            else Console.Write($"{Text} ");
-        }
     }
 }

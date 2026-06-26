@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SOTMDecks.View;
 
 namespace SOTMDecks
 {
@@ -143,7 +144,7 @@ namespace SOTMDecks
 
             PlayArea.Add(card);
             Console.WriteLine("Revealed:");
-            card.PrettyPrint();
+            Display.Card(card);
         }
 
         private void DiscardFromPlayArea()
