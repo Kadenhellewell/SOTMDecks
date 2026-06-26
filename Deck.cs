@@ -13,9 +13,18 @@ namespace SOTMDecks
 
         protected abstract List<T> ParseDeck(JObject json);
 
+        // Test hook: when SOTMDECKS_SEED is set, shuffles become deterministic so output
+        // can be compared across refactors. Unset (the normal case) keeps the Guid shuffle.
+        private static readonly Random? _seededRng =
+            int.TryParse(Environment.GetEnvironmentVariable("SOTMDECKS_SEED"), out int seed)
+                ? new Random(seed)
+                : null;
+
         public void Shuffle()
         {
-            cards_ = cards_.OrderBy(_ => Guid.NewGuid()).ToList();
+            cards_ = _seededRng is null
+                ? cards_.OrderBy(_ => Guid.NewGuid()).ToList()
+                : cards_.OrderBy(_ => _seededRng.Next()).ToList();
         }
 
         public T? Draw(bool fromBottom = false)
