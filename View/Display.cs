@@ -20,5 +20,10 @@ namespace SOTMDecks.View
 
         public static void Collection<T>(CardCollection<T> col, CardFilter filter = CardFilter.NONE, bool brief = false) where T : Card
             => CardCollectionRenderer.Render(Out, col, filter, brief);
+
+        public static void Reveal<T>(Deck<T> deck, int num) where T : Card
+            => DeckRenderer.RenderReveal(Out, deck, num);
+
+        public static void InnatePower(HeroDeck deck) => DeckRenderer.RenderInnatePower(Out, deck);
     }
 }

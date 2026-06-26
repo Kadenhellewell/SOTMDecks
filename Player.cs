@@ -370,7 +370,7 @@ namespace SOTMDecks
 
         public void RevealCards(int num)
         {
-            PlayerDeck.RevealCards(num);
+            Display.Reveal(PlayerDeck, num);
         }
 
         public void Shuffle()
@@ -404,7 +404,7 @@ namespace SOTMDecks
         public void PrintPowers(bool brief)
         {
             Console.WriteLine();
-            PlayerDeck.PrintInnatePower();
+            Display.InnatePower(PlayerDeck);
             Console.WriteLine();
             PrintLocation(Location.PlayArea, CardFilter.POWER, brief);
         }

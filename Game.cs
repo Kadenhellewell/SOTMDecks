@@ -104,7 +104,7 @@ namespace SOTMDecks
             }
             else
             {
-                Player.PlayerDeck.PrintInnatePower();
+                Display.InnatePower(Player.PlayerDeck);
             }
 
             if (Player.Modifiers.Count > 0) 

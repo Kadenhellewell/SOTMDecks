@@ -106,17 +106,5 @@ namespace SOTMDecks
 
             return cards;
         }
-
-        public void PrintInnatePower()
-        {
-            MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
-            Console.WriteLine(InnatePower);
-
-            if (InnatePower2 != "")
-            {
-                MiscHelpers.ColorPrint(ConsoleColor.Blue, "Innate Power: ");
-                Console.WriteLine(InnatePower2);
-            }
-        }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using SOTMDecks.View;
 
 namespace SOTMDecks
 {
@@ -59,21 +58,6 @@ namespace SOTMDecks
             }
 
             return cards_.Take(n).ToList();
-        }
-
-        public void RevealCards(int num)
-        {
-            for (int i = 0; i < num; i++)
-            {
-                if (i >= cards_.Count)
-                {
-                    Console.WriteLine("No more cards in deck");
-                    return;
-                }
-                Display.Card(cards_[i]);
-                Console.WriteLine();
-                Console.WriteLine("------");
-            }
         }
     }
 }
