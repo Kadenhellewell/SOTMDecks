@@ -41,7 +41,7 @@ namespace SOTMDecks
             registry.Register(new ViewCommand(new[] { "discard pile", "dp" }, "Show the discard pile",
                 ctx => ctx.Player.PrintLocation(Location.DiscardPile, brief: ctx.Brief)));
             registry.Register(new ViewCommand(new[] { "targets" }, "Show targets in play",
-                ctx => ctx.Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, ctx.Brief)));
+                ctx => ctx.Player.PrintLocation(Location.PlayArea, CardFilter.TARGET, ctx.Brief)));
 
             // Undoable actions — bridge to the Command layer + undo stack.
             registry.Register(new ActionCommand(new[] { "draw" }, "Draw a card from the top of the deck",
@@ -51,7 +51,7 @@ namespace SOTMDecks
                 postPrint: ctx =>
                 {
                     ctx.PrintSetup();
-                    ctx.Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
+                    ctx.Player.PrintLocation(Location.PlayArea, CardFilter.TARGET, brief: true);
                 }));
 
             // Non-undoable mutation, and control commands — same interface.
@@ -212,16 +212,16 @@ namespace SOTMDecks
                     command = new SantaPlayCommand(Player);
                     break;
                 case "hand powers":
-                    Player.PrintLocation(Location.Hand, CardCollection<HeroCard>.Filter.POWER);
+                    Player.PrintLocation(Location.Hand, CardFilter.POWER);
                     break;
                 case "powers":
                     Player.PrintPowers(brief);
                     break;
                 case "start":
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.START, brief);
+                    Player.PrintLocation(Location.PlayArea, CardFilter.START, brief);
                     break;
                 case "end":
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.END, brief);
+                    Player.PrintLocation(Location.PlayArea, CardFilter.END, brief);
                     break;
                 case "reveal":
                     RevealCards();
@@ -236,11 +236,11 @@ namespace SOTMDecks
                     break;
                 case "damage card":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.Card, isDamage: true));
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "damage cards":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.Cards, isDamage: true));
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "heal":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.Player, isDamage: false));
@@ -248,16 +248,16 @@ namespace SOTMDecks
                     break;
                 case "heal card":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.Card, isDamage: false));
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "heal cards":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.Cards, isDamage: false));
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "heal all":
                     RunCommand(new HPCommand(Player, HPCommand.Scope.All, isDamage: false));
                     PrintSetup();
-                    Player.PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.TARGET, brief: true);
+                    Player.PrintLocation(Location.PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "add modifier":
                 case "add mod":

@@ -14,5 +14,11 @@ namespace SOTMDecks.View
         public static void CardText(Card card) => CardRenderer.RenderText(Out, card);
 
         public static void Modifier(Modifier modifier) => Out.WriteLine(modifier.ToString(), modifier.Color);
+
+        public static void List<T>(CardCollection<T> col, bool verbose = false) where T : Card
+            => CardCollectionRenderer.RenderList(Out, col, verbose);
+
+        public static void Collection<T>(CardCollection<T> col, CardFilter filter = CardFilter.NONE, bool brief = false) where T : Card
+            => CardCollectionRenderer.Render(Out, col, filter, brief);
     }
 }

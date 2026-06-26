@@ -3,22 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SOTMDecks.View;
 
 namespace SOTMDecks
 {
     internal class CardCollection<T> where T : Card
     {
-        public enum Filter
-        {
-            NONE,
-            START,
-            POWER,
-            TARGET,
-            END
-        }
-
-        public CardCollection(string desc) 
+        public CardCollection(string desc)
         {
             cards_ = new List<T>();
             Description = desc;
@@ -176,61 +166,5 @@ namespace SOTMDecks
             cards_.Clear();
         }
 
-        public void ListPrint(bool verbose = false)
-        {
-            for (int i = 0; i < cards_.Count; i++)
-            {
-                Console.Write($"\t{i}: ");
-                MiscHelpers.ColorPrint(ConsoleColor.Green, cards_[i].Name);
-                Console.Write($" ({cards_[i].TypeAsString()})");
-                if (verbose)
-                {
-                    Display.CardText(cards_[i]);
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public void PrettyPrint(Filter filter = Filter.NONE, bool brief = false)
-        {
-            Console.WriteLine($"{Description} ({cards_.Count}):\n");
-            bool first = true;
-            foreach (T card in cards_)
-            {
-                bool print = true;
-                switch (filter)
-                {
-                    case Filter.NONE:
-                        print = true; break;
-                    case Filter.START:
-                        print = card.StartOfTurn != "" || card.HasCustomMechanicAtTime(MiscHelpers.Timing.START); break;
-                    case Filter.POWER:
-                        print = (card is HeroCard hc && hc.Power != "");
-                        break;
-                    case Filter.END:
-                        print = card.EndOfTurn != "" || card.HasCustomMechanicAtTime(MiscHelpers.Timing.END); break;
-                    case Filter.TARGET:
-                        print = card.MaxHP > 0;
-                        break;
-                    default: 
-                        print = true; break;
-                }
-
-                if (print)
-                {
-
-                    if (first)
-                    {
-                        Display.Card(card, brief);
-                        first = false;
-                    }
-                    else
-                    {
-                        if (!brief) Console.WriteLine("----");
-                        Display.Card(card, brief);
-                    }
-                }
-            }
-        }
     }
 }

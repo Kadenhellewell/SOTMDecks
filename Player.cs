@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using SOTMDecks.View;
 
 namespace SOTMDecks
 {
@@ -390,9 +391,9 @@ namespace SOTMDecks
             PlayerDeck.Shuffle();
         }
 
-        public void PrintLocation(Location loc, CardCollection<HeroCard>.Filter filter = CardCollection<HeroCard>.Filter.NONE, bool brief = false)
+        public void PrintLocation(Location loc, CardFilter filter = CardFilter.NONE, bool brief = false)
         {
-            CardGroups[loc].PrettyPrint(filter, brief);
+            Display.Collection(CardGroups[loc], filter, brief);
             if (loc == Location.PlayArea && CardGroups[Location.SantasBag].GetCount() > 0)
             {
                 MiscHelpers.ColorPrint(ConsoleColor.DarkCyan, "Santa's bag: ", newLine: false);
@@ -405,7 +406,7 @@ namespace SOTMDecks
             Console.WriteLine();
             PlayerDeck.PrintInnatePower();
             Console.WriteLine();
-            PrintLocation(Location.PlayArea, CardCollection<HeroCard>.Filter.POWER, brief);
+            PrintLocation(Location.PlayArea, CardFilter.POWER, brief);
         }
     }
 }

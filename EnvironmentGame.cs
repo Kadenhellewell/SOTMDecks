@@ -53,11 +53,11 @@ namespace SOTMDecks
                     break;
                 case "play area":
                 case "pa":
-                    PlayArea.PrettyPrint(CardCollection<EnvironmentCard>.Filter.NONE, brief);
+                    Display.Collection(PlayArea, CardFilter.NONE, brief);
                     break;
                 case "discard pile":
                 case "dp":
-                    DiscardPile.PrettyPrint(CardCollection<EnvironmentCard>.Filter.NONE, brief);
+                    Display.Collection(DiscardPile, CardFilter.NONE, brief);
                     break;
                 case "deck count":
                     Console.WriteLine($"Cards in deck: {EnvDeck.GetCount()}");
@@ -70,27 +70,27 @@ namespace SOTMDecks
                     break;
                 case "damage card":
                     DamageCard();
-                    PlayArea.PrettyPrint(CardCollection<EnvironmentCard>.Filter.TARGET, brief: true);
+                    Display.Collection(PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "damage cards":
                     DamageCards();
-                    PlayArea.PrettyPrint(CardCollection<EnvironmentCard>.Filter.TARGET, brief: true);
+                    Display.Collection(PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "damage all":
                     DamageAll();
-                    PlayArea.PrettyPrint(CardCollection<EnvironmentCard>.Filter.TARGET, brief: true);
+                    Display.Collection(PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "heal card":
                     HealCard();
-                    PlayArea.PrettyPrint(CardCollection<EnvironmentCard>.Filter.TARGET, brief: true);
+                    Display.Collection(PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "heal cards":
                     HealCards();
-                    PlayArea.PrettyPrint(CardCollection<EnvironmentCard>.Filter.TARGET, brief: true);
+                    Display.Collection(PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "heal all":
                     HealAll();
-                    PlayArea.PrettyPrint(CardCollection<EnvironmentCard>.Filter.TARGET, brief: true);
+                    Display.Collection(PlayArea, CardFilter.TARGET, brief: true);
                     break;
                 case "shuffle":
                     EnvDeck.Shuffle();
@@ -104,7 +104,7 @@ namespace SOTMDecks
                     RemoveCard();
                     break;
                 case "targets":
-                    PlayArea.PrettyPrint(CardCollection<EnvironmentCard>.Filter.TARGET, brief);
+                    Display.Collection(PlayArea, CardFilter.TARGET, brief);
                     break;
                 case "key words":
                     PrintKeyWords();
@@ -113,7 +113,7 @@ namespace SOTMDecks
                 case "exit":
                     return false;
                 case "":
-                    PlayArea.PrettyPrint();
+                    Display.Collection(PlayArea);
                     break;
                 default:
                     Console.WriteLine("Not a valid command");

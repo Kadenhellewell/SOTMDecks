@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SOTMDecks.View;
 
 namespace SOTMDecks
 {
@@ -121,7 +122,7 @@ namespace SOTMDecks
         public static T? GetCardFromIndex<T>(CardCollection<T> col, bool verbose = false) where T : Card
         {
             Console.WriteLine("Card?");
-            col.ListPrint(verbose);
+            Display.List(col, verbose);
 
             if (GetIntFromPlayer("") is not int index) return null;
 
@@ -137,7 +138,7 @@ namespace SOTMDecks
         public static List<T>? GetCardsFromInput<T>(CardCollection<T> col, bool verbose = false) where T : Card
         {
             Console.WriteLine("Select cards space-separated numbers");
-            col.ListPrint(verbose);
+            Display.List(col, verbose);
 
             List<int>? intList = GetIntsFromPlayer("");
             if (intList is null) return null;
